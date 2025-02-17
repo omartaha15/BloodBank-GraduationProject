@@ -1,0 +1,12 @@
+D:\BloodBank-GraduationProject\BloodBank.Business\bin\Debug\net8.0\BloodBank.Business.deps.json
+D:\BloodBank-GraduationProject\BloodBank.Business\bin\Debug\net8.0\BloodBank.Business.dll
+D:\BloodBank-GraduationProject\BloodBank.Business\bin\Debug\net8.0\BloodBank.Business.pdb
+D:\BloodBank-GraduationProject\BloodBank.Business\obj\Debug\net8.0\BloodBank.Business.GeneratedMSBuildEditorConfig.editorconfig
+D:\BloodBank-GraduationProject\BloodBank.Business\obj\Debug\net8.0\BloodBank.Business.AssemblyInfoInputs.cache
+D:\BloodBank-GraduationProject\BloodBank.Business\obj\Debug\net8.0\BloodBank.Business.AssemblyInfo.cs
+D:\BloodBank-GraduationProject\BloodBank.Business\obj\Debug\net8.0\BloodBank.Business.csproj.CoreCompileInputs.cache
+D:\BloodBank-GraduationProject\BloodBank.Business\obj\Debug\net8.0\BloodBank.Business.sourcelink.json
+D:\BloodBank-GraduationProject\BloodBank.Business\obj\Debug\net8.0\BloodBank.Business.dll
+D:\BloodBank-GraduationProject\BloodBank.Business\obj\Debug\net8.0\refint\BloodBank.Business.dll
+D:\BloodBank-GraduationProject\BloodBank.Business\obj\Debug\net8.0\BloodBank.Business.pdb
+D:\BloodBank-GraduationProject\BloodBank.Business\obj\Debug\net8.0\ref\BloodBank.Business.dll
