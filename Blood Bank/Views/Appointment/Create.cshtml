@@ -1,0 +1,60 @@
+﻿<!-- Views/Appointment/Create.cshtml -->
+@model CreateAppointmentDto
+
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-900 mb-6">Schedule Appointment</h1>
+
+        <form asp-action="Create" class="space-y-6">
+            <div asp-validation-summary="ModelOnly" class="text-red-500 text-sm mb-4"></div>
+
+            <input type="hidden" asp-for="DonorId" />
+
+            <div>
+                <label asp-for="AppointmentDate" class="block text-sm font-medium text-gray-700">Date</label>
+                <input asp-for="AppointmentDate" type="date"
+                       min="@DateTime.Now.ToString("yyyy-MM-dd")"
+                       class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                <span asp-validation-for="AppointmentDate" class="text-red-500 text-sm"></span>
+            </div>
+
+            <div>
+                <label asp-for="AppointmentTime" class="block text-sm font-medium text-gray-700">Time</label>
+                <select asp-for="AppointmentTime"
+                        class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                    @for (int hour = 9; hour <= 17; hour++)
+                    {
+                        <option value="@(new TimeSpan(hour, 0, 0))">@(hour.ToString("00")):00</option>
+                        <option value="@(new TimeSpan(hour, 30, 0))">@(hour.ToString("00")):30</option>
+                    }
+                </select>
+                <span asp-validation-for="AppointmentTime" class="text-red-500 text-sm"></span>
+            </div>
+
+            <div>
+                <label asp-for="Notes" class="block text-sm font-medium text-gray-700">Notes</label>
+                <textarea asp-for="Notes" rows="3"
+                          class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                          placeholder="Any special requirements or notes"></textarea>
+                <span asp-validation-for="Notes" class="text-red-500 text-sm"></span>
+            </div>
+
+            <div class="flex justify-end space-x-4">
+                <a href="@Url.Action("Index")"
+                   class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+                    Cancel
+                </a>
+                <button type="submit"
+                        class="px-4 py-2 bg-primary text-white rounded-md hover:bg-red-700">
+                    Schedule Appointment
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

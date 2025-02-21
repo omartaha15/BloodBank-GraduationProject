@@ -1,0 +1,72 @@
+﻿<!-- Views/BloodRequest/Create.cshtml -->
+@model CreateBloodRequestDto
+
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-3xl font-bold text-gray-900 mb-6">New Blood Request</h1>
+
+        <form asp-action="Create" class="space-y-6">
+            <div asp-validation-summary="ModelOnly" class="text-red-500 text-sm mb-4"></div>
+
+            <div>
+                <label asp-for="BloodType" class="block text-sm font-medium text-gray-700">Blood Type</label>
+                <select asp-for="BloodType"
+                        asp-items="Html.GetEnumSelectList<BloodType>()"
+                        class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                    <option value="">Select Blood Type</option>
+                </select>
+                <span asp-validation-for="BloodType" class="text-red-500 text-sm"></span>
+            </div>
+
+            <div>
+                <label asp-for="QuantityRequired" class="block text-sm font-medium text-gray-700">Quantity Required (ml)</label>
+                <input asp-for="QuantityRequired" type="number" min="1"
+                       class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                <span asp-validation-for="QuantityRequired" class="text-red-500 text-sm"></span>
+            </div>
+
+            <div>
+                <label asp-for="Priority" class="block text-sm font-medium text-gray-700">Priority</label>
+                <select asp-for="Priority"
+                        asp-items="Html.GetEnumSelectList<RequestPriority>()"
+                        class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                    <option value="">Select Priority</option>
+                </select>
+                <span asp-validation-for="Priority" class="text-red-500 text-sm"></span>
+            </div>
+
+            <div>
+                <label asp-for="RequiredDate" class="block text-sm font-medium text-gray-700">Required Date</label>
+                <input asp-for="RequiredDate" type="date"
+                       min="@DateTime.Now.ToString("yyyy-MM-dd")"
+                       class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                <span asp-validation-for="RequiredDate" class="text-red-500 text-sm"></span>
+            </div>
+
+            <div>
+                <label asp-for="Notes" class="block text-sm font-medium text-gray-700">Notes</label>
+                <textarea asp-for="Notes" rows="3"
+                          class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                          placeholder="Additional information or special requirements"></textarea>
+                <span asp-validation-for="Notes" class="text-red-500 text-sm"></span>
+            </div>
+
+            <div class="flex justify-end space-x-4">
+                <a href="@Url.Action("Index")"
+                   class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+                    Cancel
+                </a>
+                <button type="submit"
+                        class="px-4 py-2 bg-primary text-white rounded-md hover:bg-red-700">
+                    Submit Request
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -9,5 +9,6 @@
         public string ContactNumber { get; set; }
         public string Email { get; set; }
         public List<BloodRequestDto> BloodRequests { get; set; }
+        public bool IsActive { get; set; }
     }
 }

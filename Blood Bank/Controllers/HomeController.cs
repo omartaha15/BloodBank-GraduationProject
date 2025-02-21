@@ -1,27 +1,45 @@
 using System.Diagnostics;
+using Blood_Bank.ViewModels;
+using BloodBank.Business.Interfaces;
+using BloodBank.Core.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Blood_Bank.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IBloodUnitService _bloodUnitService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController ( IBloodUnitService bloodUnitService )
         {
-            _logger = logger;
+            _bloodUnitService = bloodUnitService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index ()
         {
-            return View();
-        }
+            var bloodTypes = Enum.GetValues( typeof( BloodType ) )
+                                .Cast<BloodType>()
+                                .ToList();
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+            var bloodTypeStats = new List<BloodTypeStatViewModel>();
 
-       
+            foreach ( var bloodType in bloodTypes )
+            {
+                var count = await _bloodUnitService.GetAvailableUnitsCountByBloodTypeAsync( bloodType );
+                bloodTypeStats.Add( new BloodTypeStatViewModel
+                {
+                    BloodType = bloodType,
+                    AvailableUnits = count
+                } );
+            }
+
+            var viewModel = new HomeViewModel
+            {
+                BloodTypeStats = bloodTypeStats,
+                ExpiringUnits = await _bloodUnitService.GetExpiringUnitsAsync( 7 )
+            };
+
+            return View( viewModel );
+        }
     }
 }

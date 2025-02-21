@@ -1,0 +1,62 @@
+﻿<!-- Views/BloodRequest/MyRequests.cshtml -->
+@model IEnumerable<BloodRequestDto>
+
+<div class="container mx-auto px-4 py-8">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-900">My Blood Requests</h1>
+        <a href="@Url.Action("Create")" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors duration-200">
+            <i class="fas fa-plus mr-2"></i>New Request
+        </a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="bg-white rounded-lg shadow-sm p-6 text-center">
+            <p class="text-gray-500">You haven't made any blood requests yet.</p>
+            <a href="@Url.Action("Create")" class="mt-4 inline-block text-primary hover:text-red-700">
+                Create your first request
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="bg-white rounded-lg shadow overflow-hidden">
+            <div class="divide-y divide-gray-200">
+                @foreach (var request in Model.OrderByDescending(r => r.RequiredDate))
+                {
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-900">
+                                    @request.BloodType - @request.QuantityRequired ml
+                                </h3>
+                                <p class="mt-1 text-sm text-gray-500">
+                                    Required by: @request.RequiredDate.ToString("D")
+                                </p>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                                       @(request.Status == RequestStatus.Pending ? "bg-yellow-100 text-yellow-800" :
+                                         request.Status == RequestStatus.Approved ? "bg-green-100 text-green-800" :
+                                         request.Status == RequestStatus.Completed ? "bg-blue-100 text-blue-800" :
+                                         "bg-red-100 text-red-800")">
+                                    @request.Status
+                                </span>
+                                <a href="@Url.Action("Details", new { id = request.Id })"
+                                   class="text-indigo-600 hover:text-indigo-900">
+                                    View Details
+                                </a>
+                            </div>
+                        </div>
+                        @if (!string.IsNullOrEmpty(request.Notes))
+                        {
+                            <p class="mt-2 text-sm text-gray-600">
+                                @request.Notes
+                            </p>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

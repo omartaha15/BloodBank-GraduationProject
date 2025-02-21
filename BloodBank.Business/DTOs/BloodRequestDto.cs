@@ -14,5 +14,6 @@ namespace BloodBank.Business.DTOs
         public DateTime RequiredDate { get; set; }
         public string Notes { get; set; }
         public List<BloodUnitDto> AssignedUnits { get; set; }
+        public bool IsUrgent => Priority == RequestPriority.Emergency || Priority == RequestPriority.Urgent;
     }
 }

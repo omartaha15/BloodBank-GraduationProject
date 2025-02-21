@@ -17,5 +17,7 @@ namespace BloodBank.Business.DTOs
         public double Quantity { get; set; }
         public DonationStatus Status { get; set; }
         public BloodTestDto BloodTest { get; set; }
+        public BloodUnitDto BloodUnit { get; set; }  // Add this
     }
+
 }
