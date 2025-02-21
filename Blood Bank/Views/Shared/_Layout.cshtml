@@ -1,49 +1,481 @@
-﻿<!DOCTYPE html>
+﻿@using BloodBank.Core.Constants
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Blood_Bank</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Blood_Bank.styles.css" asp-append-version="true" />
+    <title>@ViewData["Title"] - Blood Bank Management System</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E53E3E',
+                        secondary: '#718096',
+                        accent: '#F56565',
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom Styles -->
+    @* <style> *@
+    @*     body { *@
+    @*         font-family: 'Poppins', sans-serif; *@
+    @*     } *@
+
+    @*     .nav-link { *@
+    @*     @apply text-gray-600 hover:text-primary px-3 py-2 rounded-md transition-colors duration-200; *@
+    @*     } *@
+
+    @*         .nav-link.active { *@
+    @*     @apply text-primary font-medium; *@
+    @*         } *@
+
+    @*     .btn-primary { *@
+    @*     @apply bg-primary text-white px-4 py-2 rounded-md hover:bg-red-700 transition-all duration-200 transform hover:scale-105; *@
+    @*     } *@
+
+    @*     .dropdown-animation { *@
+    @*     @apply transition-all duration-200 transform opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100; *@
+    @*     } *@
+
+    @*     .notification { *@
+    @*     @apply fixed top-4 right-4 z-50 px-6 py-3 rounded-md shadow-lg transition-opacity duration-300; *@
+    @*     } *@
+
+    @*         .notification.success { *@
+    @*     @apply bg-green-500 text-white; *@
+    @*         } *@
+
+    @*         .notification.error { *@
+    @*     @apply bg-red-500 text-white; *@
+    @*         } *@
+    @* </style> *@
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Blood_Bank</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+    <!-- Notifications -->
+    @if (TempData["Success"] != null)
+    {
+        <div class="notification success" id="notification">
+            <div class="flex items-center">
+                <i class="fas fa-check-circle mr-2"></i>
+                <span>@TempData["Success"]</span>
+            </div>
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="notification error" id="notification">
+            <div class="flex items-center">
+                <i class="fas fa-exclamation-circle mr-2"></i>
+                <span>@TempData["Error"]</span>
+            </div>
+        </div>
+    }
+
+    <header class="sticky top-0 z-50">
+        <!-- Main Navigation Bar -->
+        <nav class="bg-white shadow-lg">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex justify-between h-16">
+                    <!-- Logo and Brand -->
+                    <div class="flex">
+                        <div class="flex-shrink-0 flex items-center">
+                            <a href="/" class="flex items-center group">
+                                <i class="fas fa-heartbeat text-primary text-3xl mr-2 group-hover:animate-pulse"></i>
+                                <span class="text-xl font-bold text-gray-800 group-hover:text-primary transition-colors duration-200">Blood Bank</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Navigation Links -->
+                    <div class="hidden md:flex items-center space-x-4">
+                        <a href="@Url.Action("Index", "Home")" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Home" ? "active" : "")">
+                            <i class="fas fa-home mr-1"></i> Home
+                        </a>
+                        <a href="@Url.Action("Index", "Donation")" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Donation" ? "active" : "")">
+                            <i class="fas fa-hand-holding-medical mr-1"></i> Donations
+                        </a>
+                        <a href="@Url.Action("Index", "Appointment")" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Appointment" ? "active" : "")">
+                            <i class="fas fa-calendar-check mr-1"></i> Appointments
+                        </a>
+                        <a href="@Url.Action("Index", "BloodRequest")" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "BloodRequest" ? "active" : "")">
+                            <i class="fas fa-clipboard-list mr-1"></i> Requests
+                        </a>
+                        <a href="@Url.Action("Index", "Hospital")" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Hospital" ? "active" : "")">
+                            <i class="fas fa-hospital mr-1"></i> Hospitals
+                        </a>
+                    </div>
+
+                    <!-- User Menu -->
+                    <div class="hidden md:flex items-center space-x-4">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="relative group">
+                                <div class="flex items-center cursor-pointer p-2 rounded-md hover:bg-gray-100 transition-colors duration-200">
+                                    <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mr-2">
+                                        @User.Identity.Name.Substring(0, 1).ToUpper()
+                                    </div>
+                                    <span class="text-gray-700">@User.Identity.Name</span>
+                                    <i class="fas fa-chevron-down ml-2 text-gray-500 group-hover:text-primary transition-colors duration-200"></i>
+                                </div>
+
+                                <!-- User Dropdown Menu -->
+                                <div class="hidden group-hover:block absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 dropdown-animation">
+                                    <div class="px-4 py-2 text-xs text-gray-400">
+                                        Signed in as
+                                        <div class="font-medium text-gray-900">@User.Identity.Name</div>
+                                    </div>
+
+                                    <div class="border-t border-gray-100"></div>
+
+                                    <a href="@Url.Action("Profile", "Account")" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        <i class="fas fa-user mr-2"></i> Your Profile
+                                    </a>
+
+                                    @if (User.IsInRole(Roles.Donor))
+                                    {
+                                        <a href="@Url.Action("MyDonations", "Donation")" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                            <i class="fas fa-history mr-2"></i> Donation History
+                                        </a>
+                                        <a href="@Url.Action("MyAppointments", "Appointment")" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                            <i class="fas fa-calendar mr-2"></i> My Appointments
+                                        </a>
+                                    }
+
+                                    <a href="@Url.Action("Settings", "Account")" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        <i class="fas fa-cog mr-2"></i> Settings
+                                    </a>
+
+                                    <div class="border-t border-gray-100"></div>
+
+                                    <form asp-controller="Account" asp-action="Logout" method="post">
+                                        <button type="submit" class="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50">
+                                            <i class="fas fa-sign-out-alt mr-2"></i> Sign out
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Login", "Account")" class="nav-link flex items-center">
+                                <i class="fas fa-sign-in-alt mr-1"></i> Login
+                            </a>
+                            <a href="@Url.Action("Register", "Account")" class="btn-primary flex items-center">
+                                <i class="fas fa-user-plus mr-1"></i> Register
+                            </a>
+                        }
+                    </div>
+
+                    <!-- Mobile menu button -->
+                    <div class="md:hidden flex items-center">
+                        <button type="button" class="mobile-menu-button p-2 rounded-md hover:bg-gray-100 focus:outline-none">
+                            <i class="fas fa-bars text-gray-600 text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile menu -->
+            <div class="hidden md:hidden" id="mobile-menu">
+                <!-- Mobile menu content here -->
+            </div>
+        </nav>
+
+        <!-- Admin Navigation Bar -->
+        @if (User.IsInRole(Roles.Admin))
+        {
+            <nav class="bg-gray-800 text-white">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="flex items-center space-x-4 h-12">
+                        <span class="text-sm font-medium">Admin Panel:</span>
+                        <a href="@Url.Action("Index", "Dashboard", new { area = "Admin" })"
+                           class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">
+                            <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
+                        </a>
+                        <a href="@Url.Action("Index", "UserManagement", new { area = "Admin" })"
+                           class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">
+                            <i class="fas fa-users-cog mr-2"></i>User Management
+                        </a>
+                        <a href="@Url.Action("Index", "BloodInventory", new { area = "Admin" })"
+                           class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">
+                            <i class="fas fa-warehouse mr-2"></i>Inventory
+                        </a>
+                        <a href="@Url.Action("Index", "Reports", new { area = "Admin" })"
+                           class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">
+                            <i class="fas fa-chart-bar mr-2"></i>Reports
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        }
+    </header>
+    <!-- Page Title Section -->
+    @if (ViewData["Title"] != null)
+    {
+        <div class="bg-white shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 py-4">
+                <h1 class="text-2xl font-semibold text-gray-800">@ViewData["Title"]</h1>
+                @if (ViewData["Subtitle"] != null)
+                {
+                    <p class="text-gray-500 mt-1">@ViewData["Subtitle"]</p>
+                }
+            </div>
+        </div>
+    }
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-6">
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow-inner mt-8">
+        <div class="max-w-7xl mx-auto py-8 px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About Section -->
+                <div class="col-span-1">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-heartbeat text-primary text-2xl mr-2"></i>
+                        <span class="text-lg font-bold text-gray-800">Blood Bank</span>
+                    </div>
+                    <p class="text-gray-600 text-sm">
+                        Connecting donors with those in need, saving lives one donation at a time.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-span-1">
+                    <h3 class="text-gray-800 font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="@Url.Action("About", "Home")" class="text-gray-600 hover:text-primary text-sm transition-colors duration-200">
+                                About Us
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li>
+                            <a href="@Url.Action("Contact", "Home")" class="text-gray-600 hover:text-primary text-sm transition-colors duration-200">
+                                Contact
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Privacy", "Home")" class="text-gray-600 hover:text-primary text-sm transition-colors duration-200">
+                                Privacy Policy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Terms", "Home")" class="text-gray-600 hover:text-primary text-sm transition-colors duration-200">
+                                Terms of Service
+                            </a>
                         </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - Blood_Bank - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                <!-- Contact Info -->
+                <div class="col-span-1">
+                    <h3 class="text-gray-800 font-semibold mb-4">Contact Info</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center text-gray-600 text-sm">
+                            <i class="fas fa-map-marker-alt w-5"></i>
+                            123 Blood Bank St., City, Country
+                        </li>
+                        <li class="flex items-center text-gray-600 text-sm">
+                            <i class="fas fa-phone w-5"></i>
+                            +1 234 567 890
+                        </li>
+                        <li class="flex items-center text-gray-600 text-sm">
+                            <i class="fas fa-envelope w-5"></i>
+                            info@bloodbank.com
+                        </li>
+                        <li class="flex items-center text-gray-600 text-sm">
+                            <i class="fas fa-clock w-5"></i>
+                            Mon - Fri: 9:00 AM - 5:00 PM
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Social Links -->
+                <div class="col-span-1">
+                    <h3 class="text-gray-800 font-semibold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-600 hover:text-primary transition-colors duration-200">
+                            <i class="fab fa-facebook text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-primary transition-colors duration-200">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-primary transition-colors duration-200">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-600 hover:text-primary transition-colors duration-200">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                    </div>
+
+                    <!-- Newsletter Subscription -->
+                    <div class="mt-6">
+                        <h4 class="text-sm font-semibold text-gray-800 mb-2">Subscribe to Our Newsletter</h4>
+                        <form class="flex">
+                            <input type="email"
+                                   placeholder="Enter your email"
+                                   class="flex-1 px-3 py-2 bg-gray-100 rounded-l-md focus:outline-none focus:ring-1 focus:ring-primary">
+                            <button type="submit"
+                                    class="px-4 py-2 bg-primary text-white rounded-r-md hover:bg-red-700 transition-colors duration-200">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="text-gray-600 text-sm">
+                    &copy; @DateTime.Now.Year Blood Bank Management System. All rights reserved.
+                </div>
+                <div class="mt-4 md:mt-0 flex space-x-4 text-sm">
+                    <a href="@Url.Action("Privacy", "Home")" class="text-gray-600 hover:text-primary transition-colors duration-200">
+                        Privacy Policy
+                    </a>
+                    <span class="text-gray-300">|</span>
+                    <a href="@Url.Action("Terms", "Home")" class="text-gray-600 hover:text-primary transition-colors duration-200">
+                        Terms of Service
+                    </a>
+                    <span class="text-gray-300">|</span>
+                    <a href="@Url.Action("Contact", "Home")" class="text-gray-600 hover:text-primary transition-colors duration-200">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Custom Scripts -->
+    <script>
+        // Notification Auto-hide
+        document.addEventListener('DOMContentLoaded', function() {
+            const notification = document.getElementById('notification');
+            if (notification) {
+                setTimeout(() => {
+                    notification.style.opacity = '0';
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 300);
+                }, 3000);
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.querySelector('.mobile-menu-button');
+        const mobileMenu = document.querySelector('#mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Active Link Highlighting
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPath) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Dropdown Menu Accessibility
+        const dropdownButtons = document.querySelectorAll('.dropdown-button');
+
+        dropdownButtons.forEach(button => {
+            button.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const dropdown = button.nextElementSibling;
+                    dropdown.classList.toggle('hidden');
+                }
+            });
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            const dropdowns = document.querySelectorAll('.dropdown-menu');
+            dropdowns.forEach(dropdown => {
+                if (!dropdown.contains(e.target) &&
+                    !e.target.classList.contains('dropdown-button')) {
+                    dropdown.classList.add('hidden');
+                }
+            });
+        });
+
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form Validation Enhancement
+        const forms = document.querySelectorAll('form');
+        forms.forEach(form => {
+            form.addEventListener('submit', function(e) {
+                if (!form.checkValidity()) {
+                    e.preventDefault();
+                    // Add custom validation UI if needed
+                    const invalidFields = form.querySelectorAll(':invalid');
+                    invalidFields.forEach(field => {
+                        field.classList.add('border-red-500');
+                    });
+                }
+            });
+        });
+
+        // Back to Top Button
+        const backToTop = document.createElement('button');
+        backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        backToTop.className = 'fixed bottom-4 right-4 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 hover:bg-red-700';
+        document.body.appendChild(backToTop);
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                backToTop.style.opacity = '1';
+            } else {
+                backToTop.style.opacity = '0';
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+
+    <!-- Render additional scripts from views -->
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
