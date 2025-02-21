@@ -1,6 +1,6 @@
 ﻿@using BloodBank.Business.Services
 @using Blood_Bank.ViewModels
-<!-- Views/Home/Index.cshtml -->
+
 @model HomeViewModel
 
 <!-- Hero Section with Enhanced Styling -->
@@ -33,10 +33,42 @@
             </main>
         </div>
     </div>
-    <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-        <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full rounded-l-3xl shadow-2xl"
-        src="/images/hero-image.jpg"
-        alt="Blood donation">
+    <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-gray-50">
+        <div class="h-full flex flex-col justify-center p-8 space-y-4">
+            <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-200">
+                <div class="flex items-center">
+                    <div class="p-3 bg-red-100 rounded-full">
+                        <i class="fas fa-clock text-primary text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold">Quick Process</h3>
+                        <p class="text-gray-600">Donation takes only 30-45 minutes</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-200">
+                <div class="flex items-center">
+                    <div class="p-3 bg-red-100 rounded-full">
+                        <i class="fas fa-heart text-primary text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold">Save Lives</h3>
+                        <p class="text-gray-600">One donation can save up to 3 lives</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-200">
+                <div class="flex items-center">
+                    <div class="p-3 bg-red-100 rounded-full">
+                        <i class="fas fa-shield-alt text-primary text-xl"></i>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold">Safe & Secure</h3>
+                        <p class="text-gray-600">Following all safety protocols</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 

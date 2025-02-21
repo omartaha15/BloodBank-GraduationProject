@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GwsThMo8S0ei2+b4Xx6xRHGlj9knTdH5IEdCbYB/Olc=",
+  "Hash": "7x2I6YMiGzwFf7JmXgvQoj6FgWX2GRMCVjGhFva3G6k=",
   "Source": "BloodBank.Wep",
   "BasePath": "_content/BloodBank.Wep",
   "Mode": "Default",
@@ -99,6 +99,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\BloodBank-GraduationProject\\Blood Bank\\wwwroot\\images\\blood-donation.png",
+      "SourceId": "BloodBank.Wep",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\BloodBank-GraduationProject\\Blood Bank\\wwwroot\\",
+      "BasePath": "_content/BloodBank.Wep",
+      "RelativePath": "images/blood-donation#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "uj7beko5pi",
+      "Integrity": "+lgVevDrvhAy9SV0cXrv889zPuN5rARy6zTS49dO3fg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\blood-donation.png"
     },
     {
       "Identity": "D:\\BloodBank-GraduationProject\\Blood Bank\\wwwroot\\js\\site.js",
@@ -1645,6 +1666,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM="
+        }
+      ]
+    },
+    {
+      "Route": "images/blood-donation.png",
+      "AssetFile": "D:\\BloodBank-GraduationProject\\Blood Bank\\wwwroot\\images\\blood-donation.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "48636"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+lgVevDrvhAy9SV0cXrv889zPuN5rARy6zTS49dO3fg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 21 Feb 2025 20:42:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+lgVevDrvhAy9SV0cXrv889zPuN5rARy6zTS49dO3fg="
+        }
+      ]
+    },
+    {
+      "Route": "images/blood-donation.uj7beko5pi.png",
+      "AssetFile": "D:\\BloodBank-GraduationProject\\Blood Bank\\wwwroot\\images\\blood-donation.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "48636"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+lgVevDrvhAy9SV0cXrv889zPuN5rARy6zTS49dO3fg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 21 Feb 2025 20:42:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "uj7beko5pi"
+        },
+        {
+          "Name": "label",
+          "Value": "images/blood-donation.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-+lgVevDrvhAy9SV0cXrv889zPuN5rARy6zTS49dO3fg="
         }
       ]
     },

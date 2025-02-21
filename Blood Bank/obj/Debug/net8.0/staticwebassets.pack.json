@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\BloodBank-GraduationProject\\Blood Bank\\wwwroot\\images\\blood-donation.png",
+      "PackagePath": "staticwebassets\\images\\blood-donation.png"
+    },
+    {
       "Id": "D:\\BloodBank-GraduationProject\\Blood Bank\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
