@@ -75,8 +75,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IDonationRepository, DonationRepository>();
 builder.Services.AddScoped<IBloodTestRepository, BloodTestRepository>();
 builder.Services.AddScoped<IBloodUnitRepository, BloodUnitRepository>();
-builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
-builder.Services.AddScoped<IHospitalRepository, HospitalRepository>();
+
 builder.Services.AddScoped<IBloodRequestRepository, BloodRequestRepository>();
 
 // Services
@@ -85,9 +84,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IDonationService, DonationService>();
 builder.Services.AddScoped<IBloodTestService, BloodTestService>();
 builder.Services.AddScoped<IBloodUnitService, BloodUnitService>();
-builder.Services.AddScoped<IAppointmentService, AppointmentService>();
-builder.Services.AddScoped<IHospitalService, HospitalService>();
-builder.Services.AddScoped<IBloodRequestService, BloodRequestService>();
+//builder.Services.AddScoped<IBloodRequestService, BloodRequestService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
 //builder.Services.AddScoped<IInventoryService, InventoryService>();
 

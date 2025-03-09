@@ -1,43 +1,68 @@
-﻿<!-- Views/Donation/Create.cshtml -->
-@model CreateDonationDto
+﻿@model BloodBank.Business.DTOs.CreateDonationDto
 
-<div class="container mx-auto px-4 py-8">
-    <div class="max-w-2xl mx-auto">
-        <h1 class="text-3xl font-bold text-gray-900 mb-6">Record New Donation</h1>
+<div class="max-w-xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Make a Donation</h2>
+    <form asp-action="Create" method="post" class="space-y-6">
+        <!-- Hidden field for DonorId -->
+        <input type="hidden" asp-for="DonorId" />
 
-        <form asp-action="Create" class="space-y-6">
-            <div asp-validation-summary="ModelOnly" class="text-red-500 text-sm mb-4"></div>
+        <!-- Blood Type Selection -->
+        <div>
+            <label asp-for="BloodType" class="block text-sm font-medium text-gray-700">Blood Type</label>
+            <select asp-for="BloodType"
+                    asp-items="Html.GetEnumSelectList<BloodBank.Core.Enums.BloodType>()"
+                    class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                <option value="">-- Select Blood Type --</option>
+            </select>
+            <span asp-validation-for="BloodType" class="text-red-500 text-sm"></span>
+        </div>
 
-            @* Add this hidden field *@
-            <input type="hidden" asp-for="DonorId" />
+        <!-- Quantity -->
+        <div>
+            <label asp-for="Quantity" class="block text-sm font-medium text-gray-700">Quantity (ml)</label>
+            <input asp-for="Quantity" type="number" min="0" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+            <span asp-validation-for="Quantity" class="text-red-500 text-sm"></span>
+        </div>
 
-            <div>
-                <label asp-for="BloodType" class="block text-sm font-medium text-gray-700">Blood Type</label>
-                <select asp-for="BloodType"
-                        asp-items="Html.GetEnumSelectList<BloodType>()"
-                        class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                    <option value="">Select Blood Type</option>
-                </select>
-                <span asp-validation-for="BloodType" class="text-red-500 text-sm"></span>
-            </div>
+        <!-- Appointment Date -->
+        <div>
+            <label asp-for="AppointmentDate" class="block text-sm font-medium text-gray-700">Appointment Date</label>
+            <input asp-for="AppointmentDate" type="date" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+            <span asp-validation-for="AppointmentDate" class="text-red-500 text-sm"></span>
+        </div>
 
-            <div>
-                <label asp-for="Quantity" class="block text-sm font-medium text-gray-700">Quantity (ml)</label>
-                <input asp-for="Quantity" type="number" min="0" max="500"
-                       class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
-                <span asp-validation-for="Quantity" class="text-red-500 text-sm"></span>
-            </div>
+        <!-- Appointment Time -->
+        <div>
+            <label asp-for="AppointmentTime" class="block text-sm font-medium text-gray-700">Appointment Time</label>
+            <input asp-for="AppointmentTime" type="time" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+            <span asp-validation-for="AppointmentTime" class="text-red-500 text-sm"></span>
+        </div>
 
-            <div class="flex justify-end space-x-4">
-                <a href="@Url.Action("Index")"
-                   class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
-                    Cancel
-                </a>
-                <button type="submit"
-                        class="px-4 py-2 bg-primary text-white rounded-md hover:bg-red-700">
-                    Record Donation
-                </button>
-            </div>
-        </form>
-    </div>
+        <!-- Appointment Notes -->
+        <div>
+            <label asp-for="AppointmentNotes" class="block text-sm font-medium text-gray-700">Appointment Notes</label>
+            <textarea asp-for="AppointmentNotes" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
+            <span asp-validation-for="AppointmentNotes" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Hospital Selection -->
+        <div>
+            <label asp-for="HospitalId" class="block text-sm font-medium text-gray-700">Select Hospital</label>
+            <select asp-for="HospitalId" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                <option value="">-- Select a Hospital --</option>
+                @foreach (var hospital in ViewBag.Hospitals)
+                {
+                    <option value="@hospital.Id">@hospital.FullName</option>
+                }
+            </select>
+            <span asp-validation-for="HospitalId" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            <button type="submit" class="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Submit Donation
+            </button>
+        </div>
+    </form>
 </div>

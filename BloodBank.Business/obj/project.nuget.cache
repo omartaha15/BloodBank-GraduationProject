@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1krB/7zAm20=",
+  "dgSpecHash": "WG8lWkPfA20=",
   "success": true,
-  "projectFilePath": "D:\\BloodBank-GraduationProject\\BloodBank.Business\\BloodBank.Business.csproj",
+  "projectFilePath": "D:\\C#\\BloodBank-GraduationProject\\BloodBank.Business\\BloodBank.Business.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\otaha\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\otaha\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

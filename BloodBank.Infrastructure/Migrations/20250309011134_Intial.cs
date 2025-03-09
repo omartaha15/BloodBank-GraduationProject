@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BloodBank.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Intial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,26 +57,6 @@ namespace BloodBank.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Hospitals",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ContactPerson = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ContactNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Hospitals", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -95,32 +75,6 @@ namespace BloodBank.Infrastructure.Migrations
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Appointments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DonorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    AppointmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AppointmentTime = table.Column<TimeSpan>(type: "time", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Appointments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Appointments_AspNetUsers_DonorId",
-                        column: x => x.DonorId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -209,38 +163,13 @@ namespace BloodBank.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Donations",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DonorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    DonationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BloodType = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<double>(type: "float", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Donations", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Donations_AspNetUsers_DonorId",
-                        column: x => x.DonorId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "BloodRequests",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     HospitalId = table.Column<int>(type: "int", nullable: false),
+                    HospitalId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     BloodType = table.Column<int>(type: "int", nullable: false),
                     QuantityRequired = table.Column<double>(type: "float", nullable: false),
                     Priority = table.Column<int>(type: "int", nullable: false),
@@ -255,11 +184,10 @@ namespace BloodBank.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_BloodRequests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BloodRequests_Hospitals_HospitalId",
-                        column: x => x.HospitalId,
-                        principalTable: "Hospitals",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_BloodRequests_AspNetUsers_HospitalId1",
+                        column: x => x.HospitalId1,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -268,7 +196,7 @@ namespace BloodBank.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DonationId = table.Column<int>(type: "int", nullable: false),
+                    DonorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     HivTest = table.Column<bool>(type: "bit", nullable: false),
                     HepatitisB = table.Column<bool>(type: "bit", nullable: false),
                     HepatitisC = table.Column<bool>(type: "bit", nullable: false),
@@ -277,6 +205,8 @@ namespace BloodBank.Infrastructure.Migrations
                     OtherTestNotes = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsTestPassed = table.Column<bool>(type: "bit", nullable: false),
                     TestDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HospitalId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    HospitalApprovalStatus = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
@@ -285,9 +215,51 @@ namespace BloodBank.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_BloodTests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BloodTests_Donations_DonationId",
-                        column: x => x.DonationId,
-                        principalTable: "Donations",
+                        name: "FK_BloodTests_AspNetUsers_DonorId",
+                        column: x => x.DonorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BloodTests_AspNetUsers_HospitalId",
+                        column: x => x.HospitalId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Donations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DonorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    DonationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BloodType = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<double>(type: "float", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    AppointmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    AppointmentTime = table.Column<TimeSpan>(type: "time", nullable: false),
+                    AppointmentNotes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HospitalId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Donations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Donations_AspNetUsers_DonorId",
+                        column: x => x.DonorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Donations_AspNetUsers_HospitalId",
+                        column: x => x.HospitalId,
+                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -326,11 +298,6 @@ namespace BloodBank.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Appointments_DonorId",
-                table: "Appointments",
-                column: "DonorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -372,15 +339,20 @@ namespace BloodBank.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BloodRequests_HospitalId",
+                name: "IX_BloodRequests_HospitalId1",
                 table: "BloodRequests",
-                column: "HospitalId");
+                column: "HospitalId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BloodTests_DonationId",
+                name: "IX_BloodTests_DonorId",
                 table: "BloodTests",
-                column: "DonationId",
+                column: "DonorId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BloodTests_HospitalId",
+                table: "BloodTests",
+                column: "HospitalId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BloodUnits_BloodRequestId",
@@ -397,14 +369,16 @@ namespace BloodBank.Infrastructure.Migrations
                 name: "IX_Donations_DonorId",
                 table: "Donations",
                 column: "DonorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Donations_HospitalId",
+                table: "Donations",
+                column: "HospitalId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Appointments");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -434,9 +408,6 @@ namespace BloodBank.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Donations");
-
-            migrationBuilder.DropTable(
-                name: "Hospitals");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

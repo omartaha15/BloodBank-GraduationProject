@@ -11,3 +11,16 @@ D:\BloodBank-GraduationProject\BloodBank.Core\obj\Debug\net8.0\BloodBank.Core.dl
 D:\BloodBank-GraduationProject\BloodBank.Core\obj\Debug\net8.0\refint\BloodBank.Core.dll
 D:\BloodBank-GraduationProject\BloodBank.Core\obj\Debug\net8.0\BloodBank.Core.pdb
 D:\BloodBank-GraduationProject\BloodBank.Core\obj\Debug\net8.0\ref\BloodBank.Core.dll
+D:\C#\BloodBank-GraduationProject\BloodBank.Core\bin\Debug\net8.0\BloodBank.Core.deps.json
+D:\C#\BloodBank-GraduationProject\BloodBank.Core\bin\Debug\net8.0\BloodBank.Core.dll
+D:\C#\BloodBank-GraduationProject\BloodBank.Core\bin\Debug\net8.0\BloodBank.Core.pdb
+D:\C#\BloodBank-GraduationProject\BloodBank.Core\obj\Debug\net8.0\BloodBank.Core.csproj.AssemblyReference.cache
+D:\C#\BloodBank-GraduationProject\BloodBank.Core\obj\Debug\net8.0\BloodBank.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\C#\BloodBank-GraduationProject\BloodBank.Core\obj\Debug\net8.0\BloodBank.Core.AssemblyInfoInputs.cache
+D:\C#\BloodBank-GraduationProject\BloodBank.Core\obj\Debug\net8.0\BloodBank.Core.AssemblyInfo.cs
+D:\C#\BloodBank-GraduationProject\BloodBank.Core\obj\Debug\net8.0\BloodBank.Core.csproj.CoreCompileInputs.cache
+D:\C#\BloodBank-GraduationProject\BloodBank.Core\obj\Debug\net8.0\BloodBank.Core.sourcelink.json
+D:\C#\BloodBank-GraduationProject\BloodBank.Core\obj\Debug\net8.0\BloodBank.Core.dll
+D:\C#\BloodBank-GraduationProject\BloodBank.Core\obj\Debug\net8.0\refint\BloodBank.Core.dll
+D:\C#\BloodBank-GraduationProject\BloodBank.Core\obj\Debug\net8.0\BloodBank.Core.pdb
+D:\C#\BloodBank-GraduationProject\BloodBank.Core\obj\Debug\net8.0\ref\BloodBank.Core.dll

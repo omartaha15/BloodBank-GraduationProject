@@ -1,0 +1,70 @@
+﻿@model CreateBloodTestDto
+
+<div class="max-w-lg mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Submit Your Blood Test</h2>
+    <form asp-action="Create" method="post" class="space-y-6">
+        <!-- Hidden field for DonorId -->
+        <input type="hidden" asp-for="DonorId" />
+
+        <!-- Hospital Selection -->
+        <div>
+            <label asp-for="HospitalId" class="block text-sm font-medium text-gray-700">
+                Select Hospital
+            </label>
+            <select asp-for="HospitalId" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                <option value="">-- Select a Hospital --</option>
+                @foreach (var hospital in ViewBag.Hospitals)
+                {
+                    <option value="@hospital.Id">@hospital.FullName</option>
+                }
+            </select>
+            <span asp-validation-for="HospitalId" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- HIV Test -->
+        <div class="flex items-center">
+            <input type="checkbox" asp-for="HivTest" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+            <label asp-for="HivTest" class="ml-2 block text-sm text-gray-700">HIV Test</label>
+        </div>
+
+        <!-- Hepatitis B -->
+        <div class="flex items-center">
+            <input type="checkbox" asp-for="HepatitisB" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+            <label asp-for="HepatitisB" class="ml-2 block text-sm text-gray-700">Hepatitis B</label>
+        </div>
+
+        <!-- Hepatitis C -->
+        <div class="flex items-center">
+            <input type="checkbox" asp-for="HepatitisC" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+            <label asp-for="HepatitisC" class="ml-2 block text-sm text-gray-700">Hepatitis C</label>
+        </div>
+
+        <!-- Syphilis -->
+        <div class="flex items-center">
+            <input type="checkbox" asp-for="Syphilis" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+            <label asp-for="Syphilis" class="ml-2 block text-sm text-gray-700">Syphilis</label>
+        </div>
+
+        <!-- Malaria -->
+        <div class="flex items-center">
+            <input type="checkbox" asp-for="Malaria" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+            <label asp-for="Malaria" class="ml-2 block text-sm text-gray-700">Malaria</label>
+        </div>
+
+        <!-- Other Test Notes -->
+        <div>
+            <label asp-for="OtherTestNotes" class="block text-sm font-medium text-gray-700">
+                Other Test Notes
+            </label>
+            <textarea asp-for="OtherTestNotes" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
+            <span asp-validation-for="OtherTestNotes" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            <button type="submit" class="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md shadow">
+                Submit Blood Test
+            </button>
+        </div>
+    </form>
+</div>

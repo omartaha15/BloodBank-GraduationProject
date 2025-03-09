@@ -36,78 +36,78 @@
 
     <!-- Custom Styles -->
     <style>
-    body {
-        font-family: 'Poppins', sans-serif;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
 
-    .nav-link {
-        color: rgb(75, 85, 99);
-        padding: 0.75rem 1rem;
-        border-radius: 0.375rem;
-        transition-property: color;
-        transition-duration: 200ms;
-    }
+        .nav-link {
+            color: rgb(75, 85, 99);
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            transition-property: color;
+            transition-duration: 200ms;
+        }
 
-    .nav-link:hover {
-        color: #E53E3E;
-    }
+            .nav-link:hover {
+                color: #E53E3E;
+            }
 
-    .nav-link.active {
-        color: #E53E3E;
-        font-weight: 500;
-    }
+            .nav-link.active {
+                color: #E53E3E;
+                font-weight: 500;
+            }
 
-    .btn-primary {
-        background-color: #E53E3E;
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 0.375rem;
-        transition: all 200ms;
-    }
+        .btn-primary {
+            background-color: #E53E3E;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: all 200ms;
+        }
 
-    .btn-primary:hover {
-        background-color: rgb(185, 28, 28);
-        transform: scale(1.05);
-    }
+            .btn-primary:hover {
+                background-color: rgb(185, 28, 28);
+                transform: scale(1.05);
+            }
 
-    .dropdown-animation {
-        transition: all 200ms;
-        transform: scale(0.95);
-        opacity: 0;
-    }
+        .dropdown-animation {
+            transition: all 200ms;
+            transform: scale(0.95);
+            opacity: 0;
+        }
 
-    .group:hover .dropdown-animation {
-        transform: scale(1);
-        opacity: 1;
-    }
+        .group:hover .dropdown-animation {
+            transform: scale(1);
+            opacity: 1;
+        }
 
-    .notification {
-        position: fixed;
-        top: 1rem;
-        right: 1rem;
-        z-index: 50;
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.375rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        transition: opacity 300ms;
-    }
+        .notification {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 50;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: opacity 300ms;
+        }
 
-    .notification.success {
-        background-color: rgb(34, 197, 94);
-        color: white;
-    }
+            .notification.success {
+                background-color: rgb(34, 197, 94);
+                color: white;
+            }
 
-    .notification.error {
-        background-color: rgb(239, 68, 68);
-        color: white;
-    }
-</style>
+            .notification.error {
+                background-color: rgb(239, 68, 68);
+                color: white;
+            }
+    </style>
 </head>
 <body class="bg-gray-50 flex flex-col min-h-screen">
     <!-- Notifications -->
     @if (TempData["Success"] != null)
     {
-        <div class="notification success" id="notification">
+        <div class="notification success" id="success-notification">
             <div class="flex items-center">
                 <i class="fas fa-check-circle mr-2"></i>
                 <span>@TempData["Success"]</span>
@@ -117,7 +117,7 @@
 
     @if (TempData["Error"] != null)
     {
-        <div class="notification error" id="notification">
+        <div class="notification error" id="error-notification">
             <div class="flex items-center">
                 <i class="fas fa-exclamation-circle mr-2"></i>
                 <span>@TempData["Error"]</span>
@@ -148,14 +148,8 @@
                         <a href="@Url.Action("Index", "Donation")" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Donation" ? "active" : "")">
                             <i class="fas fa-hand-holding-medical mr-1"></i> Donations
                         </a>
-                        <a href="@Url.Action("Index", "Appointment")" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Appointment" ? "active" : "")">
-                            <i class="fas fa-calendar-check mr-1"></i> Appointments
-                        </a>
                         <a href="@Url.Action("Index", "BloodRequest")" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "BloodRequest" ? "active" : "")">
                             <i class="fas fa-clipboard-list mr-1"></i> Requests
-                        </a>
-                        <a href="@Url.Action("Index", "Hospital")" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Hospital" ? "active" : "")">
-                            <i class="fas fa-hospital mr-1"></i> Hospitals
                         </a>
                     </div>
 
@@ -178,13 +172,10 @@
                                         Signed in as
                                         <div class="font-medium text-gray-900">@User.Identity.Name</div>
                                     </div>
-
                                     <div class="border-t border-gray-100"></div>
-
                                     <a href="@Url.Action("Profile", "Account")" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                         <i class="fas fa-user mr-2"></i> Your Profile
                                     </a>
-
                                     @if (User.IsInRole(Roles.Donor))
                                     {
                                         <a href="@Url.Action("MyDonations", "Donation")" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
@@ -194,13 +185,10 @@
                                             <i class="fas fa-calendar mr-2"></i> My Appointments
                                         </a>
                                     }
-
                                     <a href="@Url.Action("Settings", "Account")" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                         <i class="fas fa-cog mr-2"></i> Settings
                                     </a>
-
                                     <div class="border-t border-gray-100"></div>
-
                                     <form asp-controller="Account" asp-action="Logout" method="post">
                                         <button type="submit" class="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50">
                                             <i class="fas fa-sign-out-alt mr-2"></i> Sign out
@@ -409,12 +397,23 @@
     <script>
         // Notification Auto-hide
         document.addEventListener('DOMContentLoaded', function() {
-            const notification = document.getElementById('notification');
-            if (notification) {
+            const successNotification = document.getElementById('success-notification');
+            const errorNotification = document.getElementById('error-notification');
+
+            if (successNotification) {
                 setTimeout(() => {
-                    notification.style.opacity = '0';
+                    successNotification.style.opacity = '0';
                     setTimeout(() => {
-                        notification.remove();
+                        successNotification.remove();
+                    }, 300);
+                }, 3000);
+            }
+
+            if (errorNotification) {
+                setTimeout(() => {
+                    errorNotification.style.opacity = '0';
+                    setTimeout(() => {
+                        errorNotification.remove();
                     }, 300);
                 }, 3000);
             }

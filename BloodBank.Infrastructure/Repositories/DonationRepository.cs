@@ -3,6 +3,9 @@ using BloodBank.Core.Enums;
 using BloodBank.Core.Interfaces;
 using BloodBank.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BloodBank.Infrastructure.Repositories
 {
@@ -16,7 +19,8 @@ namespace BloodBank.Infrastructure.Repositories
         {
             return await _dbSet
                 .Where( d => d.DonorId == donorId && !d.IsDeleted )
-                .Include( d => d.BloodTest )
+                .Include( d => d.Donor )
+                    .ThenInclude( u => u.BloodTest ) // Include the donor's BloodTest record
                 .Include( d => d.BloodUnit )
                 .OrderByDescending( d => d.DonationDate )
                 .ToListAsync();
@@ -26,7 +30,8 @@ namespace BloodBank.Infrastructure.Repositories
         {
             return await _dbSet
                 .Where( d => d.BloodType == bloodType && !d.IsDeleted )
-                .Include( d => d.BloodTest )
+                .Include( d => d.Donor )
+                    .ThenInclude( u => u.BloodTest )
                 .Include( d => d.BloodUnit )
                 .OrderByDescending( d => d.DonationDate )
                 .ToListAsync();
@@ -37,7 +42,8 @@ namespace BloodBank.Infrastructure.Repositories
             return await _dbSet
                 .Where( d => !d.IsDeleted )
                 .Include( d => d.Donor )
-                .Include( d => d.BloodTest )
+                    .ThenInclude( u => u.BloodTest )
+                .Include( d => d.BloodUnit )
                 .OrderByDescending( d => d.DonationDate )
                 .Take( count )
                 .ToListAsync();

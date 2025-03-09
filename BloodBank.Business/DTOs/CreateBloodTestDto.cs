@@ -2,7 +2,10 @@
 {
     public class CreateBloodTestDto
     {
-        public int DonationId { get; set; }
+        public string DonorId { get; set; }
+        // New: The hospital the donor chooses for the blood test.
+        public string HospitalId { get; set; }
+
         public bool HivTest { get; set; }
         public bool HepatitisB { get; set; }
         public bool HepatitisC { get; set; }

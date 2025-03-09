@@ -3675,11 +3675,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\BloodBank-GraduationProject\\BloodBank.Business\\BloodBank.Business.csproj",
+      "projectUniqueName": "D:\\C#\\BloodBank-GraduationProject\\BloodBank.Business\\BloodBank.Business.csproj",
       "projectName": "BloodBank.Business",
-      "projectPath": "D:\\BloodBank-GraduationProject\\BloodBank.Business\\BloodBank.Business.csproj",
+      "projectPath": "D:\\C#\\BloodBank-GraduationProject\\BloodBank.Business\\BloodBank.Business.csproj",
       "packagesPath": "C:\\Users\\otaha\\.nuget\\packages\\",
-      "outputPath": "D:\\BloodBank-GraduationProject\\BloodBank.Business\\obj\\",
+      "outputPath": "D:\\C#\\BloodBank-GraduationProject\\BloodBank.Business\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3700,11 +3700,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\BloodBank-GraduationProject\\BloodBank.Core\\BloodBank.Core.csproj": {
-              "projectPath": "D:\\BloodBank-GraduationProject\\BloodBank.Core\\BloodBank.Core.csproj"
+            "D:\\C#\\BloodBank-GraduationProject\\BloodBank.Core\\BloodBank.Core.csproj": {
+              "projectPath": "D:\\C#\\BloodBank-GraduationProject\\BloodBank.Core\\BloodBank.Core.csproj"
             },
-            "D:\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\BloodBank.Infrastructure.csproj": {
-              "projectPath": "D:\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\BloodBank.Infrastructure.csproj"
+            "D:\\C#\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\BloodBank.Infrastructure.csproj": {
+              "projectPath": "D:\\C#\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\BloodBank.Infrastructure.csproj"
             }
           }
         }

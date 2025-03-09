@@ -1,16 +1,14 @@
 ﻿using BloodBank.Core.Entities;
-using System;
+using BloodBank.Core.Entities.BloodBank.Core.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BloodBank.Core.Interfaces
 {
-    // BloodBank.Core/Interfaces/IRepositories/IBloodTestRepository.cs
     public interface IBloodTestRepository : IGenericRepository<BloodTest>
     {
-        Task<BloodTest> GetTestByDonationIdAsync ( int donationId );
+        // Since each donor can have only one blood test, retrieve the test by donor ID.
+        Task<BloodTest> GetTestByDonorIdAsync ( string donorId );
         Task<IEnumerable<BloodTest>> GetRecentTestsAsync ( int count );
         Task<IEnumerable<BloodTest>> GetPendingTestsAsync ();
     }

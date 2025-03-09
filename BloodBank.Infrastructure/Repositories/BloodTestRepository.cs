@@ -1,11 +1,10 @@
 ﻿using BloodBank.Core.Entities;
+using BloodBank.Core.Entities.BloodBank.Core.Entities;
 using BloodBank.Core.Interfaces;
 using BloodBank.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BloodBank.Infrastructure.Repositories
@@ -16,17 +15,17 @@ namespace BloodBank.Infrastructure.Repositories
         {
         }
 
-        public async Task<BloodTest> GetTestByDonationIdAsync ( int donationId )
+        public async Task<BloodTest> GetTestByDonorIdAsync ( string donorId )
         {
             return await _dbSet
-                .FirstOrDefaultAsync( bt => bt.DonationId == donationId && !bt.IsDeleted );
+                .FirstOrDefaultAsync( bt => bt.DonorId == donorId && !bt.IsDeleted );
         }
 
         public async Task<IEnumerable<BloodTest>> GetRecentTestsAsync ( int count )
         {
             return await _dbSet
                 .Where( bt => !bt.IsDeleted )
-                .Include( bt => bt.Donation )
+                .Include( bt => bt.Donor )
                 .OrderByDescending( bt => bt.TestDate )
                 .Take( count )
                 .ToListAsync();
@@ -36,7 +35,7 @@ namespace BloodBank.Infrastructure.Repositories
         {
             return await _dbSet
                 .Where( bt => !bt.IsDeleted && !bt.IsTestPassed )
-                .Include( bt => bt.Donation )
+                .Include( bt => bt.Donor )
                 .OrderBy( bt => bt.TestDate )
                 .ToListAsync();
         }

@@ -7,6 +7,10 @@ using BloodBank.Core.Enums;
 using BloodBank.Core.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BloodBank.Business.Services
 {
@@ -14,20 +18,17 @@ namespace BloodBank.Business.Services
     {
         private readonly UserManager<User> _userManager;
         private readonly IDonationRepository _donationRepository;
-        private readonly IAppointmentRepository _appointmentRepository;
         private readonly IBloodUnitRepository _bloodUnitRepository;
         private readonly IMapper _mapper;
 
         public DashboardService (
             UserManager<User> userManager,
             IDonationRepository donationRepository,
-            IAppointmentRepository appointmentRepository,
             IBloodUnitRepository bloodUnitRepository,
             IMapper mapper )
         {
             _userManager = userManager;
             _donationRepository = donationRepository;
-            _appointmentRepository = appointmentRepository;
             _bloodUnitRepository = bloodUnitRepository;
             _mapper = mapper;
         }
@@ -37,7 +38,10 @@ namespace BloodBank.Business.Services
             var users = await _userManager.Users.ToListAsync();
             var donors = await _userManager.GetUsersInRoleAsync( Roles.Donor );
             var donations = await _donationRepository.GetAllAsync();
-            var pendingAppointments = await _appointmentRepository.GetUpcomingAppointmentsAsync( DateTime.UtcNow );
+
+            // With appointments merged into Donation, filter donations with upcoming appointment dates
+            var pendingAppointments = donations.Where( d => d.AppointmentDate >= DateTime.UtcNow ).ToList();
+
             var bloodUnits = await _bloodUnitRepository.GetAllAsync();
 
             var stats = new DashboardStatsDto
@@ -45,7 +49,7 @@ namespace BloodBank.Business.Services
                 TotalUsers = users.Count,
                 TotalDonors = donors.Count,
                 TotalDonations = donations.Count(),
-                PendingAppointments = pendingAppointments.Count(),
+                PendingAppointments = pendingAppointments.Count,
                 BloodTypeStats = await GetBloodTypeStatsAsync(),
                 RecentActivities = await GetRecentActivitiesAsync()
             };
@@ -61,7 +65,7 @@ namespace BloodBank.Business.Services
             foreach ( BloodType bloodType in Enum.GetValues( typeof( BloodType ) ) )
             {
                 var count = bloodUnits.Count( u => u.BloodType == bloodType &&
-                                                u.Status == BloodUnitStatus.Available );
+                                                  u.Status == BloodUnitStatus.Available );
                 stats.Add( new BloodTypeStatDto
                 {
                     BloodType = bloodType,
@@ -78,7 +82,7 @@ namespace BloodBank.Business.Services
         {
             var activities = new List<RecentActivityDto>();
 
-            // Get recent donations
+            // Get recent donations (which include merged appointment details)
             var recentDonations = await _donationRepository.GetRecentDonationsAsync( count );
             foreach ( var donation in recentDonations )
             {
@@ -91,9 +95,14 @@ namespace BloodBank.Business.Services
                 } );
             }
 
-            // Get upcoming appointments
-            var upcomingAppointments = await _appointmentRepository.GetUpcomingAppointmentsAsync( DateTime.UtcNow );
-            foreach ( var appointment in upcomingAppointments.Take( count ) )
+            // Get upcoming appointments from donations with an appointment date in the future
+            var upcomingAppointments = ( await _donationRepository.GetAllAsync() )
+                .Where( d => d.AppointmentDate >= DateTime.UtcNow )
+                .OrderBy( d => d.AppointmentDate )
+                .Take( count )
+                .ToList();
+
+            foreach ( var appointment in upcomingAppointments )
             {
                 activities.Add( new RecentActivityDto
                 {
@@ -104,7 +113,7 @@ namespace BloodBank.Business.Services
                 } );
             }
 
-            // Order by most recent and take specified count
+            // Order activities by the most recent event and take the specified count
             return activities
                 .OrderByDescending( a => a.Timestamp )
                 .Take( count )

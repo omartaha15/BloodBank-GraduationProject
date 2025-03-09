@@ -1,9 +1,14 @@
 ﻿using BloodBank.Business.DTOs;
 using BloodBank.Business.Interfaces;
 using BloodBank.Core.Entities;
+using BloodBank.Core.Entities.BloodBank.Core.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using OpenQA.Selenium;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Blood_Bank.Controllers
 {
@@ -11,13 +16,16 @@ namespace Blood_Bank.Controllers
     public class DonationController : Controller
     {
         private readonly IDonationService _donationService;
-        private readonly UserManager<User> _userManager; // Add this
+        private readonly IBloodTestService _bloodTestService;
+        private readonly UserManager<User> _userManager;
 
         public DonationController (
             IDonationService donationService,
-            UserManager<User> userManager ) // Add UserManager
+            IBloodTestService bloodTestService,
+            UserManager<User> userManager )
         {
             _donationService = donationService;
+            _bloodTestService = bloodTestService;
             _userManager = userManager;
         }
 
@@ -28,14 +36,46 @@ namespace Blood_Bank.Controllers
             return View( donations );
         }
 
-        public IActionResult Create ()
+        // GET: Donation/Create
+        public async Task<IActionResult> Create ()
         {
+            var donorId = _userManager.GetUserId( User );
+
+            // Check if the donor has a valid blood test.
+            try
+            {
+                var bloodTest = await _bloodTestService.GetTestByDonorIdAsync( donorId );
+                // If blood test is null, not passed, or not approved, redirect.
+                if ( bloodTest == null || !bloodTest.IsTestPassed || bloodTest.HospitalApprovalStatus != HospitalApprovalStatus.Approved )
+                {
+                    TempData [ "Error" ] = "You must complete a valid blood test (passed and approved by a hospital) before making a donation.";
+                    return RedirectToAction( "Create", "BloodTest" );
+                }
+            }
+            catch ( NotFoundException )
+            {
+                TempData [ "Error" ] = "You must complete a blood test before making a donation.";
+                return RedirectToAction( "Create", "BloodTest" );
+            }
+
+            // Retrieve the list of hospitals (users with the Hospital role) for the dropdown.
+            var hospitals = await _userManager.GetUsersInRoleAsync( "Hospital" );
+            ViewBag.Hospitals = hospitals
+                .Select( h => new { h.Id, FullName = $"{h.FirstName} {h.LastName}" } )
+                .ToList();
+
+            // Prepare the donation creation DTO.
             var createDto = new CreateDonationDto
             {
-                DonorId = _userManager.GetUserId( User )  // Set DonorId here
+                DonorId = donorId,
+                AppointmentDate = DateTime.Today.AddDays( 1 ),
+                AppointmentTime = new TimeSpan( 9, 0, 0 ),
+                AppointmentNotes = string.Empty
             };
+
             return View( createDto );
         }
+
 
         // POST: Donation/Create
         [HttpPost]
@@ -43,30 +83,40 @@ namespace Blood_Bank.Controllers
         public async Task<IActionResult> Create ( CreateDonationDto donationDto )
         {
             if ( !ModelState.IsValid )
+            {
+                var hospitals = await _userManager.GetUsersInRoleAsync( "Hospital" );
+                ViewBag.Hospitals = hospitals
+                    .Select( h => new { h.Id, FullName = $"{h.FirstName} {h.LastName}" } )
+                    .ToList();
                 return View( donationDto );
+            }
 
             try
             {
-                // No need to set DonorId here anymore as it's already in the form
                 await _donationService.CreateDonationAsync( donationDto );
                 TempData [ "Success" ] = "Donation recorded successfully.";
                 return RedirectToAction( nameof( Index ) );
             }
+            catch ( InvalidOperationException ex )
+            {
+                // This might occur if the donor is trying to donate before 3 months
+                // or if their blood test hasn't been completed/approved.
+                ModelState.AddModelError( "", ex.Message );
+                var hospitals = await _userManager.GetUsersInRoleAsync( "Hospital" );
+                ViewBag.Hospitals = hospitals
+                    .Select( h => new { h.Id, FullName = $"{h.FirstName} {h.LastName}" } )
+                    .ToList();
+                return View( donationDto );
+            }
             catch ( Exception ex )
             {
                 ModelState.AddModelError( "", ex.Message );
+                var hospitals = await _userManager.GetUsersInRoleAsync( "Hospital" );
+                ViewBag.Hospitals = hospitals
+                    .Select( h => new { h.Id, FullName = $"{h.FirstName} {h.LastName}" } )
+                    .ToList();
                 return View( donationDto );
             }
-        }
-
-        // GET: Donation/Details/5
-        public async Task<IActionResult> Details ( int id )
-        {
-            var donation = await _donationService.GetDonationByIdAsync( id );
-            if ( donation == null )
-                return NotFound();
-
-            return View( donation );
         }
     }
 }

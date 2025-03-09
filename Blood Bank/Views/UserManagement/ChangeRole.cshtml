@@ -1,0 +1,70 @@
+﻿@model BloodBank.Business.DTOs.ChangeRoleDto
+
+@{
+    ViewData["Title"] = "Change User Role";
+}
+
+<div class="min-h-screen bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-md w-full space-y-8">
+        <div>
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+                Change Role for @Model.UserEmail
+            </h2>
+        </div>
+        <div class="bg-white py-8 px-4 shadow sm:rounded-lg">
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="mb-4 text-red-600 text-center">
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="mb-4 text-green-600 text-center">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+            <form asp-action="ChangeRole" method="post" class="mt-8 space-y-6">
+                <input type="hidden" asp-for="UserId" />
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Current Roles</label>
+                    <div class="mt-1 p-2 bg-gray-50 border border-gray-300 rounded-md">
+                        @if (Model.CurrentRoles != null && Model.CurrentRoles.Any())
+                        {
+                            @string.Join(", ", Model.CurrentRoles)
+                        }
+                        else
+                        {
+                            <span class="text-gray-500">No roles assigned</span>
+                        }
+                    </div>
+                </div>
+                <div>
+                    <label asp-for="NewRole" class="block text-sm font-medium text-gray-700">Select New Role</label>
+                    <select asp-for="NewRole" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                        <option value="">-- Select a Role --</option>
+                        @foreach (var role in Model.AvailableRoles ?? new List<string>())
+                        {
+                            <option value="@role">@role</option>
+                        }
+                    </select>
+                    <span asp-validation-for="NewRole" class="text-red-500 text-sm"></span>
+                </div>
+                <div class="flex justify-center">
+                    <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Change Role
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="text-center">
+            <a asp-action="Index" class="font-medium text-indigo-600 hover:text-indigo-500">
+                Back to User List
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

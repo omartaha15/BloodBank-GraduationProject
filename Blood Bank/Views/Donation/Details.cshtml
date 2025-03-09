@@ -1,5 +1,4 @@
-﻿<!-- Views/Donation/Details.cshtml -->
-@model DonationDto
+﻿@model DonationDto
 
 <div class="container mx-auto px-4 py-8">
     <div class="max-w-3xl mx-auto">
@@ -13,88 +12,74 @@
                         Donation ID: @Model.Id
                     </p>
                 </div>
-                <a href="@Url.Action("Index")"
-                   class="text-gray-600 hover:text-gray-900">
+                <a href="@Url.Action("Index")" class="text-gray-600 hover:text-gray-900">
                     <i class="fas fa-arrow-left mr-2"></i>Back to List
                 </a>
             </div>
             <div class="border-t border-gray-200">
                 <dl>
+                    <!-- Donor and Donation Information -->
                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Donor Name
-                        </dt>
+                        <dt class="text-sm font-medium text-gray-500">Donor Name</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                             @Model.DonorName
                         </dd>
                     </div>
                     <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Blood Type
-                        </dt>
+                        <dt class="text-sm font-medium text-gray-500">Blood Type</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                             @Model.BloodType
                         </dd>
                     </div>
                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Quantity
-                        </dt>
+                        <dt class="text-sm font-medium text-gray-500">Quantity</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                             @Model.Quantity ml
                         </dd>
                     </div>
                     <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Donation Date
-                        </dt>
+                        <dt class="text-sm font-medium text-gray-500">Donation Date</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                             @Model.DonationDate.ToString("f")
                         </dd>
                     </div>
                     <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Status
-                        </dt>
+                        <dt class="text-sm font-medium text-gray-500">Status</dt>
                         <dd class="mt-1 sm:mt-0 sm:col-span-2">
                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
-                                   @(Model.Status == DonationStatus.Approved ? "bg-green-100 text-green-800" :
-                                     Model.Status == DonationStatus.Rejected ? "bg-red-100 text-red-800" :
-                                     "bg-yellow-100 text-yellow-800")">
+                                @(Model.Status == DonationStatus.Approved ? "bg-green-100 text-green-800" :
+                                  Model.Status == DonationStatus.Rejected ? "bg-red-100 text-red-800" :
+                                  "bg-yellow-100 text-yellow-800")">
                                 @Model.Status
                             </span>
                         </dd>
                     </div>
 
-                    @if (Model.BloodTest != null)
-                    {
-                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">
-                                Blood Test Results
-                            </dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
-                                    <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-                                        <span class="font-medium">Test Date:</span>
-                                        <span>@Model.BloodTest.TestDate.ToString("d")</span>
-                                    </li>
-                                    <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-                                        <span class="font-medium">Result:</span>
-                                        <span class="@(Model.BloodTest.IsTestPassed ? "text-green-600" : "text-red-600")">
-                                            @(Model.BloodTest.IsTestPassed ? "Passed" : "Failed")
-                                        </span>
-                                    </li>
-                                </ul>
-                            </dd>
-                        </div>
-                    }
+                    <!-- Appointment Details -->
+                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">Appointment Date</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                            @Model.AppointmentDate.ToString("d")
+                        </dd>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">Appointment Time</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                            @Model.AppointmentTime.ToString()
+                        </dd>
+                    </div>
+                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">Appointment Notes</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                            @Model.AppointmentNotes
+                        </dd>
+                    </div>
 
+                    <!-- Blood Unit Details -->
                     @if (Model.BloodUnit != null)
                     {
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">
-                                Blood Unit Information
-                            </dt>
+                            <dt class="text-sm font-medium text-gray-500">Blood Unit Information</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                 <ul class="border border-gray-200 rounded-md divide-y divide-gray-200">
                                     <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
@@ -116,9 +101,7 @@
                     else
                     {
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">
-                                Blood Unit Information
-                            </dt>
+                            <dt class="text-sm font-medium text-gray-500">Blood Unit Information</dt>
                             <dd class="mt-1 text-sm text-gray-500 sm:mt-0 sm:col-span-2">
                                 No blood unit has been created for this donation yet.
                             </dd>

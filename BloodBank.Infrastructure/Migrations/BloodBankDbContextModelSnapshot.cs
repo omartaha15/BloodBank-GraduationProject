@@ -22,19 +22,13 @@ namespace BloodBank.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("BloodBank.Core.Entities.Appointment", b =>
+            modelBuilder.Entity("BloodBank.Core.Entities.BloodBank.Core.Entities.BloodTest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("AppointmentDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<TimeSpan>("AppointmentTime")
-                        .HasColumnType("time");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -42,86 +36,6 @@ namespace BloodBank.Infrastructure.Migrations
                     b.Property<string>("DonorId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Notes")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("DonorId");
-
-                    b.ToTable("Appointments");
-                });
-
-            modelBuilder.Entity("BloodBank.Core.Entities.BloodRequest", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("BloodType")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("HospitalId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Notes")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Priority")
-                        .HasColumnType("int");
-
-                    b.Property<double>("QuantityRequired")
-                        .HasColumnType("float");
-
-                    b.Property<DateTime>("RequiredDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HospitalId");
-
-                    b.ToTable("BloodRequests");
-                });
-
-            modelBuilder.Entity("BloodBank.Core.Entities.BloodTest", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("DonationId")
-                        .HasColumnType("int");
 
                     b.Property<bool>("HepatitisB")
                         .HasColumnType("bit");
@@ -131,6 +45,13 @@ namespace BloodBank.Infrastructure.Migrations
 
                     b.Property<bool>("HivTest")
                         .HasColumnType("bit");
+
+                    b.Property<int>("HospitalApprovalStatus")
+                        .HasColumnType("int");
+
+                    b.Property<string>("HospitalId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -156,10 +77,61 @@ namespace BloodBank.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DonationId")
+                    b.HasIndex("DonorId")
                         .IsUnique();
 
+                    b.HasIndex("HospitalId");
+
                     b.ToTable("BloodTests");
+                });
+
+            modelBuilder.Entity("BloodBank.Core.Entities.BloodRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BloodType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("HospitalId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("HospitalId1")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
+
+                    b.Property<double>("QuantityRequired")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("RequiredDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HospitalId1");
+
+                    b.ToTable("BloodRequests");
                 });
 
             modelBuilder.Entity("BloodBank.Core.Entities.BloodUnit", b =>
@@ -226,6 +198,16 @@ namespace BloodBank.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("AppointmentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("AppointmentNotes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<TimeSpan>("AppointmentTime")
+                        .HasColumnType("time");
+
                     b.Property<int>("BloodType")
                         .HasColumnType("int");
 
@@ -236,6 +218,10 @@ namespace BloodBank.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DonorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("HospitalId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
@@ -255,49 +241,9 @@ namespace BloodBank.Infrastructure.Migrations
 
                     b.HasIndex("DonorId");
 
+                    b.HasIndex("HospitalId");
+
                     b.ToTable("Donations");
-                });
-
-            modelBuilder.Entity("BloodBank.Core.Entities.Hospital", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContactNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ContactPerson")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Hospitals");
                 });
 
             modelBuilder.Entity("BloodBank.Core.Entities.User", b =>
@@ -519,37 +465,32 @@ namespace BloodBank.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("BloodBank.Core.Entities.Appointment", b =>
+            modelBuilder.Entity("BloodBank.Core.Entities.BloodBank.Core.Entities.BloodTest", b =>
                 {
                     b.HasOne("BloodBank.Core.Entities.User", "Donor")
-                        .WithMany("Appointments")
-                        .HasForeignKey("DonorId")
+                        .WithOne("BloodTest")
+                        .HasForeignKey("BloodBank.Core.Entities.BloodBank.Core.Entities.BloodTest", "DonorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BloodBank.Core.Entities.User", "Hospital")
+                        .WithMany()
+                        .HasForeignKey("HospitalId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Donor");
-                });
-
-            modelBuilder.Entity("BloodBank.Core.Entities.BloodRequest", b =>
-                {
-                    b.HasOne("BloodBank.Core.Entities.Hospital", "Hospital")
-                        .WithMany("BloodRequests")
-                        .HasForeignKey("HospitalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("Hospital");
                 });
 
-            modelBuilder.Entity("BloodBank.Core.Entities.BloodTest", b =>
+            modelBuilder.Entity("BloodBank.Core.Entities.BloodRequest", b =>
                 {
-                    b.HasOne("BloodBank.Core.Entities.Donation", "Donation")
-                        .WithOne("BloodTest")
-                        .HasForeignKey("BloodBank.Core.Entities.BloodTest", "DonationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("BloodBank.Core.Entities.User", "Hospital")
+                        .WithMany("BloodRequests")
+                        .HasForeignKey("HospitalId1");
 
-                    b.Navigation("Donation");
+                    b.Navigation("Hospital");
                 });
 
             modelBuilder.Entity("BloodBank.Core.Entities.BloodUnit", b =>
@@ -575,7 +516,15 @@ namespace BloodBank.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("BloodBank.Core.Entities.User", "Hospital")
+                        .WithMany()
+                        .HasForeignKey("HospitalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Donor");
+
+                    b.Navigation("Hospital");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -636,21 +585,16 @@ namespace BloodBank.Infrastructure.Migrations
 
             modelBuilder.Entity("BloodBank.Core.Entities.Donation", b =>
                 {
-                    b.Navigation("BloodTest")
-                        .IsRequired();
-
                     b.Navigation("BloodUnit")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BloodBank.Core.Entities.Hospital", b =>
-                {
-                    b.Navigation("BloodRequests");
-                });
-
             modelBuilder.Entity("BloodBank.Core.Entities.User", b =>
                 {
-                    b.Navigation("Appointments");
+                    b.Navigation("BloodRequests");
+
+                    b.Navigation("BloodTest")
+                        .IsRequired();
 
                     b.Navigation("Donations");
                 });

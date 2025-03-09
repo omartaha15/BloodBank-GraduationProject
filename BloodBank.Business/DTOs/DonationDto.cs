@@ -1,9 +1,5 @@
 ﻿using BloodBank.Core.Enums;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BloodBank.Business.DTOs
 {
@@ -16,8 +12,14 @@ namespace BloodBank.Business.DTOs
         public BloodType BloodType { get; set; }
         public double Quantity { get; set; }
         public DonationStatus Status { get; set; }
-        public BloodTestDto BloodTest { get; set; }
-        public BloodUnitDto BloodUnit { get; set; }  // Add this
-    }
+        public DateTime AppointmentDate { get; set; }
+        public TimeSpan AppointmentTime { get; set; }
+        public string AppointmentNotes { get; set; }
 
+        // New: The hospital chosen for the donation.
+        public string HospitalId { get; set; }
+        public string HospitalName { get; set; }
+
+        public BloodUnitDto BloodUnit { get; set; }
+    }
 }

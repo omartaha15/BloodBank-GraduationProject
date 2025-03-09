@@ -54,7 +54,6 @@ namespace BloodBank.Infrastructure.Repositories
         {
             return await _context.Users
                 .Include( u => u.Donations )
-                    .ThenInclude( d => d.BloodTest )
                 .Include( u => u.Donations )
                     .ThenInclude( d => d.BloodUnit )
                 .FirstOrDefaultAsync( u => u.Id == id );
