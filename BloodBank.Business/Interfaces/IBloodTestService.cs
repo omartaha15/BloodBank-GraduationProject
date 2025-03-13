@@ -12,8 +12,6 @@ namespace BloodBank.Business.Interfaces
         Task<BloodTestDto> GetTestByDonorIdAsync ( string donorId );
         Task<IEnumerable<BloodTestDto>> GetPendingTestsAsync ();
         Task<bool> ValidateTestResultsAsync ( int testId );
-
-        // New methods for hospital approval
         Task ApproveBloodTestAsync ( int id );
         Task RejectBloodTestAsync ( int id );
     }

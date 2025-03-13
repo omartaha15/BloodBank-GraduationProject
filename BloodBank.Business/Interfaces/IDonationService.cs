@@ -1,9 +1,6 @@
 ﻿using BloodBank.Business.DTOs;
 using BloodBank.Core.Enums;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BloodBank.Business.Interfaces
@@ -17,5 +14,6 @@ namespace BloodBank.Business.Interfaces
         Task<IEnumerable<DonationDto>> GetDonationsByDonorAsync ( string donorId );
         Task<IEnumerable<DonationDto>> GetDonationsByBloodTypeAsync ( BloodType bloodType );
         Task<IEnumerable<DonationDto>> GetRecentDonationsAsync ( int count );
+        Task<IEnumerable<DonationDto>> GetDonationsByHospitalAsync ( string hospitalId );
     }
 }

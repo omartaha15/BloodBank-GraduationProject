@@ -19,10 +19,7 @@ namespace BloodBank.Business.Services
         private readonly IDonationRepository _donationRepository;
         private readonly IMapper _mapper;
 
-        public BloodTestService (
-            IBloodTestRepository bloodTestRepository,
-            IDonationRepository donationRepository,
-            IMapper mapper )
+        public BloodTestService ( IBloodTestRepository bloodTestRepository, IDonationRepository donationRepository, IMapper mapper )
         {
             _bloodTestRepository = bloodTestRepository;
             _donationRepository = donationRepository;
@@ -34,42 +31,30 @@ namespace BloodBank.Business.Services
             var test = await _bloodTestRepository.GetByIdAsync( id );
             if ( test == null )
                 throw new NotFoundException( $"Blood test with ID {id} not found" );
-
             return _mapper.Map<BloodTestDto>( test );
         }
 
         public async Task<BloodTestDto> CreateBloodTestAsync ( CreateBloodTestDto testDto )
         {
-            // Validate if the donor already has a blood test
             var existingTest = await _bloodTestRepository.GetTestByDonorIdAsync( testDto.DonorId );
             if ( existingTest != null )
                 throw new InvalidOperationException( $"A blood test for donor ID {testDto.DonorId} already exists." );
 
             var bloodTest = _mapper.Map<BloodTest>( testDto );
             bloodTest.TestDate = DateTime.UtcNow;
-
-            // Determine if test is passed based on test results
-            bloodTest.IsTestPassed = !( testDto.HivTest || testDto.HepatitisB ||
-                                       testDto.HepatitisC || testDto.Syphilis ||
-                                       testDto.Malaria );
-
-            // Ensure the blood test is linked to the donor and hospital.
+            bloodTest.IsTestPassed = !( testDto.HivTest || testDto.HepatitisB || testDto.HepatitisC || testDto.Syphilis || testDto.Malaria );
             bloodTest.DonorId = testDto.DonorId;
             bloodTest.HospitalId = testDto.HospitalId;
-
-            // Set initial hospital approval status to Pending.
             bloodTest.HospitalApprovalStatus = HospitalApprovalStatus.Pending;
 
             var result = await _bloodTestRepository.AddAsync( bloodTest );
-
-            // Optionally update pending donations for this donor, if any exist.
+            // Optionally update pending donations for this donor.
             var donorDonations = await _donationRepository.GetDonationsByDonorIdAsync( testDto.DonorId );
             foreach ( var donation in donorDonations.Where( d => d.Status == DonationStatus.Pending ) )
             {
                 donation.Status = bloodTest.IsTestPassed ? DonationStatus.Approved : DonationStatus.Rejected;
                 await _donationRepository.UpdateAsync( donation );
             }
-
             return _mapper.Map<BloodTestDto>( result );
         }
 
@@ -81,17 +66,14 @@ namespace BloodBank.Business.Services
 
             _mapper.Map( testDto, bloodTest );
             bloodTest.TestDate = DateTime.UtcNow;
-
             await _bloodTestRepository.UpdateAsync( bloodTest );
 
-            // Optionally update pending donations for this donor if needed.
             var donorDonations = await _donationRepository.GetDonationsByDonorIdAsync( bloodTest.DonorId );
             foreach ( var donation in donorDonations.Where( d => d.Status == DonationStatus.Pending ) )
             {
                 donation.Status = bloodTest.IsTestPassed ? DonationStatus.Approved : DonationStatus.Rejected;
                 await _donationRepository.UpdateAsync( donation );
             }
-
             return _mapper.Map<BloodTestDto>( bloodTest );
         }
 
@@ -115,17 +97,11 @@ namespace BloodBank.Business.Services
             if ( test == null )
                 throw new NotFoundException( $"Blood test with ID {testId} not found" );
 
-            // Implement validation logic
-            bool isValid = !( test.HivTest || test.HepatitisB ||
-                             test.HepatitisC || test.Syphilis ||
-                             test.Malaria );
-
+            bool isValid = !( test.HivTest || test.HepatitisB || test.HepatitisC || test.Syphilis || test.Malaria );
             if ( test.IsTestPassed != isValid )
             {
                 test.IsTestPassed = isValid;
                 await _bloodTestRepository.UpdateAsync( test );
-
-                // Update statuses for any pending donations for this donor.
                 var donorDonations = await _donationRepository.GetDonationsByDonorIdAsync( test.DonorId );
                 foreach ( var donation in donorDonations.Where( d => d.Status == DonationStatus.Pending ) )
                 {
@@ -133,21 +109,18 @@ namespace BloodBank.Business.Services
                     await _donationRepository.UpdateAsync( donation );
                 }
             }
-
             return isValid;
         }
 
-        // New method: Approve blood test by hospital.
         public async Task ApproveBloodTestAsync ( int id )
         {
             var test = await _bloodTestRepository.GetByIdAsync( id );
             if ( test == null )
                 throw new NotFoundException( $"Blood test with ID {id} not found" );
-
+            test.IsTestPassed = true;
             test.HospitalApprovalStatus = HospitalApprovalStatus.Approved;
             await _bloodTestRepository.UpdateAsync( test );
 
-            // Optionally update any pending donations for this donor to Approved.
             var donorDonations = await _donationRepository.GetDonationsByDonorIdAsync( test.DonorId );
             foreach ( var donation in donorDonations.Where( d => d.Status == DonationStatus.Pending ) )
             {
@@ -156,17 +129,14 @@ namespace BloodBank.Business.Services
             }
         }
 
-        // New method: Reject blood test by hospital.
         public async Task RejectBloodTestAsync ( int id )
         {
             var test = await _bloodTestRepository.GetByIdAsync( id );
             if ( test == null )
                 throw new NotFoundException( $"Blood test with ID {id} not found" );
-
             test.HospitalApprovalStatus = HospitalApprovalStatus.Rejected;
             await _bloodTestRepository.UpdateAsync( test );
 
-            // Optionally update any pending donations for this donor to Rejected.
             var donorDonations = await _donationRepository.GetDonationsByDonorIdAsync( test.DonorId );
             foreach ( var donation in donorDonations.Where( d => d.Status == DonationStatus.Pending ) )
             {

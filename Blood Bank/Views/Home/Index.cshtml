@@ -3,224 +3,140 @@
 
 @model HomeViewModel
 
-<!-- Hero Section with Enhanced Styling -->
-<section class="relative bg-gradient-to-r from-white to-red-50 overflow-hidden">
-    <div class="max-w-7xl mx-auto">
-        <div class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-            <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-                <div class="sm:text-center lg:text-left">
-                    <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                        <span class="block">Every Drop</span>
-                        <span class="block text-primary animate-pulse">Saves Lives</span>
-                    </h1>
-                    <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                        Join our life-saving mission. One donation can save up to three lives.
-                        Be a hero - donate blood today.
-                    </p>
-                    <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start space-x-4">
-                        <a href="@Url.Action("Create", "Appointment")"
-                        class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-primary hover:bg-red-700 transform hover:scale-105 transition-all duration-200 shadow-lg">
-                            <i class="fas fa-heart mr-2"></i>
-                            Donate Now
-                        </a>
-                        <a href="#blood-availability"
-                        class="inline-flex items-center px-8 py-3 border-2 border-primary text-base font-medium rounded-lg text-primary hover:bg-red-50 transform hover:scale-105 transition-all duration-200">
-                            <i class="fas fa-search mr-2"></i>
-                            Check Availability
-                        </a>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
-    <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-gray-50">
-        <div class="h-full flex flex-col justify-center p-8 space-y-4">
-            <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-200">
-                <div class="flex items-center">
-                    <div class="p-3 bg-red-100 rounded-full">
-                        <i class="fas fa-clock text-primary text-xl"></i>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="text-lg font-semibold">Quick Process</h3>
-                        <p class="text-gray-600">Donation takes only 30-45 minutes</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-200">
-                <div class="flex items-center">
-                    <div class="p-3 bg-red-100 rounded-full">
-                        <i class="fas fa-heart text-primary text-xl"></i>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="text-lg font-semibold">Save Lives</h3>
-                        <p class="text-gray-600">One donation can save up to 3 lives</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-200">
-                <div class="flex items-center">
-                    <div class="p-3 bg-red-100 rounded-full">
-                        <i class="fas fa-shield-alt text-primary text-xl"></i>
-                    </div>
-                    <div class="ml-4">
-                        <h3 class="text-lg font-semibold">Safe & Secure</h3>
-                        <p class="text-gray-600">Following all safety protocols</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- Enhanced Hero Section with Emergency Alert -->
+<section class="relative overflow-hidden">
+    <!-- Emergency Alert Banner - Only shows when there are urgent needs -->
+    
 
-<!-- Blood Type Availability Dashboard -->
-<section id="blood-availability" class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <h2 class="text-3xl font-extrabold text-gray-900">
-                Blood Inventory Status
-            </h2>
-            <p class="mt-4 text-xl text-gray-600">
-                Real-time blood type availability and status
-            </p>
-        </div>
+    <!-- Main Hero Section -->
+    <div class="bg-gradient-to-r from-white to-red-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+                <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+                    <div class="sm:text-center lg:text-left">
+                        <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                            <span class="block">Give the Gift of</span>
+                            <span class="block text-primary">Life Today</span>
+                        </h1>
+                        <p class="mt-3 text-base text-gray-600 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                            Every 2 seconds, someone needs blood. Your donation can save up to 3 lives
+                            and takes just 45 minutes of your time.
+                        </p>
 
-        <div class="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            @foreach (var stat in Model.BloodTypeStats)
-            {
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    <div class="p-5">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center">
-                                <div class="@(stat.AvailableUnits > 10 ? "bg-green-100" : "bg-red-100") rounded-full p-3">
-                                    <i class="fas fa-tint @(stat.AvailableUnits > 10 ? "text-green-600" : "text-red-600") text-xl"></i>
-                                </div>
-                                <div class="ml-4">
-                                    <h3 class="text-xl font-semibold text-gray-900">
-                                        Type @stat.BloodType.ToString()
-                                    </h3>
-                                    <p class="text-sm text-gray-500">Available Units</p>
-                                </div>
+                        <!-- Quick Stats -->
+                        <div class="mt-4 grid grid-cols-3 gap-2 sm:gap-4 max-w-md lg:mx-0 sm:mx-auto">
+                            <div class="text-center">
+                                <p class="text-2xl sm:text-3xl font-bold text-primary">45<span class="text-sm font-medium">min</span></p>
+                                <p class="text-xs sm:text-sm text-gray-500">Donation Time</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-2xl sm:text-3xl font-bold text-primary">3</p>
+                                <p class="text-xs sm:text-sm text-gray-500">Lives Saved</p>
+                            </div>
+                            <div class="text-center">
+                                <p class="text-2xl sm:text-3xl font-bold text-primary">56<span class="text-sm font-medium">d</span></p>
+                                <p class="text-xs sm:text-sm text-gray-500">Until Next Donation</p>
                             </div>
                         </div>
-                        <div class="mt-4">
-                            <div class="flex items-baseline">
-                                <p class="text-2xl font-bold text-gray-900">
-                                    @stat.AvailableUnits
-                                </p>
-                                <p class="ml-2 text-sm text-gray-500">units</p>
-                            </div>
-                            <div class="mt-2">
-                                @{
-                                    var statusColor = stat.AvailableUnits > 10 ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800";
-                                    var statusText = stat.AvailableUnits > 10 ? "Sufficient" : "Low Stock";
-                                }
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium @statusColor">
-                                    @statusText
-                                </span>
-                            </div>
+
+                        <!-- CTA Buttons -->
+                        <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="@Url.Action("Create", "Donation")"
+                               class="w-full sm:w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-primary hover:bg-red-700 transform hover:scale-105 transition-all duration-200 shadow-lg">
+                                <i class="fas fa-heart-pulse mr-2"></i>
+                                Donate Now
+                            </a>
+                            <a href="#blood-availability"
+                               class="w-full sm:w-auto flex items-center justify-center px-8 py-3 border-2 border-primary text-base font-medium rounded-lg text-primary hover:bg-red-50 transform hover:scale-105 transition-all duration-200">
+                                <i class="fas fa-search mr-2"></i>
+                                Check Availability
+                            </a>
                         </div>
+
+                        <!-- Login/Register Quick Access -->
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <div class="mt-4 text-sm text-gray-500">
+                                Already a donor?
+                                <a href="@Url.Action("Login", "Account")" class="text-primary hover:text-red-700 font-medium">Log in</a> or
+                                <a href="@Url.Action("Register", "Account")" class="text-primary hover:text-red-700 font-medium">register</a> to schedule your next donation.
+                            </div>
+                        }
                     </div>
-                    <div class="bg-gray-50 px-5 py-3">
-                        <a href="#" class="text-sm text-primary hover:text-red-700 font-medium">
-                            View Details →
-                        </a>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-</section>
-
-
-
-<!-- Quick Actions Section -->
-<section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <h2 class="text-3xl font-extrabold text-gray-900">
-                Take Action Today
-            </h2>
-            <p class="mt-4 text-xl text-gray-600">
-                Every donation counts. Here's how you can help.
-            </p>
+                </main>
+            </div>
         </div>
 
-        <div class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <!-- Donate Card -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
-                <div class="px-6 py-8">
-                    <div class="text-center">
-                        <div class="h-16 w-16 bg-red-100 rounded-full flex items-center justify-center mx-auto">
-                            <i class="fas fa-hand-holding-medical text-2xl text-primary"></i>
+        <!-- Right Side Features Panel -->
+        <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 bg-gray-50">
+            <div class="h-full flex flex-col justify-center p-8 space-y-4">
+                <!-- Donor Testimonial -->
+                <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-200 border-l-4 border-primary">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-quote-left text-red-200 text-3xl"></i>
                         </div>
-                        <h3 class="mt-4 text-xl font-semibold text-gray-900">Donate Blood</h3>
-                        <p class="mt-2 text-gray-500">
-                            Schedule an appointment to donate blood and save lives.
-                        </p>
-                        <a href="@Url.Action("Create", "Appointment")"
-                           class="mt-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-red-700">
-                            Schedule Now
-                        </a>
+                        <div class="ml-4">
+                            <p class="text-gray-600 italic">"Donating blood is one of the most rewarding things I've done. It takes little time but makes a huge difference."</p>
+                            <p class="mt-2 text-sm text-gray-500">— Sarah M., Donor since 2020</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Check Eligibility Card -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
-                <div class="px-6 py-8">
-                    <div class="text-center">
-                        <div class="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                            <i class="fas fa-check-circle text-2xl text-green-600"></i>
+                <!-- Feature Cards -->
+                <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-200">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-red-100 rounded-full">
+                            <i class="fas fa-clock text-primary text-xl"></i>
                         </div>
-                        <h3 class="mt-4 text-xl font-semibold text-gray-900">Check Eligibility</h3>
-                        <p class="mt-2 text-gray-500">
-                            Find out if you're eligible to donate blood.
-                        </p>
-                        <a href="#" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700">
-                            Check Now
-                        </a>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-semibold">Quick & Easy</h3>
+                            <p class="text-gray-600">From check-in to refreshments in under an hour</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Track Donations Card -->
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
-                <div class="px-6 py-8">
-                    <div class="text-center">
-                        <div class="h-16 w-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-                            <i class="fas fa-chart-line text-2xl text-blue-600"></i>
+                <div class="bg-white p-6 rounded-lg shadow-md transform hover:scale-105 transition-transform duration-200">
+                    <div class="flex items-center">
+                        <div class="p-3 bg-red-100 rounded-full">
+                            <i class="fas fa-shield-alt text-primary text-xl"></i>
                         </div>
-                        <h3 class="mt-4 text-xl font-semibold text-gray-900">Track Donations</h3>
-                        <p class="mt-2 text-gray-500">
-                            View your donation history and impact.
-                        </p>
-                        <a href="#" class="mt-4 inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700">
-                            View History
-                        </a>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-semibold">Safe & Comfortable</h3>
+                            <p class="text-gray-600">State-of-the-art facilities with expert care</p>
+                        </div>
                     </div>
                 </div>
+
+                
             </div>
         </div>
     </div>
-</section>
 
-<!-- Emergency Requests Banner -->
-<section class="bg-red-50 border-t border-b border-red-100">
-    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 gap-8 md:grid-cols-3 items-center">
-            <div class="col-span-2">
-                <h2 class="text-2xl font-bold text-red-700">Emergency Blood Needed</h2>
-                <p class="mt-2 text-red-600">
-                    We currently have urgent needs for specific blood types. Your donation could save a life today.
-                </p>
-            </div>
-            <div class="text-right">
-                <a href="#blood-availability"
-                   class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 transform hover:scale-105 transition-all duration-200">
-                    View Urgent Needs
-                    <i class="fas fa-arrow-right ml-2"></i>
+    <!-- Blood Type Needed Indicator -->
+    @if (Model.BloodTypeStats != null && Model.BloodTypeStats.Any())
+    {
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-wrap justify-center lg:justify-between items-center gap-4">
+                <h3 class="text-lg font-semibold text-gray-900">Current Blood Type Needs:</h3>
+                <div class="flex flex-wrap justify-center gap-3">
+                    @foreach (var stat in Model.BloodTypeStats)
+                    {
+                        var needClass = stat.AvailableUnits > 10
+                        ? "bg-green-100 text-green-800"
+                        : (stat.AvailableUnits > 5 ? "bg-yellow-100 text-yellow-800" : "bg-red-100 text-red-800");
+
+                        <a href="#blood-availability" class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium @needClass hover:opacity-80 transition-opacity">
+                            <span class="mr-1">@stat.BloodType</span>
+                            <i class="fas fa-tint text-xs"></i>
+                        </a>
+                    }
+                </div>
+                <a href="#blood-availability" class="text-primary hover:text-red-700 text-sm font-medium flex items-center">
+                    See detailed inventory
+                    <i class="fas fa-chevron-down ml-1"></i>
                 </a>
             </div>
         </div>
-    </div>
+    }
 </section>

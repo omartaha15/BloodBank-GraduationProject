@@ -1,4 +1,6 @@
-﻿using BloodBank.Core.Enums;
+﻿using System;
+using System.Collections.Generic;
+using BloodBank.Core.Enums;
 
 namespace BloodBank.Business.DTOs
 {
@@ -12,6 +14,7 @@ namespace BloodBank.Business.DTOs
         public RequestPriority Priority { get; set; }
         public RequestStatus Status { get; set; }
         public DateTime RequiredDate { get; set; }
+        public DateTime RequestDate { get; set; }
         public string Notes { get; set; }
         public List<BloodUnitDto> AssignedUnits { get; set; }
         public bool IsUrgent => Priority == RequestPriority.Emergency || Priority == RequestPriority.Urgent;

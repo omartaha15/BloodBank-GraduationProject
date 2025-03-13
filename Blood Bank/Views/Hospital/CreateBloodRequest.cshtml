@@ -1,0 +1,59 @@
+﻿@model BloodBank.Business.DTOs.CreateBloodRequestDto
+
+<div class="max-w-xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Create Blood Request</h2>
+    <form asp-action="CreateBloodRequest" method="post" class="space-y-6">
+        <!-- Hidden field for HospitalId; it will be set by the controller -->
+        <input type="hidden" asp-for="HospitalId" />
+
+        <!-- Blood Type Selection -->
+        <div>
+            <label asp-for="BloodType" class="block text-sm font-medium text-gray-700">Blood Type</label>
+            <select asp-for="BloodType"
+                    asp-items="Html.GetEnumSelectList<BloodBank.Core.Enums.BloodType>()"
+                    class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                <option value="">-- Select Blood Type --</option>
+            </select>
+            <span asp-validation-for="BloodType" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Quantity Required -->
+        <div>
+            <label asp-for="QuantityRequired" class="block text-sm font-medium text-gray-700">Quantity Required (ml)</label>
+            <input asp-for="QuantityRequired" type="number" min="1" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+            <span asp-validation-for="QuantityRequired" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Priority Selection -->
+        <div>
+            <label asp-for="Priority" class="block text-sm font-medium text-gray-700">Priority</label>
+            <select asp-for="Priority"
+                    asp-items="Html.GetEnumSelectList<BloodBank.Core.Enums.RequestPriority>()"
+                    class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+                <option value="">-- Select Priority --</option>
+            </select>
+            <span asp-validation-for="Priority" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Required Date -->
+        <div>
+            <label asp-for="RequiredDate" class="block text-sm font-medium text-gray-700">Required Date</label>
+            <input asp-for="RequiredDate" type="date" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" />
+            <span asp-validation-for="RequiredDate" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Notes -->
+        <div>
+            <label asp-for="Notes" class="block text-sm font-medium text-gray-700">Notes</label>
+            <textarea asp-for="Notes" rows="3" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
+            <span asp-validation-for="Notes" class="text-red-500 text-sm"></span>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            <button type="submit" class="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md shadow focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Submit Blood Request
+            </button>
+        </div>
+    </form>
+</div>

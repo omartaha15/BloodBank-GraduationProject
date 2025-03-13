@@ -1,4 +1,6 @@
-﻿namespace BloodBank.Core.Entities
+﻿using BloodBank.Core.Enums;
+
+namespace BloodBank.Core.Entities
 {
     namespace BloodBank.Core.Entities
     {
@@ -18,18 +20,13 @@
 
             // New: Hospital information
             public string HospitalId { get; set; }
-            public virtual User Hospital { get; set; }
+            public virtual User? Hospital { get; set; }
 
             // New: Hospital approval status (set by a hospital user)
             public HospitalApprovalStatus HospitalApprovalStatus { get; set; }
         }
 
-        public enum HospitalApprovalStatus
-        {
-            Pending,
-            Approved,
-            Rejected
-        }
+        
     }
 
 
