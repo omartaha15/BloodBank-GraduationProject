@@ -37,6 +37,12 @@ namespace Blood_Bank.Controllers
             return View( donations );
         }
 
+        public async Task<IActionResult> Details (int id)
+        {
+            var _donation = await _donationService.GetDonationByIdAsync( id );
+            return View( _donation );
+        }
+
         // GET: Donation/Create
         public async Task<IActionResult> Create ()
         {

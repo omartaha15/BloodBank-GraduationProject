@@ -3,12 +3,12 @@ using BloodBank.Core.Enums;
 
 namespace BloodBank.Core.Interfaces
 {
-    // BloodBank.Core/Interfaces/IRepositories/IBloodRequestRepository.cs
-    public interface IBloodRequestRepository : IGenericRepository<BloodRequest>
+    public interface IBloodRequestRepository
     {
+        Task<BloodRequest> GetByIdAsync ( int id );
+        Task<IEnumerable<BloodRequest>> GetAllByHospitalIdAsync ( string hospitalId );
         Task<IEnumerable<BloodRequest>> GetPendingRequestsAsync ();
-        Task<IEnumerable<BloodRequest>> GetHospitalRequestsAsync ( int hospitalId );
-        Task<IEnumerable<BloodRequest>> GetRequestsByBloodTypeAsync ( BloodType bloodType );
-        Task<IEnumerable<BloodRequest>> GetUrgentRequestsAsync ();
+        Task AddAsync ( BloodRequest bloodRequest );
+        Task UpdateAsync ( BloodRequest bloodRequest );
     }
 }

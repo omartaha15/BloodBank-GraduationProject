@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "INx3yI5CtYA=",
+  "dgSpecHash": "im4BjYvbk68=",
   "success": true,
-  "projectFilePath": "D:\\C#\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\BloodBank.Infrastructure.csproj",
+  "projectFilePath": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\BloodBank.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\otaha\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\otaha\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

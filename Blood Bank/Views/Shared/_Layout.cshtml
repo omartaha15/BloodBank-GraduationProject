@@ -1,5 +1,6 @@
 ﻿@using BloodBank.Core.Constants
 @using BloodBank.Core.Entities
+@using OpenQA.Selenium
 @inject BloodBank.Business.Interfaces.IBloodTestService BloodTestService
 
 <!DOCTYPE html>
@@ -7,430 +8,300 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Blood Bank Management System</title>
-
+    <title>@ViewData["Title"] - Blood Bank</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { primary: '#E53E3E', secondary: '#718096', accent: '#F56565' },
-                    fontFamily: { poppins: ['Poppins', 'sans-serif'] }
-                }
-            }
+        theme: {
+        extend: {
+        colors: {
+        'blood-red': '#D32F2F',
+        'blood-dark': '#B71C1C',
+        'blood-light': '#FFEBEE',
+        'accent-blue': '#0288D1',
+        },
+        fontFamily: {
+        poppins: ['Poppins', 'sans-serif']
+        }
+        }
+        }
         }
     </script>
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(to bottom, #FFEBEE, #FFFFFF);
         }
 
-        .nav-link {
-            color: rgb(75,85,99);
-            padding: 0.75rem 1rem;
-            border-radius: 0.375rem;
-            transition: color 200ms;
+        .nav-icon {
+        transition: transform 0.2s;
         }
 
-            .nav-link:hover, .nav-link.active {
-                color: #E53E3E;
-                font-weight: 500;
-            }
-
-        .btn-primary {
-            background-color: #E53E3E;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
-            transition: all 200ms;
+        .nav-link:hover .nav-icon {
+        transform: scale(1.2);
         }
 
-            .btn-primary:hover {
-                background-color: rgb(185,28,28);
-                transform: scale(1.05);
-            }
+        .btn-modern {
+        background: linear-gradient(90deg, #D32F2F, #B71C1C);
+        transition: all 0.3s;
+        }
+
+        .btn-modern:hover {
+        background: linear-gradient(90deg, #B71C1C, #D32F2F);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+        }
 
         .notification {
-            position: fixed;
-            top: 1rem;
-            right: 1rem;
-            z-index: 50;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.375rem;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-            transition: opacity 300ms;
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1000;
+        padding: 0.75rem 1.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        color: white;
+        animation: slideIn 0.3s ease-out;
         }
 
-            .notification.success {
-                background-color: rgb(34,197,94);
-                color: white;
-            }
+        @@keyframes slideIn {
+        from {
+        transform: translateX(100%);
+        opacity: 0;
+        }
 
-            .notification.error {
-                background-color: rgb(239,68,68);
-                color: white;
-            }
+        to {
+        transform: translateX(0);
+        opacity: 1;
+        }
+        }
     </style>
 </head>
-<body class="bg-gray-50 flex flex-col min-h-screen">
+<body class="min-h-screen flex flex-col">
     <!-- Notifications -->
     @if (TempData["Success"] != null)
     {
-        <div class="notification success" id="success-notification">
-            <i class="fas fa-check-circle mr-2"></i>@TempData["Success"]
+        <div class="notification bg-green-500" id="success-notification">
+            <i class="fas fa-check-circle mr-2"></i> @TempData["Success"]
         </div>
     }
     @if (TempData["Error"] != null)
     {
-        <div class="notification error" id="error-notification">
-            <i class="fas fa-exclamation-circle mr-2"></i>@TempData["Error"]
+        <div class="notification bg-red-500" id="error-notification">
+            <i class="fas fa-exclamation-triangle mr-2"></i> @TempData["Error"]
         </div>
     }
 
-    <header class="sticky top-0 z-50">
-        <nav class="bg-white shadow-lg">
-            <div class="max-w-7xl mx-auto px-4 flex justify-between items-center h-16">
-                <!-- Logo -->
-                <a href="/" class="flex items-center group">
-                    <i class="fas fa-heartbeat text-primary text-3xl mr-2 group-hover:animate-pulse"></i>
-                    <span class="text-xl font-bold text-gray-800 group-hover:text-primary transition-colors duration-200">Blood Bank</span>
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+            <!-- Logo -->
+            <a href="/" class="flex items-center space-x-3">
+                <i class="fas fa-tint text-blood-red text-3xl animate-pulse"></i>
+                <span class="text-2xl font-bold text-gray-900 bg-gradient-to-r from-blood-red to-blood-dark bg-clip-text text-transparent">Blood Bank</span>
+            </a>
+            <!-- Navigation -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="@Url.Action("Index", "Home")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "text-blood-red" : "")">
+                    <i class="fas fa-home nav-icon mr-2"></i> Home
                 </a>
-                <!-- Navigation Links -->
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="@Url.Action("Index", "Home")" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Home" ? "active" : "")">
-                        <i class="fas fa-home mr-1"></i> Home
-                    </a>
-                    <a href="@Url.Action("Index", "Donation")" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "Donation" ? "active" : "")">
-                        <i class="fas fa-hand-holding-medical mr-1"></i> Donations
-                    </a>
-                    <a href="@Url.Action("CreateBloodRequest", "Hospital")" class="nav-link @(ViewContext.RouteData.Values["Controller"].ToString() == "BloodRequest" ? "active" : "")">
-                        <i class="fas fa-clipboard-list mr-1"></i> Requests
-                    </a>
-                </div>
-                <!-- Donor Blood Test Status -->
-                @if (User.IsInRole(Roles.Donor))
+                @if ( User.IsInRole( Roles.Hospital ) == false)
                 {
-                    var donorId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
-                    string bloodTestStatus = "";
-                    string statusColor = "";
-                    string statusIcon = "";
+                    <a href="@Url.Action("BloodPanel", "Home")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Info" ? "text-blood-red" : "")">
+                        <i class="fas fa-info-circle nav-icon mr-2"></i> Blood Info Panel
+                    </a>
+                }
+                <a href="@Url.Action("Index", "Donation")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Donation" ? "text-blood-red" : "")">
+                    <i class="fas fa-hand-holding-heart nav-icon mr-2"></i> Donations
+                </a>
+                @if (User.IsInRole(Roles.Hospital))
+                {
+                    <a href="@Url.Action("PendingDonations", "Hospital")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Pending Donations" ? "text-blood-red" : "")">
+                        <i class="fas fa-clipboard-check nav-icon mr-2"></i> Pending Donations
+                    </a>
+                    <a href="@Url.Action("Create", "BloodRequest")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "BloodRequest" ? "text-blood-red" : "")">
+                        <i class="fas fa-clipboard-check nav-icon mr-2"></i> Requests
+                    </a>
+                }
+                @if ( User.IsInRole( Roles.Hospital ) == false)
+                {
+                    <a href="@Url.Action("About", "Home")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Info" ? "text-blood-red" : "")">
+                        <i class="fas fa-info nav-icon mr-2"></i> About
+                    </a>
+                }
+                @if ( User.IsInRole( Roles.Donor ) )
+                {
+                    var donorId = User.FindFirst( System.Security.Claims.ClaimTypes.NameIdentifier )?.Value;
+                    BloodTestDto test = null;
                     try
                     {
-                        var test = BloodTestService.GetTestByDonorIdAsync(donorId).Result;
-                        switch (test.HospitalApprovalStatus)
-                        {
-                            case HospitalApprovalStatus.Approved:
-                                bloodTestStatus = "Approved";
-                                statusColor = "bg-green-500";
-                                statusIcon = "fas fa-check-circle";
-                                break;
-                            case HospitalApprovalStatus.Pending:
-                                bloodTestStatus = "Pending";
-                                statusColor = "bg-yellow-500";
-                                statusIcon = "fas fa-exclamation-circle";
-                                break;
-                            case HospitalApprovalStatus.Rejected:
-                                bloodTestStatus = "Rejected";
-                                statusColor = "bg-red-500";
-                                statusIcon = "fas fa-times-circle";
-                                break;
-                            default:
-                                bloodTestStatus = "Unknown";
-                                statusColor = "bg-gray-500";
-                                statusIcon = "fas fa-question-circle";
-                                break;
-                        }
+                        test = await BloodTestService.GetTestByDonorIdAsync( donorId );
                     }
-                    catch
+                    catch ( NotFoundException )
                     {
-                        bloodTestStatus = "No test submitted";
-                        statusColor = "bg-gray-500";
-                        statusIcon = "fas fa-info-circle";
+                        // Here you can leave test as null or initialize it accordingly.
                     }
-                    <div class="hidden md:block ml-4">
-                        <button class="@statusColor hover:opacity-90 text-white px-3 py-2 rounded flex items-center">
-                            <i class="@statusIcon mr-2"></i>@bloodTestStatus
+
+                    <span class="flex items-center px-3 py-1 text-sm font-medium rounded-full @(test?.HospitalApprovalStatus == HospitalApprovalStatus.Approved ? "bg-green-100 text-green-800" :
+                                                                                                                  test?.HospitalApprovalStatus == HospitalApprovalStatus.Pending ? "bg-yellow-100 text-yellow-800" :
+                                                                                                                  test?.HospitalApprovalStatus == HospitalApprovalStatus.Rejected ? "bg-red-100 text-red-800" :
+                                                                                                                  "bg-gray-100 text-gray-800")">
+                        <i class="fas @(test?.HospitalApprovalStatus == HospitalApprovalStatus.Approved ? "fa-check-circle" :
+                         test?.HospitalApprovalStatus == HospitalApprovalStatus.Pending ? "fa-hourglass-half" :
+                         test?.HospitalApprovalStatus == HospitalApprovalStatus.Rejected ? "fa-times-circle" :
+                         "fa-info-circle") mr-2"></i>
+                        @(test?.HospitalApprovalStatus.ToString() ?? "No Test")
+                    </span>
+                }
+
+            </div>
+            <!-- User Menu -->
+            <div class="flex items-center space-x-4">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="relative group">
+                        <button class="flex items-center space-x-2 text-gray-700 hover:text-blood-red">
+                            <span class="w-9 h-9 rounded-full bg-blood-red text-white flex items-center justify-center text-lg font-semibold">
+                                @User.Identity.Name.Substring(0, 1).ToUpper()
+                            </span>
+                            <span class="hidden sm:inline text-sm font-medium">@User.Identity.Name</span>
+                            <i class="fas fa-caret-down text-blood-red"></i>
                         </button>
+                        <div class="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-2xl hidden group-hover:block border border-gray-100">
+                            <div class="px-4 py-3 flex items-center border-b border-gray-100">
+                                <i class="fas fa-user-circle text-blood-red mr-2"></i>
+                                <span class="text-sm text-gray-700">@User.Identity.Name</span>
+                            </div>
+                            <a href="@Url.Action("Profile", "Account")" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blood-light hover:text-blood-red">
+                                <i class="fas fa-user-edit mr-2"></i> Profile
+                            </a>
+                            @if (User.IsInRole(Roles.Donor))
+                            {
+                                <a href="@Url.Action("MyDonations", "Donation")" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blood-light hover:text-blood-red">
+                                    <i class="fas fa-history mr-2"></i> My Donations
+                                </a>
+                            }
+                            <form asp-controller="Account" asp-action="Logout" method="post">
+                                <button type="submit" class="flex items-center w-full px-4 py-3 text-red-600 hover:bg-red-50">
+                                    <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 }
-                <!-- User Menu -->
-                <div class="hidden md:flex items-center space-x-4">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <div class="relative group">
-                            <div class="flex items-center cursor-pointer p-2 rounded-md hover:bg-gray-100 transition-colors duration-200">
-                                <div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center mr-2">
-                                    @User.Identity.Name.Substring(0, 1).ToUpper()
-                                </div>
-                                <span class="text-gray-700">@User.Identity.Name</span>
-                                <i class="fas fa-chevron-down ml-2 text-gray-500 group-hover:text-primary transition-colors duration-200"></i>
-                            </div>
-                            <div class="hidden group-hover:block absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5">
-                                <div class="px-4 py-2 text-xs text-gray-400">
-                                    Signed in as <strong class="font-medium text-gray-900">@User.Identity.Name</strong>
-                                </div>
-                                <div class="border-t border-gray-100"></div>
-                                <a href="@Url.Action("Profile", "Account")" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                    <i class="fas fa-user mr-2"></i> Your Profile
-                                </a>
-                                @if (User.IsInRole(Roles.Donor))
-                                {
-                                    <a href="@Url.Action("MyDonations", "Donation")" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                        <i class="fas fa-history mr-2"></i> Donation History
-                                    </a>
-                                    <a href="@Url.Action("MyAppointments", "Appointment")" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                        <i class="fas fa-calendar mr-2"></i> My Appointments
-                                    </a>
-                                }
-                                <a href="@Url.Action("Settings", "Account")" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                    <i class="fas fa-cog mr-2"></i> Settings
-                                </a>
-                                <div class="border-t border-gray-100"></div>
-                                <form asp-controller="Account" asp-action="Logout" method="post">
-                                    <button type="submit" class="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50">
-                                        <i class="fas fa-sign-out-alt mr-2"></i> Sign out
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    }
-                    else
-                    {
-                        <a href="@Url.Action("Login", "Account")" class="nav-link flex items-center">
-                            <i class="fas fa-sign-in-alt mr-1"></i> Login
-                        </a>
-                        <a href="@Url.Action("Register", "Account")" class="btn-primary flex items-center">
-                            <i class="fas fa-user-plus mr-1"></i> Register
-                        </a>
-                    }
-                </div>
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button type="button" class="mobile-menu-button p-2 rounded-md hover:bg-gray-100 focus:outline-none">
-                        <i class="fas fa-bars text-gray-600 text-2xl"></i>
-                    </button>
+                else
+                {
+                    <a href="@Url.Action("Login", "Account")" class="flex items-center text-gray-700 hover:text-blood-red">
+                        <i class="fas fa-sign-in-alt mr-1"></i> Login
+                    </a>
+                    <a href="@Url.Action("Register", "Account")" class="btn-modern text-white px-4 py-2 rounded-lg flex items-center">
+                        <i class="fas fa-user-plus mr-2"></i> Register
+                    </a>
+                }
+                <!-- Mobile Menu Toggle -->
+                <button class="md:hidden text-gray-700 hover:text-blood-red" id="mobile-menu-toggle">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-white shadow-lg" id="mobile-menu">
+            <div class="px-6 py-4 space-y-4">
+                <a href="@Url.Action("Index", "Home")" class="flex items-center text-gray-700 hover:text-blood-red">
+                    <i class="fas fa-home mr-2"></i> Home
+                </a>
+                <a href="@Url.Action("Index", "Donation")" class="flex items-center text-gray-700 hover:text-blood-red">
+                    <i class="fas fa-hand-holding-heart mr-2"></i> Donations
+                </a>
+                @if (User.IsInRole(Roles.Hospital))
+                {
+                    <a href="@Url.Action("Create", "BloodRequest")" class="flex items-center text-gray-700 hover:text-blood-red">
+                        <i class="fas fa-clipboard-check mr-2"></i> Requests
+                    </a>
+                }
+            </div>
+        </div>
+        <!-- Admin Sub-Nav -->
+        @if (User.IsInRole(Roles.Admin))
+        {
+            <div class="bg-blood-dark text-white py-3">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-6 text-sm">
+                    <a href="@Url.Action("Index", "Dashboard", new { area = "Admin" })" class="flex items-center hover:text-blood-light">
+                        <i class="fas fa-tachometer-alt mr-2"></i> Dashboard
+                    </a>
+                    <a href="@Url.Action("Index", "UserManagement", new { area = "Admin" })" class="flex items-center hover:text-blood-light">
+                        <i class="fas fa-users-cog mr-2"></i> Users
+                    </a>
+                    <a href="@Url.Action("Index", "Inventory")" class="flex items-center hover:text-blood-light">
+                        <i class="fas fa-warehouse nav-icon mr-2"></i> Inventory
+                    </a>
                 </div>
             </div>
-            </div>
-            <div class="hidden md:hidden" id="mobile-menu">
-                <!-- Mobile menu content -->
-            </div>
-            @if (User.IsInRole(Roles.Admin))
-            {
-                <nav class="bg-gray-800 text-white">
-                    <div class="max-w-7xl mx-auto px-4">
-                        <div class="flex items-center space-x-4 h-12">
-                            <span class="text-sm font-medium">Admin Panel:</span>
-                            <a href="@Url.Action("Index", "Dashboard", new { area = "Admin" })" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">
-                                <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
-                            </a>
-                            <a href="@Url.Action("Index", "UserManagement", new { area = "Admin" })" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">
-                                <i class="fas fa-users-cog mr-2"></i>User Management
-                            </a>
-                            <a href="@Url.Action("Index", "BloodInventory", new { area = "Admin" })" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">
-                                <i class="fas fa-warehouse mr-2"></i>Inventory
-                            </a>
-                            <a href="@Url.Action("Index", "Reports", new { area = "Admin" })" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">
-                                <i class="fas fa-chart-bar mr-2"></i>Reports
-                            </a>
-                        </div>
-                    </div>
-                </nav>
-            }
+        }
     </header>
 
-    @if (ViewData["Title"] != null)
-    {
-        <div class="bg-white shadow-sm">
-            <div class="max-w-7xl mx-auto px-4 py-4">
-                <h1 class="text-2xl font-semibold text-gray-800">@ViewData["Title"]</h1>
-                @if (ViewData["Subtitle"] != null)
-                {
-                    <p class="text-gray-500 mt-1">@ViewData["Subtitle"]</p>
-                }
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        @if (ViewData["Title"] != null)
+        {
+            <div class="bg-white rounded-2xl shadow-lg p-6 mb-8 flex items-center space-x-4">
+                <i class="fas fa-heartbeat text-blood-red text-2xl animate-pulse"></i>
+                <h1 class="text-2xl font-semibold text-gray-900">@ViewData["Title"]</h1>
             </div>
+        }
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            @RenderBody()
         </div>
-    }
-
-    <main class="flex-grow container mx-auto px-4 py-6">
-        @RenderBody()
     </main>
 
-    <footer class="bg-white shadow-inner mt-8">
-        <div class="max-w-7xl mx-auto py-8 px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="col-span-1">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-heartbeat text-primary text-2xl mr-2"></i>
-                        <span class="text-lg font-bold text-gray-800">Blood Bank</span>
-                    </div>
-                    <p class="text-gray-600 text-sm">
-                        Connecting donors with those in need, saving lives one donation at a time.
-                    </p>
-                </div>
-                <div class="col-span-1">
-                    <h3 class="text-gray-800 font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li>
-                            <a href="@Url.Action("About", "Home")" class="text-gray-600 hover:text-primary text-sm transition-colors duration-200">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Contact", "Home")" class="text-gray-600 hover:text-primary text-sm transition-colors duration-200">
-                                Contact
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Privacy", "Home")" class="text-gray-600 hover:text-primary text-sm transition-colors duration-200">
-                                Privacy Policy
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Terms", "Home")" class="text-gray-600 hover:text-primary text-sm transition-colors duration-200">
-                                Terms of Service
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-span-1">
-                    <h3 class="text-gray-800 font-semibold mb-4">Contact Info</h3>
-                    <ul class="space-y-2">
-                        <li class="flex items-center text-gray-600 text-sm">
-                            <i class="fas fa-map-marker-alt w-5"></i>
-                            123 Blood Bank St., City, Country
-                        </li>
-                        <li class="flex items-center text-gray-600 text-sm">
-                            <i class="fas fa-phone w-5"></i>
-                            +1 234 567 890
-                        </li>
-                        <li class="flex items-center text-gray-600 text-sm">
-                            <i class="fas fa-envelope w-5"></i>
-                            info@bloodbank.com
-                        </li>
-                        <li class="flex items-center text-gray-600 text-sm">
-                            <i class="fas fa-clock w-5"></i>
-                            Mon - Fri: 9:00 AM - 5:00 PM
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-span-1">
-                    <h3 class="text-gray-800 font-semibold mb-4">Follow Us</h3>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-600 hover:text-primary transition-colors duration-200">
-                            <i class="fab fa-facebook text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-600 hover:text-primary transition-colors duration-200">
-                            <i class="fab fa-twitter text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-600 hover:text-primary transition-colors duration-200">
-                            <i class="fab fa-instagram text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-600 hover:text-primary transition-colors duration-200">
-                            <i class="fab fa-linkedin text-xl"></i>
-                        </a>
-                    </div>
-                    <div class="mt-6">
-                        <h4 class="text-sm font-semibold text-gray-800 mb-2">Subscribe to Our Newsletter</h4>
-                        <form class="flex">
-                            <input type="email" placeholder="Enter your email" class="flex-1 px-3 py-2 bg-gray-100 rounded-l-md focus:outline-none focus:ring-1 focus:ring-primary">
-                            <button type="submit" class="px-4 py-2 bg-primary text-white rounded-r-md hover:bg-red-700 transition-colors duration-200">
-                                <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
+    <!-- Footer -->
+    <footer class="bg-blood-dark text-white py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center">
+            <div class="flex items-center space-x-3 mb-4 sm:mb-0">
+                <i class="fas fa-tint text-blood-light text-2xl"></i>
+                <span class="text-lg font-semibold">Blood Bank</span>
             </div>
-            <div class="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <div class="text-gray-600 text-sm">
-                    &copy; @DateTime.Now.Year Blood Bank Management System. All rights reserved.
-                </div>
-                <div class="mt-4 md:mt-0 flex space-x-4 text-sm">
-                    <a href="@Url.Action("Privacy", "Home")" class="text-gray-600 hover:text-primary transition-colors duration-200">Privacy Policy</a>
-                    <span class="text-gray-300">|</span>
-                    <a href="@Url.Action("Terms", "Home")" class="text-gray-600 hover:text-primary transition-colors duration-200">Terms of Service</a>
-                    <span class="text-gray-300">|</span>
-                    <a href="@Url.Action("Contact", "Home")" class="text-gray-600 hover:text-primary transition-colors duration-200">Contact Us</a>
-                </div>
+            <div class="flex space-x-6 text-sm">
+                <a href="@Url.Action("Contact", "Home")" class="flex items-center hover:text-blood-light">
+                    <i class="fas fa-phone mr-2"></i> Contact
+                </a>
+                <a href="@Url.Action("Privacy", "Home")" class="flex items-center hover:text-blood-light">
+                    <i class="fas fa-shield-alt mr-2"></i> Privacy
+                </a>
+                <a href="@Url.Action("About", "Home")" class="flex items-center hover:text-blood-light">
+                    <i class="fas fa-info-circle mr-2"></i> About
+                </a>
             </div>
         </div>
+        <div class="text-center mt-4 text-xs text-blood-light">
+            <i class="fas fa-copyright mr-1"></i> @DateTime.Now.Year Blood Bank. All Rights Reserved.
+        </div>
     </footer>
+
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // Notification Auto-hide
-        document.addEventListener('DOMContentLoaded', function() {
-            const successNotification = document.getElementById('success-notification');
-            const errorNotification = document.getElementById('error-notification');
-            if (successNotification) {
-                setTimeout(() => {
-                    successNotification.style.opacity = '0';
-                    setTimeout(() => { successNotification.remove(); }, 300);
-                }, 3000);
-            }
-            if (errorNotification) {
-                setTimeout(() => {
-                    errorNotification.style.opacity = '0';
-                    setTimeout(() => { errorNotification.remove(); }, 300);
-                }, 3000);
-            }
-        });
         // Mobile Menu Toggle
-        document.querySelector('.mobile-menu-button').addEventListener('click', () => {
-            document.querySelector('#mobile-menu').classList.toggle('hidden');
+        document.getElementById('mobile-menu-toggle').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         });
-        // Active Link Highlighting
+        // Notification Auto-Hide with Animation
         document.addEventListener('DOMContentLoaded', () => {
-            const currentPath = window.location.pathname;
-            document.querySelectorAll('.nav-link').forEach(link => {
-                if (link.getAttribute('href') === currentPath)
-                    link.classList.add('active');
-            });
-        });
-        // Dropdown Menu Accessibility
-        document.querySelectorAll('.dropdown-button').forEach(button => {
-            button.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    button.nextElementSibling.classList.toggle('hidden');
+            ['success-notification', 'error-notification'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    setTimeout(() => {
+                        el.style.opacity = '0';
+                        el.style.transform = 'translateX(100%)';
+                        setTimeout(() => el.remove(), 300);
+                    }, 3000);
                 }
             });
         });
-        // Close dropdowns when clicking outside
-        document.addEventListener('click', (e) => {
-            document.querySelectorAll('.dropdown-menu').forEach(dropdown => {
-                if (!dropdown.contains(e.target) && !e.target.classList.contains('dropdown-button'))
-                    dropdown.classList.add('hidden');
-            });
-        });
-        // Smooth Scrolling for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-        // Form Validation Enhancement
-        document.querySelectorAll('form').forEach(form => {
-            form.addEventListener('submit', function(e) {
-                if (!form.checkValidity()) {
-                    e.preventDefault();
-                    form.querySelectorAll(':invalid').forEach(field => field.classList.add('border-red-500'));
-                }
-            });
-        });
-        // Back to Top Button
-        const backToTop = document.createElement('button');
-        backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
-        backToTop.className = 'fixed bottom-4 right-4 bg-primary text-white p-3 rounded-full shadow-lg opacity-0 transition-opacity duration-300 hover:bg-red-700';
-        document.body.appendChild(backToTop);
-        window.addEventListener('scroll', () => { backToTop.style.opacity = window.pageYOffset > 100 ? '1' : '0'; });
-        backToTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
     </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

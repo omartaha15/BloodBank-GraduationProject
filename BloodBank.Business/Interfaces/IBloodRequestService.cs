@@ -1,14 +1,16 @@
-﻿using BloodBank.Business.DTOs;
+﻿using BloodBank.Core.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BloodBank.Business.Interfaces
+namespace BloodBank.Application.Services
 {
     public interface IBloodRequestService
     {
-        Task<BloodRequestDto> CreateBloodRequestAsync ( CreateBloodRequestDto dto );
-        Task<IEnumerable<BloodRequestDto>> GetAllBloodRequestsAsync ();
-        Task ApproveBloodRequestAsync ( int requestId );
-        Task RejectBloodRequestAsync ( int requestId );
+        Task CreateBloodRequestAsync ( BloodRequest bloodRequest, string hospitalId );
+        Task<IEnumerable<BloodRequest>> GetHospitalRequestsAsync ( string hospitalId );
+        Task<IEnumerable<BloodRequest>> GetPendingRequestsAsync ();
+        Task ApproveBloodRequestAsync ( int requestId, string staffId );
+        Task ProcessBloodRequestAsync ( int requestId, string staffId );
+        Task RejectBloodRequestAsync ( int requestId, string staffId, string rejectionReason );
     }
 }

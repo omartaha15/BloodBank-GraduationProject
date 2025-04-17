@@ -6,7 +6,7 @@ namespace BloodBank.Core.Entities
 {
     public class BloodRequest : BaseEntity
     {
-        public int HospitalId { get; set; }
+        public string HospitalId { get; set; }
         public virtual User Hospital { get; set; }
         public BloodType BloodType { get; set; }
         public double QuantityRequired { get; set; }

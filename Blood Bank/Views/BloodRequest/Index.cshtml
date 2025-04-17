@@ -1,72 +1,53 @@
-﻿<!-- Views/BloodRequest/Index.cshtml -->
-@model IEnumerable<BloodRequestDto>
+﻿@model IEnumerable<BloodBank.Core.Entities.BloodRequest>
 
-<div class="container mx-auto px-4 py-8">
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-3xl font-bold text-gray-900">Blood Requests</h1>
-        @if (User.IsInRole("Hospital"))
-        {
-            <a href="@Url.Action("Create")" class="bg-primary text-white px-4 py-2 rounded-md hover:bg-red-700 transition-colors duration-200">
-                <i class="fas fa-plus mr-2"></i>New Request
-            </a>
-        }
-    </div>
+<section class="container mx-auto px-6 py-12">
+    <h1 class="text-4xl font-bold text-gray-900 mb-8 flex items-center">
+        <i class="fas fa-list text-blood-red mr-3"></i> Your Blood Requests
+    </h1>
 
-    <div class="bg-white rounded-lg shadow overflow-hidden">
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
         <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
+            <thead class="bg-blood-light">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hospital</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Blood Type</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Required Date</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 uppercase">Blood Type</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 uppercase">Quantity</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 uppercase">Priority</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 uppercase">Status</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 uppercase">Required Date</th>
                 </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-                @foreach (var request in Model)
+            <tbody class="divide-y divide-gray-200">
+                @if ( Model.Any() )
+                {
+                    @foreach ( var request in Model )
+                    {
+                        <tr class="hover:bg-gray-50 transition-colors duration-150">
+                            <td class="px-6 py-4 text-base text-gray-800">@request.BloodType</td>
+                            <td class="px-6 py-4 text-base text-gray-800">@request.QuantityRequired mL</td>
+                            <td class="px-6 py-4 text-base text-gray-800">@request.Priority</td>
+                            <td class="px-6 py-4 text-base text-gray-800">
+                                <span class="px-3 py-1 rounded-full text-sm font-semibold
+                                    @(request.Status == RequestStatus.Approved ? "bg-green-100 text-green-800" :
+                                      request.Status == RequestStatus.Rejected ? "bg-red-100 text-red-800" :
+                                      request.Status == RequestStatus.Completed ? "bg-blue-100 text-blue-800" :
+                                      request.Status == RequestStatus.InProcess ? "bg-yellow-100 text-yellow-800" :
+                                      "bg-gray-100 text-gray-800")">
+                                    @request.Status
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 text-base text-gray-800">@request.RequiredDate.ToShortDateString()</td>
+                        </tr>
+                    }
+                }
+                else
                 {
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm font-medium text-gray-900">@request.HospitalName</div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">@request.BloodType</div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">@request.QuantityRequired ml</div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
-                                   @(request.Priority == RequestPriority.Emergency ? "bg-red-100 text-red-800" :
-                                     request.Priority == RequestPriority.Urgent ? "bg-yellow-100 text-yellow-800" :
-                                     "bg-green-100 text-green-800")">
-                                @request.Priority
-                            </span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
-                                   @(request.Status == RequestStatus.Pending ? "bg-yellow-100 text-yellow-800" :
-                                     request.Status == RequestStatus.Approved ? "bg-green-100 text-green-800" :
-                                     request.Status == RequestStatus.Completed ? "bg-blue-100 text-blue-800" :
-                                     "bg-red-100 text-red-800")">
-                                @request.Status
-                            </span>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-900">@request.RequiredDate.ToShortDateString()</div>
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                            <a href="@Url.Action("Details", new { id = request.Id })"
-                               class="text-indigo-600 hover:text-indigo-900">
-                                Details
-                            </a>
+                        <td colspan="5" class="px-6 py-4 text-center text-gray-500">
+                            <i class="fas fa-info-circle mr-2"></i> No requests found.
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
-</div>
+</section>

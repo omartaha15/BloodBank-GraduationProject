@@ -4205,11 +4205,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\C#\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\BloodBank.Infrastructure.csproj",
+      "projectUniqueName": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\BloodBank.Infrastructure.csproj",
       "projectName": "BloodBank.Infrastructure",
-      "projectPath": "D:\\C#\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\BloodBank.Infrastructure.csproj",
+      "projectPath": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\BloodBank.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\otaha\\.nuget\\packages\\",
-      "outputPath": "D:\\C#\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\obj\\",
+      "outputPath": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4230,8 +4230,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\C#\\BloodBank-GraduationProject\\BloodBank.Core\\BloodBank.Core.csproj": {
-              "projectPath": "D:\\C#\\BloodBank-GraduationProject\\BloodBank.Core\\BloodBank.Core.csproj"
+            "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\BloodBank.Core.csproj": {
+              "projectPath": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\BloodBank.Core.csproj"
             }
           }
         }
@@ -4246,7 +4246,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net8.0": {
@@ -4289,7 +4289,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.203/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

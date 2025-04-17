@@ -1,15 +1,13 @@
-﻿using AutoMapper;
-using BloodBank.Business.DTOs;
+﻿using BloodBank.Business.DTOs;
 using BloodBank.Business.Interfaces;
 using BloodBank.Core.Constants;
 using BloodBank.Core.Entities;
-using BloodBank.Core.Enums;
 using BloodBank.Core.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BloodBank.Business.Services
@@ -18,19 +16,16 @@ namespace BloodBank.Business.Services
     {
         private readonly UserManager<User> _userManager;
         private readonly IDonationRepository _donationRepository;
-        private readonly IBloodUnitRepository _bloodUnitRepository;
-        private readonly IMapper _mapper;
+        private readonly IBloodInventoryService _inventoryService;
 
         public DashboardService (
             UserManager<User> userManager,
             IDonationRepository donationRepository,
-            IBloodUnitRepository bloodUnitRepository,
-            IMapper mapper )
+            IBloodInventoryService inventoryService )
         {
             _userManager = userManager;
             _donationRepository = donationRepository;
-            _bloodUnitRepository = bloodUnitRepository;
-            _mapper = mapper;
+            _inventoryService = inventoryService;
         }
 
         public async Task<DashboardStatsDto> GetDashboardStatsAsync ()
@@ -38,11 +33,8 @@ namespace BloodBank.Business.Services
             var users = await _userManager.Users.ToListAsync();
             var donors = await _userManager.GetUsersInRoleAsync( Roles.Donor );
             var donations = await _donationRepository.GetAllAsync();
-
-            // With appointments merged into Donation, filter donations with upcoming appointment dates
             var pendingAppointments = donations.Where( d => d.AppointmentDate >= DateTime.UtcNow ).ToList();
-
-            var bloodUnits = await _bloodUnitRepository.GetAllAsync();
+            var bloodTypeStats = await _inventoryService.GetBloodTypeStatsAsync();
 
             var stats = new DashboardStatsDto
             {
@@ -50,39 +42,33 @@ namespace BloodBank.Business.Services
                 TotalDonors = donors.Count,
                 TotalDonations = donations.Count(),
                 PendingAppointments = pendingAppointments.Count,
-                BloodTypeStats = await GetBloodTypeStatsAsync(),
+                BloodTypeStats = bloodTypeStats.Select( s => new BloodTypeStatDto
+                {
+                    BloodType = s.Key,
+                    Count = s.Value,
+                    Percentage = bloodTypeStats.Sum( x => x.Value ) > 0 ? ( double ) s.Value / bloodTypeStats.Sum( x => x.Value ) * 100 : 0
+                } ).ToList(),
                 RecentActivities = await GetRecentActivitiesAsync()
             };
 
             return stats;
         }
 
+        // Keep GetBloodTypeStatsAsync for compatibility if needed
         public async Task<List<BloodTypeStatDto>> GetBloodTypeStatsAsync ()
         {
-            var bloodUnits = await _bloodUnitRepository.GetAllAsync();
-            var stats = new List<BloodTypeStatDto>();
-
-            foreach ( BloodType bloodType in Enum.GetValues( typeof( BloodType ) ) )
+            var stats = await _inventoryService.GetBloodTypeStatsAsync();
+            return stats.Select( s => new BloodTypeStatDto
             {
-                var count = bloodUnits.Count( u => u.BloodType == bloodType &&
-                                                  u.Status == BloodUnitStatus.Available );
-                stats.Add( new BloodTypeStatDto
-                {
-                    BloodType = bloodType,
-                    Count = count,
-                    Percentage = bloodUnits.Any() ?
-                        ( double ) count / bloodUnits.Count() * 100 : 0
-                } );
-            }
-
-            return stats;
+                BloodType = s.Key,
+                Count = s.Value,
+                Percentage = stats.Sum( x => x.Value ) > 0 ? ( double ) s.Value / stats.Sum( x => x.Value ) * 100 : 0
+            } ).ToList();
         }
 
         public async Task<List<RecentActivityDto>> GetRecentActivitiesAsync ( int count = 10 )
         {
             var activities = new List<RecentActivityDto>();
-
-            // Get recent donations (which include merged appointment details)
             var recentDonations = await _donationRepository.GetRecentDonationsAsync( count );
             foreach ( var donation in recentDonations )
             {
@@ -95,7 +81,6 @@ namespace BloodBank.Business.Services
                 } );
             }
 
-            // Get upcoming appointments from donations with an appointment date in the future
             var upcomingAppointments = ( await _donationRepository.GetAllAsync() )
                 .Where( d => d.AppointmentDate >= DateTime.UtcNow )
                 .OrderBy( d => d.AppointmentDate )
@@ -113,11 +98,7 @@ namespace BloodBank.Business.Services
                 } );
             }
 
-            // Order activities by the most recent event and take the specified count
-            return activities
-                .OrderByDescending( a => a.Timestamp )
-                .Take( count )
-                .ToList();
+            return activities.OrderByDescending( a => a.Timestamp ).Take( count ).ToList();
         }
     }
 }

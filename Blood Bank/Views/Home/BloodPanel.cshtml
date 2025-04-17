@@ -1,0 +1,132 @@
+﻿    <!-- Blood Donation Information Section -->
+<div class="mb-6">
+    <button class="w-full bg-red-500 text-white font-semibold py-3 px-4 rounded-lg flex justify-between items-center" onclick="toggleSection('donationInfo')">
+        <span>About Blood Donation</span>
+        <span id="donationInfoArrow">▼</span>
+    </button>
+    <div id="donationInfo" class="bg-white p-6 rounded-lg shadow-lg mt-2">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">What is Blood Donation?</h2>
+        <p class="text-gray-600 mb-4">
+            Blood donation is a voluntary act where a person gives blood to be used for transfusions or medical treatments. It saves millions of lives each year, supporting patients with trauma, surgeries, cancer, and chronic illnesses.
+        </p>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Eligibility</h3>
+        <ul class="list-disc list-inside text-gray-600 mb-4">
+            <li>Age: 17–65 (or as per local regulations).</li>
+            <li>Weight: At least 50 kg (110 lbs).</li>
+            <li>Health: Generally healthy, no recent infections or major surgeries.</li>
+            <li>Interval: At least 3 months since last donation.</li>
+        </ul>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Process</h3>
+        <p class="text-gray-600 mb-4">
+            1. <strong>Registration</strong>: Provide ID and medical history.<br>
+            2. <strong>Screening</strong>: Health check and blood test.<br>
+            3. <strong>Donation</strong>: Takes 10–15 minutes, collecting ~450 mL.<br>
+            4. <strong>Rest</strong>: Refreshments and recovery time.
+        </p>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Benefits</h3>
+        <p class="text-gray-600">
+            - Saves lives and supports community health.<br>
+            - Free health screening for donors.<br>
+            - Encourages a sense of purpose and altruism.
+        </p>
+    </div>
+</div>
+
+<!-- Blood Types Section -->
+<div class="mb-6">
+    <button class="w-full bg-red-500 text-white font-semibold py-3 px-4 rounded-lg flex justify-between items-center" onclick="toggleSection('bloodTypes')">
+        <span>Blood Types</span>
+        <span id="bloodTypesArrow">▼</span>
+    </button>
+    <div id="bloodTypes" class="bg-white p-6 rounded-lg shadow-lg mt-2">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Understanding Blood Types</h2>
+        <p class="text-gray-600 mb-4">
+            Blood types are determined by antigens on red blood cells. The ABO system (A, B, AB, O) and Rh factor (+, -) create eight main types.
+        </p>
+        <table class="w-full text-left border-collapse mb-4">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="p-2 border">Blood Type</th>
+                    <th class="p-2 border">Can Donate To</th>
+                    <th class="p-2 border">Can Receive From</th>
+                    <th class="p-2 border">Prevalence</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="p-2 border">A+</td><td class="p-2 border">A+, AB+</td><td class="p-2 border">A+, A-, O+, O-</td><td class="p-2 border">~34%</td></tr>
+                <tr><td class="p-2 border">A-</td><td class="p-2 border">A+, A-, AB+, AB-</td><td class="p-2 border">A-, O-</td><td class="p-2 border">~6%</td></tr>
+                <tr><td class="p-2 border">B+</td><td class="p-2 border">B+, AB+</td><td class="p-2 border">B+, B-, O+, O-</td><td class="p-2 border">~9%</td></tr>
+                <tr><td class="p-2 border">B-</td><td class="p-2 border">B+, B-, AB+, AB-</td><td class="p-2 border">B-, O-</td><td class="p-2 border">~2%</td></tr>
+                <tr><td class="p-2 border">AB+</td><td class="p-2 border">AB+</td><td class="p-2 border">All types</td><td class="p-2 border">~4%</td></tr>
+                <tr><td class="p-2 border">AB-</td><td class="p-2 border">AB+, AB-</td><td class="p-2 border">AB-, A-, B-, O-</td><td class="p-2 border">~1%</td></tr>
+                <tr><td class="p-2 border">O+</td><td class="p-2 border">O+, A+, B+, AB+</td><td class="p-2 border">O+, O-</td><td class="p-2 border">~39%</td></tr>
+                <tr><td class="p-2 border">O-</td><td class="p-2 border">All types</td><td class="p-2 border">O-</td><td class="p-2 border">~6%</td></tr>
+            </tbody>
+        </table>
+        <p class="text-gray-600">
+            <strong>O-</strong> is the universal donor (can donate to all types), and <strong>AB+</strong> is the universal recipient (can receive from all types).
+        </p>
+    </div>
+</div>
+
+<!-- Instructions Section -->
+<div class="mb-6">
+    <button class="w-full bg-red-500 text-white font-semibold py-3 px-4 rounded-lg flex justify-between items-center" onclick="toggleSection('instructions')">
+        <span>Donation Instructions</span>
+        <span id="instructionsArrow">▼</span>
+    </button>
+    <div id="instructions" class="bg-white p-6 rounded-lg shadow-lg mt-2">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Guidelines for Donors</h2>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Before Donation</h3>
+        <ul class="list-disc list-inside text-gray-600 mb-4">
+            <li>Eat a healthy meal 2–3 hours prior (avoid fatty foods).</li>
+            <li>Stay hydrated—drink plenty of water.</li>
+            <li>Get a good night’s sleep.</li>
+            <li>Avoid alcohol for 24 hours.</li>
+            <li>Bring a valid ID and know your medical history.</li>
+        </ul>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">During Donation</h3>
+        <ul class="list-disc list-inside text-gray-600 mb-4">
+            <li>Inform staff of any discomfort or concerns.</li>
+            <li>Relax and follow the phlebotomist’s instructions.</li>
+            <li>The process takes about 10–15 minutes.</li>
+        </ul>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">After Donation</h3>
+        <ul class="list-disc list-inside text-gray-600 mb-4">
+            <li>Rest for 10–15 minutes and have refreshments.</li>
+            <li>Avoid heavy lifting or strenuous exercise for 24 hours.</li>
+            <li>Drink extra fluids for the next 48 hours.</li>
+            <li>If you feel dizzy or unwell, contact the blood bank immediately.</li>
+        </ul>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">For Hospital Staff</h3>
+        <p class="text-gray-600">
+            - Verify donor eligibility and blood test results before collection.<br>
+            - Ensure proper storage at 2–6°C for whole blood.<br>
+            - Follow ISBT 128 standards for labeling blood units.<br>
+            - Update donation status promptly in the system.
+        </p>
+    </div>
+</div>
+</div>
+
+<script>
+    function toggleSection(sectionId) {
+        const section = document.getElementById(sectionId);
+        const arrow = document.getElementById(sectionId + 'Arrow');
+        if (section.style.display === 'none') {
+            section.style.display = 'block';
+            arrow.textContent = '▼';
+        } else {
+            section.style.display = 'none';
+            arrow.textContent = '▶';
+        }
+    }
+
+    // Initialize sections as collapsed
+    document.getElementById('donationInfo').style.display = 'block';
+    document.getElementById('bloodTypes').style.display = 'none';
+    document.getElementById('instructions').style.display = 'none';
+    document.getElementById('donationInfoArrow').textContent = '▼';
+    document.getElementById('bloodTypesArrow').textContent = '▶';
+    document.getElementById('instructionsArrow').textContent = '▶';
+</script>

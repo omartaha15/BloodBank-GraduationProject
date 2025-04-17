@@ -1,0 +1,1136 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\dashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C0EE3EF-382C-4C97-8DCF-F013DCE8FDC2}|..\\BloodBank.Business\\BloodBank.Business.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\bloodbank.business\\dtos\\dashboardstatsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\donation\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\donation\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\inventory\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\inventory\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\inventory\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\inventory\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\inventory\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\inventory\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:controllers\\inventorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:controllers\\dashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\home\\bloodpanel.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\home\\bloodpanel.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\controllers\\hospitalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:controllers\\hospitalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C0EE3EF-382C-4C97-8DCF-F013DCE8FDC2}|..\\BloodBank.Business\\BloodBank.Business.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\bloodbank.business\\dtos\\createbloodunitdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C0EE3EF-382C-4C97-8DCF-F013DCE8FDC2}|..\\BloodBank.Business\\BloodBank.Business.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\bloodbank.business\\services\\bloodunitservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\controllers\\donationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:controllers\\donationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C0EE3EF-382C-4C97-8DCF-F013DCE8FDC2}|..\\BloodBank.Business\\BloodBank.Business.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\bloodbank.business\\services\\bloodrequestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C0EE3EF-382C-4C97-8DCF-F013DCE8FDC2}|..\\BloodBank.Business\\BloodBank.Business.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\bloodbank.business\\services\\donationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\hospital\\pendingdonations.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\hospital\\pendingdonations.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\donation\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\donation\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C0EE3EF-382C-4C97-8DCF-F013DCE8FDC2}|..\\BloodBank.Business\\BloodBank.Business.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\bloodbank.business\\dtos\\updatedonationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C0EE3EF-382C-4C97-8DCF-F013DCE8FDC2}|..\\BloodBank.Business\\BloodBank.Business.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\bloodbank.business\\services\\dashboardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\controllers\\bloodtestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:controllers\\bloodtestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C0EE3EF-382C-4C97-8DCF-F013DCE8FDC2}|..\\BloodBank.Business\\BloodBank.Business.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\bloodbank.business\\services\\bloodtestservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C0EE3EF-382C-4C97-8DCF-F013DCE8FDC2}|..\\BloodBank.Business\\BloodBank.Business.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\bloodbank.business\\services\\bloodinventoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1C0EE3EF-382C-4C97-8DCF-F013DCE8FDC2}|..\\BloodBank.Business\\BloodBank.Business.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\bloodbank.business\\services\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14712A6A-627B-43B3-96DE-0FE1A9A327E4}|..\\BloodBank.Core\\BloodBank.Core.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\bloodbank.core\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14712A6A-627B-43B3-96DE-0FE1A9A327E4}|..\\BloodBank.Core\\BloodBank.Core.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\bloodbank.core\\entities\\donation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14712A6A-627B-43B3-96DE-0FE1A9A327E4}|..\\BloodBank.Core\\BloodBank.Core.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\bloodbank.core\\entities\\bloodunit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14712A6A-627B-43B3-96DE-0FE1A9A327E4}|..\\BloodBank.Core\\BloodBank.Core.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\bloodbank.core\\entities\\bloodtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14712A6A-627B-43B3-96DE-0FE1A9A327E4}|..\\BloodBank.Core\\BloodBank.Core.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\bloodbank.core\\entities\\bloodrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{14712A6A-627B-43B3-96DE-0FE1A9A327E4}|..\\BloodBank.Core\\BloodBank.Core.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\bloodbank.core\\entities\\baseentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\DonationService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\donation\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\donation\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\controllers\\bloodrequestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:controllers\\bloodrequestcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\bloodrequest\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\bloodrequest\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\bloodrequest\\pendingrequests.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\bloodrequest\\pendingrequests.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\bloodrequest\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\bloodrequest\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\bloodrequest\\urgent.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\bloodrequest\\urgent.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\account\\accessdenied.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\account\\changepassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\account\\changepassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\viewmodels\\bloodtypestatviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:viewmodels\\bloodtypestatviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\viewmodels\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:viewmodels\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|d:\\c#\\ggggggg\\ggggggg\\bloodbank-graduationproject\\blood bank\\views\\bloodrequest\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{1B8298C5-790A-443D-AED3-D0CA9E559031}|BloodBank.Wep.csproj|solutionrelative:views\\bloodrequest\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\Repositories\\BloodRequestRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Interfaces\\IBloodRequestRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodRequestService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IBloodRequestService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BaseEntity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\User.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodRequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodUnit.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodTestService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\RequestStatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\RequestPriority.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\BloodUnitStatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\DashboardService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\BloodTypes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodInventoryService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IDonationService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IBloodInventoryService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodUnitService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\AuthService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IAuthService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Constants\\Roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\Donation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DashboardStatsDto.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\DTOs\\DashboardStatsDto.cs",
+              "RelativeDocumentMoniker": "..\\BloodBank.Business\\DTOs\\DashboardStatsDto.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\DTOs\\DashboardStatsDto.cs",
+              "RelativeToolTip": "..\\BloodBank.Business\\DTOs\\DashboardStatsDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T20:02:33.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Dashboard\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Dashboard\\Index.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Dashboard\\Index.cshtml",
+              "RelativeToolTip": "Views\\Dashboard\\Index.cshtml",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAswHsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-17T20:01:03.332Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Inventory\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Inventory\\Edit.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Inventory\\Edit.cshtml",
+              "RelativeToolTip": "Views\\Inventory\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-17T19:42:10.061Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Inventory\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Inventory\\Create.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Inventory\\Create.cshtml",
+              "RelativeToolTip": "Views\\Inventory\\Create.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAowEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-17T19:33:43.657Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Inventory\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Inventory\\Index.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Inventory\\Index.cshtml",
+              "RelativeToolTip": "Views\\Inventory\\Index.cshtml",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAowJ8AAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-17T19:28:58.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "InventoryController.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Controllers\\InventoryController.cs",
+              "RelativeDocumentMoniker": "Controllers\\InventoryController.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Controllers\\InventoryController.cs",
+              "RelativeToolTip": "Controllers\\InventoryController.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAgwDsAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T19:21:35.757Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DashboardController.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Controllers\\DashboardController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DashboardController.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Controllers\\DashboardController.cs",
+              "RelativeToolTip": "Controllers\\DashboardController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T19:10:13.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "About.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Home\\About.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\About.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Home\\About.cshtml",
+              "RelativeToolTip": "Views\\Home\\About.cshtml",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAwDMAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-15T22:53:55.401Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "BloodPanel.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Home\\BloodPanel.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\BloodPanel.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Home\\BloodPanel.cshtml",
+              "RelativeToolTip": "Views\\Home\\BloodPanel.cshtml",
+              "ViewState": "AgIAAFsAAAAAAAAAAAAswIMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-15T22:49:37.085Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "BloodUnitService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodUnitService.cs",
+              "RelativeDocumentMoniker": "..\\BloodBank.Business\\Services\\BloodUnitService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodUnitService.cs",
+              "RelativeToolTip": "..\\BloodBank.Business\\Services\\BloodUnitService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAwwB4AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T22:02:09.669Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "..\\BloodBank.Business\\Services\\AuthService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\AuthService.cs",
+              "RelativeToolTip": "..\\BloodBank.Business\\Services\\AuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T22:01:49.109Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "DonationService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\DonationService.cs",
+              "RelativeDocumentMoniker": "..\\BloodBank.Business\\Services\\DonationService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\DonationService.cs",
+              "RelativeToolTip": "..\\BloodBank.Business\\Services\\DonationService.cs",
+              "ViewState": "AgIAAGgAAAAAAAAAAAA9wEcAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T21:58:55.419Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Donation\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Donation\\Index.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Donation\\Index.cshtml",
+              "RelativeToolTip": "Views\\Donation\\Index.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABwAAACFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T21:46:44.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAANsAAAAAAAAAAAAAAPQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T19:55:51.832Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "BloodTestController.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Controllers\\BloodTestController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BloodTestController.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Controllers\\BloodTestController.cs",
+              "RelativeToolTip": "Controllers\\BloodTestController.cs",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAAwIcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T22:38:08.764Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DonationController.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Controllers\\DonationController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DonationController.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Controllers\\DonationController.cs",
+              "RelativeToolTip": "Controllers\\DonationController.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAkwG0AAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T21:49:11.566Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Donation\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Donation\\Create.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Donation\\Create.cshtml",
+              "RelativeToolTip": "Views\\Donation\\Create.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAwDsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T21:49:00.472Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "HospitalController.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Controllers\\HospitalController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HospitalController.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Controllers\\HospitalController.cs",
+              "RelativeToolTip": "Controllers\\HospitalController.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAAAHoAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T19:53:06.124Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T20:17:41.255Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "BloodRequestService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodRequestService.cs",
+              "RelativeDocumentMoniker": "..\\BloodBank.Business\\Services\\BloodRequestService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodRequestService.cs",
+              "RelativeToolTip": "..\\BloodBank.Business\\Services\\BloodRequestService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T22:23:10.752Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CreateBloodUnitDto.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\DTOs\\CreateBloodUnitDto.cs",
+              "RelativeDocumentMoniker": "..\\BloodBank.Business\\DTOs\\CreateBloodUnitDto.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\DTOs\\CreateBloodUnitDto.cs",
+              "RelativeToolTip": "..\\BloodBank.Business\\DTOs\\CreateBloodUnitDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T22:27:06.92Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "BloodInventoryService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodInventoryService.cs",
+              "RelativeDocumentMoniker": "..\\BloodBank.Business\\Services\\BloodInventoryService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodInventoryService.cs",
+              "RelativeToolTip": "..\\BloodBank.Business\\Services\\BloodInventoryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T22:01:50.419Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "BloodTestService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodTestService.cs",
+              "RelativeDocumentMoniker": "..\\BloodBank.Business\\Services\\BloodTestService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodTestService.cs",
+              "RelativeToolTip": "..\\BloodBank.Business\\Services\\BloodTestService.cs",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAAAJQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T22:01:53.899Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "PendingDonations.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Hospital\\PendingDonations.cshtml",
+              "RelativeDocumentMoniker": "Views\\Hospital\\PendingDonations.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Hospital\\PendingDonations.cshtml",
+              "RelativeToolTip": "Views\\Hospital\\PendingDonations.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-11T22:35:40.364Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "DashboardService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\DashboardService.cs",
+              "RelativeDocumentMoniker": "..\\BloodBank.Business\\Services\\DashboardService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\DashboardService.cs",
+              "RelativeToolTip": "..\\BloodBank.Business\\Services\\DashboardService.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAAAGcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T22:02:24.004Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "UpdateDonationDto.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\DTOs\\UpdateDonationDto.cs",
+              "RelativeDocumentMoniker": "..\\BloodBank.Business\\DTOs\\UpdateDonationDto.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\DTOs\\UpdateDonationDto.cs",
+              "RelativeToolTip": "..\\BloodBank.Business\\DTOs\\UpdateDonationDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T22:15:25.559Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "..\\BloodBank.Core\\Entities\\User.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\User.cs",
+              "RelativeToolTip": "..\\BloodBank.Core\\Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T22:01:00.649Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Donation.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\Donation.cs",
+              "RelativeDocumentMoniker": "..\\BloodBank.Core\\Entities\\Donation.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\Donation.cs",
+              "RelativeToolTip": "..\\BloodBank.Core\\Entities\\Donation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T22:00:47.969Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "BloodUnit.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodUnit.cs",
+              "RelativeDocumentMoniker": "..\\BloodBank.Core\\Entities\\BloodUnit.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodUnit.cs",
+              "RelativeToolTip": "..\\BloodBank.Core\\Entities\\BloodUnit.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T22:00:05.869Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "BloodTest.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodTest.cs",
+              "RelativeDocumentMoniker": "..\\BloodBank.Core\\Entities\\BloodTest.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodTest.cs",
+              "RelativeToolTip": "..\\BloodBank.Core\\Entities\\BloodTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T21:59:54.12Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "BloodRequest.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodRequest.cs",
+              "RelativeDocumentMoniker": "..\\BloodBank.Core\\Entities\\BloodRequest.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodRequest.cs",
+              "RelativeToolTip": "..\\BloodBank.Core\\Entities\\BloodRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T21:59:44.964Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "BaseEntity.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BaseEntity.cs",
+              "RelativeDocumentMoniker": "..\\BloodBank.Core\\Entities\\BaseEntity.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BaseEntity.cs",
+              "RelativeToolTip": "..\\BloodBank.Core\\Entities\\BaseEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-15T21:59:36.764Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "BloodRequestRepository.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\Repositories\\BloodRequestRepository.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\Repositories\\BloodRequestRepository.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\Repositories\\BloodRequestRepository.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Infrastructure\\Repositories\\BloodRequestRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T19:39:01.891Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 49,
+              "Title": "IBloodRequestRepository.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Interfaces\\IBloodRequestRepository.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Interfaces\\IBloodRequestRepository.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Interfaces\\IBloodRequestRepository.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Interfaces\\IBloodRequestRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T19:39:30.705Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
+              "Title": "BloodRequestService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodRequestService.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodRequestService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodRequestService.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodRequestService.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAGwAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T19:43:51.651Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "BloodRequestController.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Controllers\\BloodRequestController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BloodRequestController.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Controllers\\BloodRequestController.cs",
+              "RelativeToolTip": "Controllers\\BloodRequestController.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwFQAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T19:47:18.072Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "IBloodRequestService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IBloodRequestService.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IBloodRequestService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IBloodRequestService.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IBloodRequestService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T19:43:29.163Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Donation\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\Donation\\Details.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Donation\\Details.cshtml",
+              "RelativeToolTip": "Views\\Donation\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T21:48:57.619Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "DonationService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\DonationService.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\DonationService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\DonationService.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\DonationService.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T20:52:15.05Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "BaseEntity.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BaseEntity.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BaseEntity.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BaseEntity.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BaseEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T19:27:38.664Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\User.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\User.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T19:28:21.336Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "BloodTest.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodTest.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodTest.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodTest.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T19:28:02.056Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "BloodRequest.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodRequest.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodRequest.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodRequest.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T19:27:56.044Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "BloodUnit.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodUnit.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodUnit.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodUnit.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\BloodUnit.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T19:28:08.855Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\BloodRequest\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\BloodRequest\\Create.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\BloodRequest\\Create.cshtml",
+              "RelativeToolTip": "Views\\BloodRequest\\Create.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T19:51:21.801Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "PendingRequests.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\BloodRequest\\PendingRequests.cshtml",
+              "RelativeDocumentMoniker": "Views\\BloodRequest\\PendingRequests.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\BloodRequest\\PendingRequests.cshtml",
+              "RelativeToolTip": "Views\\BloodRequest\\PendingRequests.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFIAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T19:52:34.427Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\BloodRequest\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\BloodRequest\\Index.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\BloodRequest\\Index.cshtml",
+              "RelativeToolTip": "Views\\BloodRequest\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAmwDQAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T19:51:34.46Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "BloodTestService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodTestService.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodTestService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodTestService.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodTestService.cs",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAQwJQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T20:51:50.182Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "RequestStatus.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\RequestStatus.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\RequestStatus.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\RequestStatus.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\RequestStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T22:57:13.103Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "RequestPriority.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\RequestPriority.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\RequestPriority.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\RequestPriority.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\RequestPriority.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T22:57:14.735Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "BloodUnitStatus.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\BloodUnitStatus.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\BloodUnitStatus.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\BloodUnitStatus.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\BloodUnitStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T22:57:43.491Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "Urgent.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\BloodRequest\\Urgent.cshtml",
+              "RelativeDocumentMoniker": "Views\\BloodRequest\\Urgent.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\BloodRequest\\Urgent.cshtml",
+              "RelativeToolTip": "Views\\BloodRequest\\Urgent.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-11T23:00:42.088Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "DashboardService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\DashboardService.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\DashboardService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\DashboardService.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\DashboardService.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAkwGcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T20:52:07.765Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 62,
+              "Title": "BloodTypes.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\BloodTypes.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\BloodTypes.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\BloodTypes.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Enums\\BloodTypes.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-11T22:56:56.263Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 63,
+              "Title": "BloodInventoryService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodInventoryService.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodInventoryService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodInventoryService.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodInventoryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T21:00:40.829Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\Login.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAABYAAAAAAAAAAAAYwEsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T21:32:54.998Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "AccessDenied.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Account\\AccessDenied.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\AccessDenied.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Account\\AccessDenied.cshtml",
+              "RelativeToolTip": "Views\\Account\\AccessDenied.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T21:32:57.124Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "ChangePassword.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Account\\ChangePassword.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\ChangePassword.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Account\\ChangePassword.cshtml",
+              "RelativeToolTip": "Views\\Account\\ChangePassword.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T21:33:00.144Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\Register.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "Views\\Account\\Register.cshtml",
+              "ViewState": "AgIAADcAAAAAAAAAAAAgwK0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T21:33:04.722Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 64,
+              "Title": "IDonationService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IDonationService.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IDonationService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IDonationService.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IDonationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T20:59:53.139Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 65,
+              "Title": "IBloodInventoryService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IBloodInventoryService.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IBloodInventoryService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IBloodInventoryService.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IBloodInventoryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T20:59:00.874Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 66,
+              "Title": "BloodUnitService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodUnitService.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodUnitService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodUnitService.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\BloodUnitService.cs",
+              "ViewState": "AgIAAFUAAAAAAAAAAAAAAI0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T20:51:57.634Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAFAAAAAAAAAAAAArwFkAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T19:54:59.575Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAkwN0AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T20:13:56.501Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 67,
+              "Title": "AuthService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\AuthService.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\AuthService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\AuthService.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Services\\AuthService.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAQwF8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T20:51:31.942Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 68,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IAuthService.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IAuthService.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IAuthService.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Business\\Interfaces\\IAuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T20:51:29.821Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "BloodTypeStatViewModel.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\ViewModels\\BloodTypeStatViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\BloodTypeStatViewModel.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\ViewModels\\BloodTypeStatViewModel.cs",
+              "RelativeToolTip": "ViewModels\\BloodTypeStatViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T20:17:25.581Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "HomeViewModel.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\ViewModels\\HomeViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\HomeViewModel.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\ViewModels\\HomeViewModel.cs",
+              "RelativeToolTip": "ViewModels\\HomeViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T20:17:07.621Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\BloodRequest\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\BloodRequest\\Details.cshtml",
+              "ToolTip": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\Blood Bank\\Views\\BloodRequest\\Details.cshtml",
+              "RelativeToolTip": "Views\\BloodRequest\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-10T19:52:45.173Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 69,
+              "Title": "Roles.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Constants\\Roles.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Constants\\Roles.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Constants\\Roles.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Constants\\Roles.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T19:31:25.193Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 70,
+              "Title": "Donation.cs",
+              "DocumentMoniker": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\Donation.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\Donation.cs",
+              "ToolTip": "D:\\C#\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\Donation.cs",
+              "RelativeToolTip": "..\\..\\..\\BloodBank-GraduationProject\\BloodBank.Core\\Entities\\Donation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T19:28:14.058Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

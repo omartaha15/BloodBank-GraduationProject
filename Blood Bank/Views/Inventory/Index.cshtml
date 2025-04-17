@@ -1,0 +1,166 @@
+﻿@model IEnumerable<BloodBank.Core.Entities.BloodUnit>
+@using BloodBank.Core.Enums
+
+@{
+    ViewData [ "Title" ] = "Blood Inventory Dashboard";
+    var totalUnits = Model.Count();
+    var availableUnits = Model.Count( u => u.Status == BloodUnitStatus.Available );
+    var expiredUnits = Model.Count( u => u.Status == BloodUnitStatus.Expired );
+}
+
+<div class="container mx-auto p-6 space-y-8">
+    <h1 class="text-4xl font-bold text-gray-800">Blood Inventory Dashboard</h1>
+
+    @* Alerts *@
+    @if ( TempData [ "Success" ] != null )
+    {
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+            <span class="block sm:inline">@TempData [ "Success" ]</span>
+        </div>
+    }
+    @if ( TempData [ "Error" ] != null )
+    {
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <span class="block sm:inline">@TempData [ "Error" ]</span>
+        </div>
+    }
+
+    @* Action Button *@
+    <div class="flex justify-end">
+        <a asp-action="Create" class="bg-blood-red text-white px-5 py-2 rounded-lg hover:bg-red-700">
+            <i class="fas fa-plus mr-2"></i> Add New Blood Unit
+        </a>
+    </div>
+
+    @* Summary Cards *@
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500">
+            <h3 class="text-xl font-semibold text-gray-700">Total Units</h3>
+            <p class="text-3xl font-bold mt-2 text-blue-700">@totalUnits</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-green-500">
+            <h3 class="text-xl font-semibold text-gray-700">Available</h3>
+            <p class="text-3xl font-bold mt-2 text-green-700">@availableUnits</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md border-l-4 border-red-500">
+            <h3 class="text-xl font-semibold text-gray-700">Expired</h3>
+            <p class="text-3xl font-bold mt-2 text-red-700">@expiredUnits</p>
+        </div>
+    </div>
+
+    @* Charts *@
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4">Units by Blood Type</h2>
+            <canvas id="bloodTypeChart"></canvas>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <h2 class="text-xl font-semibold mb-4">Units by Status</h2>
+            <canvas id="statusChart"></canvas>
+        </div>
+    </div>
+
+    @* Data Table *@
+    <div class="bg-white rounded-lg shadow-lg overflow-x-auto mt-8">
+        <table class="min-w-full text-sm text-left divide-y divide-gray-200">
+            <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                    <th class="px-6 py-3">Unit #</th>
+                    <th class="px-6 py-3">Blood Type</th>
+                    <th class="px-6 py-3">Quantity (mL)</th>
+                    <th class="px-6 py-3">Status</th>
+                    <th class="px-6 py-3">Expiry</th>
+                    <th class="px-6 py-3">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                @foreach ( var unit in Model )
+                {
+                    <tr>
+                        <td class="px-6 py-4">@unit.UnitNumber</td>
+                        <td class="px-6 py-4">@unit.BloodType</td>
+                        <td class="px-6 py-4">@unit.Quantity</td>
+                        <td class="px-6 py-4">
+                            <span class="inline-block px-3 py-1 rounded-full text-white text-xs @(unit.Status switch {
+                                BloodUnitStatus.Available => "bg-green-500",
+                                BloodUnitStatus.Expired => "bg-red-500",
+                                BloodUnitStatus.Reserved => "bg-yellow-500",
+                                BloodUnitStatus.Dispatched => "bg-blue-500",
+                                _ => "bg-gray-500"
+                            })">
+                                @unit.Status
+                            </span>
+                        </td>
+                        <td class="px-6 py-4">@unit.ExpiryDate.ToString( "MM/dd/yyyy" )</td>
+                        <td class="px-6 py-4 space-x-3">
+                            <a asp-action="Edit" asp-route-id="@unit.Id" class="text-blue-600 hover:text-blue-800">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@unit.Id" class="text-red-600 hover:text-red-800">
+                                <i class="fas fa-trash"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const bloodTypeChart = new Chart(document.getElementById('bloodTypeChart'), {
+            type: 'pie',
+            data: {
+                labels: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
+                datasets: [{
+                    data: [
+        @Model.Count( u => u.BloodType == BloodType.APositive ),
+        @Model.Count( u => u.BloodType == BloodType.ANegative ),
+        @Model.Count( u => u.BloodType == BloodType.BPositive ),
+        @Model.Count( u => u.BloodType == BloodType.BNegative ),
+        @Model.Count( u => u.BloodType == BloodType.ABPositive ),
+        @Model.Count( u => u.BloodType == BloodType.ABNegative ),
+        @Model.Count( u => u.BloodType == BloodType.OPositive ),
+        @Model.Count( u => u.BloodType == BloodType.ONegative )
+                    ],
+                    backgroundColor: ['#F87171','#FBBF24','#34D399','#60A5FA','#A78BFA','#F472B6','#FCD34D','#4ADE80']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' }
+                }
+            }
+        });
+
+        const statusChart = new Chart(document.getElementById('statusChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Available', 'Reserved', 'Dispatched', 'Expired', 'Discarded'],
+                datasets: [{
+                    label: 'Units',
+                    data: [
+        @Model.Count( u => u.Status == BloodUnitStatus.Available ),
+        @Model.Count( u => u.Status == BloodUnitStatus.Reserved ),
+        @Model.Count( u => u.Status == BloodUnitStatus.Dispatched ),
+        @Model.Count( u => u.Status == BloodUnitStatus.Expired ),
+        @Model.Count( u => u.Status == BloodUnitStatus.Discarded )
+                    ],
+                    backgroundColor: ['#34D399','#FBBF24','#60A5FA','#F87171','#A3A3A3']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+}

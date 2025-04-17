@@ -17,121 +17,145 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Blood_Bank
 build_property.RootNamespace = Blood_Bank
-build_property.ProjectDir = D:\C#\BloodBank-GraduationProject\Blood Bank\
+build_property.ProjectDir = D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\C#\BloodBank-GraduationProject\Blood Bank
+build_property.MSBuildProjectDirectory = D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/Account/AccessDenied.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/Account/ChangePassword.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Account/ChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/Account/Login.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/Account/Register.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/Create.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RSZXF1ZXN0XENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/Details.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RSZXF1ZXN0XERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/Index.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RSZXF1ZXN0XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/MyRequests.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/MyRequests.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RSZXF1ZXN0XE15UmVxdWVzdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/Urgent.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/PendingRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RSZXF1ZXN0XFBlbmRpbmdSZXF1ZXN0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/Urgent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RSZXF1ZXN0XFVyZ2VudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/BloodTest/Create.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodTest/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RUZXN0XENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/BloodTest/Edit.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodTest/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RUZXN0XEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/Dashboard/Index.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Dashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/Donation/Create.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Donation/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9uYXRpb25cQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/Donation/Details.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Donation/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9uYXRpb25cRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/Donation/Index.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Donation/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9uYXRpb25cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/Home/Index.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Home/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBYm91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Home/BloodPanel.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCbG9vZFBhbmVsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/Home/Privacy.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/Hospital/BloodTestsPending.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Hospital/BloodTestsPending.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9zcGl0YWxcQmxvb2RUZXN0c1BlbmRpbmcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/Hospital/CreateBloodRequest.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Hospital/CreateBloodRequest.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9zcGl0YWxcQ3JlYXRlQmxvb2RSZXF1ZXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/Hospital/PendingDonations.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Hospital/PendingDonations.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9zcGl0YWxcUGVuZGluZ0RvbmF0aW9ucy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/Shared/Error.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Inventory/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Inventory/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Inventory/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSW52ZW50b3J5XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/UserManagement/ChangeRole.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/UserManagement/ChangeRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmFnZW1lbnRcQ2hhbmdlUm9sZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/UserManagement/Index.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/UserManagement/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmFnZW1lbnRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/_ViewImports.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/_ViewStart.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/BloodBank-GraduationProject/Blood Bank/Views/Shared/_Layout.cshtml]
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-zjongad91i

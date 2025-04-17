@@ -2,7 +2,6 @@
 using BloodBank.Business.DTOs;
 using BloodBank.Business.Interfaces;
 using BloodBank.Core.Entities;
-using BloodBank.Core.Entities.BloodBank.Core.Entities;
 using BloodBank.Core.Enums;
 using BloodBank.Core.Interfaces;
 using OpenQA.Selenium;
@@ -18,7 +17,7 @@ namespace BloodBank.Business.Services
         private readonly IDonationRepository _donationRepository;
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
-        private readonly IBloodTestService _bloodTestService; // Inject BloodTestService
+        private readonly IBloodTestService _bloodTestService;
 
         public DonationService (
             IDonationRepository donationRepository,
@@ -37,7 +36,6 @@ namespace BloodBank.Business.Services
             var donation = await _donationRepository.GetByIdAsync( id );
             if ( donation == null )
                 throw new NotFoundException( $"Donation with ID {id} not found" );
-
             return _mapper.Map<DonationDto>( donation );
         }
 
@@ -77,10 +75,30 @@ namespace BloodBank.Business.Services
             var donation = _mapper.Map<Donation>( donationDto );
             donation.Status = DonationStatus.Pending;
             donation.DonationDate = DateTime.UtcNow;
-            // Appointment details and HospitalId are already mapped from donationDto.
+            // Appointment details and HospitalId are mapped from donationDto.
 
             var result = await _donationRepository.AddAsync( donation );
             return _mapper.Map<DonationDto>( result );
+        }
+
+        /// <summary>
+        /// Updates donation status and appointment details using the UpdateDonationDto.
+        /// </summary>
+        public async Task UpdateDonationDetailsAsync ( int id, UpdateDonationDto updateDto )
+        {
+            var donation = await _donationRepository.GetByIdAsync( id );
+            if ( donation == null )
+                throw new NotFoundException( $"Donation with ID {id} not found." );
+
+            // Update donation details from updateDto.
+            donation.Status = updateDto.Status;
+            donation.AppointmentDate = updateDto.AppointmentDate;
+            donation.AppointmentTime = updateDto.AppointmentTime;
+            donation.AppointmentNotes = updateDto.AppointmentNotes;
+            donation.BloodType = updateDto.BloodType;
+            donation.Quantity = updateDto.Quantity;
+
+            await _donationRepository.UpdateAsync( donation );
         }
 
 
@@ -89,7 +107,6 @@ namespace BloodBank.Business.Services
             var donation = await _donationRepository.GetByIdAsync( id );
             if ( donation == null )
                 throw new NotFoundException( $"Donation with ID {id} not found" );
-
             donation.Status = status;
             await _donationRepository.UpdateAsync( donation );
         }
@@ -114,14 +131,13 @@ namespace BloodBank.Business.Services
 
         public async Task<IEnumerable<DonationDto>> GetDonationsByHospitalAsync ( string hospitalId )
         {
-            // Retrieve all donations (you can optimize by adding a dedicated method in your repository)
+            // Retrieve all donations; optionally, you may want to query the repository directly.
             var allDonations = await _donationRepository.GetAllAsync();
 
-            // Filter donations where the HospitalId matches
+            // Filter donations where the HospitalId matches.
             var hospitalDonations = allDonations.Where( d => d.HospitalId == hospitalId );
 
             return _mapper.Map<IEnumerable<DonationDto>>( hospitalDonations );
         }
-
     }
 }

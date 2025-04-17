@@ -1,42 +1,79 @@
-﻿
-@model LoginDto
+﻿@model BloodBank.Business.DTOs.LoginDto
 
-<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
-        <div>
-            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                Sign in to your account
+<!-- Full-Screen Login Section -->
+<section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-blood-light to-red-50 py-16 px-6 sm:px-10 lg:px-16">
+    <div class="max-w-2xl w-full bg-white rounded-3xl shadow-2xl p-12 space-y-12 transform hover:shadow-3xl transition-shadow duration-300">
+        <!-- Header with Icon -->
+        <div class="text-center">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-blood-light mb-6">
+                <i class="fas fa-sign-in-alt text-blood-red text-4xl"></i>
+            </div>
+            <h2 class="text-5xl font-extrabold text-gray-900">
+                Welcome Back
             </h2>
+            <p class="mt-3 text-lg text-gray-600">
+                Sign in to continue saving lives
+            </p>
         </div>
-        <form class="mt-8 space-y-6" method="POST" asp-action="Login">
-            <div asp-validation-summary="ModelOnly" class="text-red-500 text-sm"></div>
-            <div class="rounded-md shadow-sm -space-y-px">
-                <div>
-                    <label asp-for="Email" class="sr-only">Email address</label>
-                    <input asp-for="Email" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm" placeholder="Email address">
-                    <span asp-validation-for="Email" class="text-red-500 text-sm"></span>
+
+        <!-- Login Form -->
+        <form class="space-y-10" method="POST" asp-action="Login">
+            <div asp-validation-summary="ModelOnly" class="text-red-500 text-sm text-center bg-red-50 p-4 rounded-md"></div>
+
+            <div class="space-y-8">
+                <!-- Email -->
+                <div class="relative">
+                    <label asp-for="Email" class="block text-lg font-medium text-gray-700">Email</label>
+                    <div class="mt-2 relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                            <i class="fas fa-envelope text-gray-400 text-xl"></i>
+                        </div>
+                        <input asp-for="Email" class="block w-full pl-14 pr-5 py-4 text-lg border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blood-red focus:border-blood-red transition duration-200" placeholder="you@example.com">
+                        <span asp-validation-for="Email" class="text-red-500 text-sm mt-2 block"></span>
+                    </div>
                 </div>
-                <div>
-                    <label asp-for="Password" class="sr-only">Password</label>
-                    <input asp-for="Password" type="password" class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm" placeholder="Password">
-                    <span asp-validation-for="Password" class="text-red-500 text-sm"></span>
+
+                <!-- Password -->
+                <div class="relative">
+                    <label asp-for="Password" class="block text-lg font-medium text-gray-700">Password</label>
+                    <div class="mt-2 relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400 text-xl"></i>
+                        </div>
+                        <input asp-for="Password" type="password" class="block w-full pl-14 pr-5 py-4 text-lg border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blood-red focus:border-blood-red transition duration-200" placeholder="••••••••">
+                        <span asp-validation-for="Password" class="text-red-500 text-sm mt-2 block"></span>
+                    </div>
                 </div>
             </div>
 
+            <!-- Forgot Password Link -->
+            <div class="text-sm text-right">
+                <a href="@Url.Action("ForgotPassword", "Account")" class="font-medium text-blood-red hover:text-red-700 transition duration-200">
+                    Forgot your password?
+                </a>
+            </div>
+
+            <!-- Submit Button -->
             <div>
-                <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                    Sign in
+                <button type="submit" class="group relative w-full flex justify-center py-4 px-6 border border-transparent text-lg font-semibold rounded-xl text-white bg-blood-red hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blood-red transition-all duration-200">
+                    <i class="fas fa-sign-in-alt mr-3 group-hover:animate-pulse text-xl"></i>
+                    Sign In
                 </button>
             </div>
 
-            <div class="text-sm text-center">
-                <a href="@Url.Action("Register")" class="font-medium text-primary hover:text-red-700">
-                    Don't have an account? Register
-                </a>
+            <!-- Register Link -->
+            <div class="text-md text-center">
+                <p class="text-gray-600">
+                    Don’t have an account?
+                    <a href="@Url.Action("Register", "Account")" class="font-medium text-blood-red hover:text-red-700 transition duration-200">
+                        Register here
+                    </a>
+                </p>
             </div>
         </form>
     </div>
-</div>
+</section>
+
 
 @section Scripts {
     @{

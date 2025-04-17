@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Blood_Bank.Controllers
 {
-    //[Area( "Admin" )]
     [Authorize( Roles = Roles.Admin )]
     public class DashboardController : Controller
     {

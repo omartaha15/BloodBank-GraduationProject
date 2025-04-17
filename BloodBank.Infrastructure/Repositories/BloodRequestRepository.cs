@@ -6,50 +6,49 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BloodBank.Infrastructure.Repositories
 {
-    // BloodBank.Infrastructure/Repositories/BloodRequestRepository.cs
-    public class BloodRequestRepository : GenericRepository<BloodRequest>, IBloodRequestRepository
+    public class BloodRequestRepository : IBloodRequestRepository
     {
-        public BloodRequestRepository ( BloodBankDbContext context ) : base( context )
+        private readonly BloodBankDbContext _context;
+
+        public BloodRequestRepository(BloodBankDbContext context)
         {
+            _context = context;
         }
 
-        public async Task<IEnumerable<BloodRequest>> GetPendingRequestsAsync ()
+        public async Task<BloodRequest> GetByIdAsync(int id)
         {
-            return await _dbSet
-                .Where( br => !br.IsDeleted && br.Status == RequestStatus.Pending )
-                .Include( br => br.Hospital )
-                .OrderByDescending( br => br.Priority )
-                .ThenBy( br => br.RequiredDate )
+            return await _context.BloodRequests
+                .Include(br => br.Hospital)
+                .Include(br => br.AssignedUnits)
+                .FirstOrDefaultAsync(br => br.Id == id && !br.IsDeleted);
+        }
+
+        public async Task<IEnumerable<BloodRequest>> GetAllByHospitalIdAsync(string hospitalId)
+        {
+            return await _context.BloodRequests
+                .Include(br => br.Hospital)
+                .Where(br => br.HospitalId == hospitalId && !br.IsDeleted)
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<BloodRequest>> GetHospitalRequestsAsync ( int hospitalId )
+        public async Task<IEnumerable<BloodRequest>> GetPendingRequestsAsync()
         {
-            return await _dbSet
-                .Where( br => !br.IsDeleted && br.HospitalId == hospitalId )
-                .Include( br => br.AssignedUnits )
-                .OrderByDescending( br => br.CreatedAt )
+            return await _context.BloodRequests
+                .Include(br => br.Hospital)
+                .Where(br => br.Status == RequestStatus.Pending && !br.IsDeleted)
                 .ToListAsync();
         }
 
-        public async Task<IEnumerable<BloodRequest>> GetRequestsByBloodTypeAsync ( BloodType bloodType )
+        public async Task AddAsync(BloodRequest bloodRequest)
         {
-            return await _dbSet
-                .Where( br => !br.IsDeleted && br.BloodType == bloodType )
-                .Include( br => br.Hospital )
-                .OrderByDescending( br => br.Priority )
-                .ToListAsync();
+            await _context.BloodRequests.AddAsync(bloodRequest);
+            await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<BloodRequest>> GetUrgentRequestsAsync ()
+        public async Task UpdateAsync(BloodRequest bloodRequest)
         {
-            return await _dbSet
-                .Where( br => !br.IsDeleted &&
-                      ( br.Priority == RequestPriority.Urgent || br.Priority == RequestPriority.Emergency ) &&
-                      br.Status == RequestStatus.Pending )
-                .Include( br => br.Hospital )
-                .OrderByDescending( br => br.Priority )
-                .ToListAsync();
+            _context.BloodRequests.Update(bloodRequest);
+            await _context.SaveChangesAsync();
         }
     }
 }

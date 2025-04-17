@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PHiSAR0jynQ=",
+  "dgSpecHash": "lpipwjKj1Pw=",
   "success": true,
-  "projectFilePath": "D:\\C#\\BloodBank-GraduationProject\\BloodBank.Core\\BloodBank.Core.csproj",
+  "projectFilePath": "D:\\C#\\ggggggg\\ggggggg\\BloodBank-GraduationProject\\BloodBank.Core\\BloodBank.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\otaha\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.13\\microsoft.aspnetcore.cryptography.internal.8.0.13.nupkg.sha512",
     "C:\\Users\\otaha\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\8.0.13\\microsoft.aspnetcore.cryptography.keyderivation.8.0.13.nupkg.sha512",

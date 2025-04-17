@@ -1,95 +1,171 @@
-﻿@model RegisterDto
+﻿@model BloodBank.Business.DTOs.RegisterDto
 
-<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full space-y-8">
-        <div>
-            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-                Create your account
+<!-- Full-Screen Registration Section -->
+<section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-blood-light to-red-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-lg w-full bg-white rounded-2xl shadow-xl p-8 space-y-8 transform hover:shadow-2xl transition-shadow duration-300">
+        <!-- Header with Icon -->
+        <div class="text-center">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blood-light mb-4">
+                <i class="fas fa-user-plus text-blood-red text-2xl"></i>
+            </div>
+            <h2 class="text-3xl font-extrabold text-gray-900">
+                Join Our Life-Saving Community
             </h2>
+            <p class="mt-2 text-sm text-gray-600">
+                Create your account to start donating and making a difference!
+            </p>
         </div>
+
+        <!-- Registration Form -->
         <form class="mt-8 space-y-6" method="POST" asp-action="Register">
-            <div asp-validation-summary="ModelOnly" class="text-red-500 text-sm"></div>
+            <div asp-validation-summary="ModelOnly" class="text-red-500 text-sm text-center bg-red-50 p-2 rounded-md"></div>
 
-            <div class="rounded-md shadow-sm space-y-4">
-                <div>
+            <div class="space-y-6">
+                <!-- First Name -->
+                <div class="relative">
                     <label asp-for="FirstName" class="block text-sm font-medium text-gray-700">First Name</label>
-                    <input asp-for="FirstName" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
-                    <span asp-validation-for="FirstName" class="text-red-500 text-sm"></span>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-user text-gray-400"></i>
+                        </div>
+                        <input asp-for="FirstName" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blood-red focus:border-blood-red sm:text-sm transition duration-200" placeholder="John">
+                        <span asp-validation-for="FirstName" class="text-red-500 text-xs mt-1 block"></span>
+                    </div>
                 </div>
 
-                <div>
+                <!-- Last Name -->
+                <div class="relative">
                     <label asp-for="LastName" class="block text-sm font-medium text-gray-700">Last Name</label>
-                    <input asp-for="LastName" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
-                    <span asp-validation-for="LastName" class="text-red-500 text-sm"></span>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-user text-gray-400"></i>
+                        </div>
+                        <input asp-for="LastName" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blood-red focus:border-blood-red sm:text-sm transition duration-200" placeholder="Doe">
+                        <span asp-validation-for="LastName" class="text-red-500 text-xs mt-1 block"></span>
+                    </div>
                 </div>
 
-                <div>
+                <!-- Email -->
+                <div class="relative">
                     <label asp-for="Email" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input asp-for="Email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
-                    <span asp-validation-for="Email" class="text-red-500 text-sm"></span>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-envelope text-gray-400"></i>
+                        </div>
+                        <input asp-for="Email" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blood-red focus:border-blood-red sm:text-sm transition duration-200" placeholder="you@example.com">
+                        <span asp-validation-for="Email" class="text-red-500 text-xs mt-1 block"></span>
+                    </div>
                 </div>
 
-                <div>
+                <!-- Password -->
+                <div class="relative">
                     <label asp-for="Password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input asp-for="Password" type="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
-                    <span asp-validation-for="Password" class="text-red-500 text-sm"></span>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input asp-for="Password" type="password" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blood-red focus:border-blood-red sm:text-sm transition duration-200" placeholder="••••••••">
+                        <span asp-validation-for="Password" class="text-red-500 text-xs mt-1 block"></span>
+                    </div>
                 </div>
 
-                <div>
+                <!-- Confirm Password -->
+                <div class="relative">
                     <label asp-for="ConfirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-                    <input asp-for="ConfirmPassword" type="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
-                    <span asp-validation-for="ConfirmPassword" class="text-red-500 text-sm"></span>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </div>
+                        <input asp-for="ConfirmPassword" type="password" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blood-red focus:border-blood-red sm:text-sm transition duration-200" placeholder="••••••••">
+                        <span asp-validation-for="ConfirmPassword" class="text-red-500 text-xs mt-1 block"></span>
+                    </div>
                 </div>
 
-                <div>
+                <!-- Phone Number -->
+                <div class="relative">
                     <label asp-for="PhoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
-                    <input asp-for="PhoneNumber" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
-                    <span asp-validation-for="PhoneNumber" class="text-red-500 text-sm"></span>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-phone text-gray-400"></i>
+                        </div>
+                        <input asp-for="PhoneNumber" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blood-red focus:border-blood-red sm:text-sm transition duration-200" placeholder="+1 (555) 123-4567">
+                        <span asp-validation-for="PhoneNumber" class="text-red-500 text-xs mt-1 block"></span>
+                    </div>
                 </div>
 
-                <div>
+                <!-- Date of Birth -->
+                <div class="relative">
                     <label asp-for="DateOfBirth" class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                    <input asp-for="DateOfBirth" type="date" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
-                    <span asp-validation-for="DateOfBirth" class="text-red-500 text-sm"></span>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-calendar-alt text-gray-400"></i>
+                        </div>
+                        <input asp-for="DateOfBirth" type="date" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blood-red focus:border-blood-red sm:text-sm transition duration-200">
+                        <span asp-validation-for="DateOfBirth" class="text-red-500 text-xs mt-1 block"></span>
+                    </div>
                 </div>
 
-                <div>
+                <!-- Address -->
+                <div class="relative">
                     <label asp-for="Address" class="block text-sm font-medium text-gray-700">Address</label>
-                    <input asp-for="Address" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
-                    <span asp-validation-for="Address" class="text-red-500 text-sm"></span>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-map-marker-alt text-gray-400"></i>
+                        </div>
+                        <input asp-for="Address" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blood-red focus:border-blood-red sm:text-sm transition duration-200" placeholder="123 Main St">
+                        <span asp-validation-for="Address" class="text-red-500 text-xs mt-1 block"></span>
+                    </div>
                 </div>
 
-                <div>
+                <!-- Gender -->
+                <div class="relative">
                     <label asp-for="Gender" class="block text-sm font-medium text-gray-700">Gender</label>
-                    <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
-                        <option value="">Select Gender</option>
-                    </select>
-                    <span asp-validation-for="Gender" class="text-red-500 text-sm"></span>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-venus-mars text-gray-400"></i>
+                        </div>
+                        <select asp-for="Gender" asp-items="Html.GetEnumSelectList<BloodBank.Core.Enums.Gender>()" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blood-red focus:border-blood-red sm:text-sm transition duration-200">
+                            <option value="">Select Gender</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-red-500 text-xs mt-1 block"></span>
+                    </div>
                 </div>
 
-                <div>
+                <!-- Blood Type -->
+                <div class="relative">
                     <label asp-for="BloodType" class="block text-sm font-medium text-gray-700">Blood Type</label>
-                    <select asp-for="BloodType" asp-items="Html.GetEnumSelectList<BloodType>()" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
-                        <option value="">Select Blood Type</option>
-                    </select>
-                    <span asp-validation-for="BloodType" class="text-red-500 text-sm"></span>
+                    <div class="mt-1 relative rounded-md shadow-sm">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-tint text-gray-400"></i>
+                        </div>
+                        <select asp-for="BloodType" asp-items="Html.GetEnumSelectList<BloodBank.Core.Enums.BloodType>()" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blood-red focus:border-blood-red sm:text-sm transition duration-200">
+                            <option value="">Select Blood Type</option>
+                        </select>
+                        <span asp-validation-for="BloodType" class="text-red-500 text-xs mt-1 block"></span>
+                    </div>
                 </div>
             </div>
 
+            <!-- Submit Button -->
             <div>
-                <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
-                    Register
+                <button type="submit" class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blood-red hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blood-red transition-all duration-200">
+                    <i class="fas fa-user-plus mr-2 group-hover:animate-pulse"></i>
+                    Register Now
                 </button>
             </div>
 
+            <!-- Login Link -->
             <div class="text-sm text-center">
-                <a href="@Url.Action("Login")" class="font-medium text-primary hover:text-red-700">
-                    Already have an account? Sign in
-                </a>
+                <p class="text-gray-600">
+                    Already have an account?
+                    <a href="@Url.Action("Login", "Account")" class="font-medium text-blood-red hover:text-red-700 transition duration-200">
+                        Sign in here
+                    </a>
+                </p>
             </div>
         </form>
     </div>
-</div>
+</section>
 
 @section Scripts {
     @{

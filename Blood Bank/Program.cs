@@ -8,6 +8,7 @@ using BloodBank.Business.Mappings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using BloodBank.Core.Constants;
+using BloodBank.Application.Services;
 
 var builder = WebApplication.CreateBuilder( args );
 
@@ -86,7 +87,7 @@ builder.Services.AddScoped<IBloodTestService, BloodTestService>();
 builder.Services.AddScoped<IBloodUnitService, BloodUnitService>();
 builder.Services.AddScoped<IBloodRequestService, BloodRequestService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
-//builder.Services.AddScoped<IInventoryService, InventoryService>();
+builder.Services.AddScoped<IBloodInventoryService, BloodInventoryService>();
 
 // AutoMapper
 builder.Services.AddAutoMapper( typeof( MappingProfile ) );
