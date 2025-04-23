@@ -124,9 +124,14 @@
                     <a href="@Url.Action("PendingDonations", "Hospital")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Pending Donations" ? "text-blood-red" : "")">
                         <i class="fas fa-clipboard-check nav-icon mr-2"></i> Pending Donations
                     </a>
+                    <a href="@Url.Action("BloodTestsPending", "Hospital")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Pending Donations" ? "text-blood-red" : "")">
+                        <i class="fas fa-clipboard-check nav-icon mr-2"></i> Blood Tests
+                    </a>
                     <a href="@Url.Action("Create", "BloodRequest")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "BloodRequest" ? "text-blood-red" : "")">
                         <i class="fas fa-clipboard-check nav-icon mr-2"></i> Requests
                     </a>
+
+
                 }
                 @if ( User.IsInRole( Roles.Hospital ) == false)
                 {
@@ -223,6 +228,7 @@
                     <a href="@Url.Action("Create", "BloodRequest")" class="flex items-center text-gray-700 hover:text-blood-red">
                         <i class="fas fa-clipboard-check mr-2"></i> Requests
                     </a>
+
                 }
             </div>
         </div>

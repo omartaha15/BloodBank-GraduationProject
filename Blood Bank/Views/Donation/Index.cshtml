@@ -1,15 +1,30 @@
 ﻿@model IEnumerable<BloodBank.Business.DTOs.DonationDto>
+@{
+    int daysSinceLastDonation = ViewBag.DaysSinceLastDonation ?? 999;
+    bool canDonate = daysSinceLastDonation >= 90;
+}
 
 <!-- Main Container -->
 <section class="container mx-auto px-4 py-12">
-    <!-- Header with CTA -->
+    <!-- Header with CTA or Warning -->
     <div class="flex flex-col sm:flex-row justify-between items-center mb-8">
         <h1 class="text-4xl font-extrabold text-gray-900 flex items-center">
             <i class="fas fa-heart-pulse text-blood-red mr-3"></i> Donations
         </h1>
-        <a href="@Url.Action("Create", "Donation")" class="mt-4 sm:mt-0 bg-blood-red text-white px-6 py-3 rounded-lg shadow-md hover:bg-red-700 transition-all duration-200 flex items-center">
-            <i class="fas fa-plus mr-2"></i> New Donation
-        </a>
+
+        @if ( canDonate )
+        {
+            <a href="@Url.Action("Create", "Donation")" class="mt-4 sm:mt-0 bg-blood-red text-white px-6 py-3 rounded-lg shadow-md hover:bg-red-700 transition-all duration-200 flex items-center">
+                <i class="fas fa-plus mr-2"></i> New Donation
+            </a>
+        }
+        else
+        {
+            <div class="mt-4 sm:mt-0 bg-yellow-100 text-yellow-800 px-6 py-3 rounded-lg shadow-md flex items-center text-sm">
+                <i class="fas fa-exclamation-triangle mr-2"></i>
+                You can donate again in <strong class="ml-1">@(( 90 - daysSinceLastDonation ))</strong> day(s).
+            </div>
+        }
     </div>
 
     <!-- Search and Filter -->

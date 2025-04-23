@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using OpenQA.Selenium;
 using System;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Blood_Bank.Controllers
@@ -33,9 +34,24 @@ namespace Blood_Bank.Controllers
         // GET: Donation
         public async Task<IActionResult> Index ()
         {
-            var donations = await _donationService.GetAllDonationsAsync();
+            var userId = User.FindFirst( ClaimTypes.NameIdentifier )?.Value;
+            var donations = await _donationService.GetDonationsByDonorAsync( userId );
+
+            var lastDonation = donations.OrderByDescending( d => d.DonationDate ).FirstOrDefault();
+            if ( lastDonation != null )
+            {
+                var daysSinceLastDonation = ( DateTime.Now - lastDonation.DonationDate ).Days;
+                ViewBag.DaysSinceLastDonation = daysSinceLastDonation;
+            }
+            else
+            {
+                ViewBag.DaysSinceLastDonation = 999; // Allow donations if no previous record
+            }
+
             return View( donations );
         }
+
+
 
         public async Task<IActionResult> Details (int id)
         {
