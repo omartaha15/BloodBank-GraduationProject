@@ -15,6 +15,16 @@ namespace BloodBank.Infrastructure.Repositories
         {
         }
 
+        public async Task<IEnumerable<Donation>> GetAllDonationsAsync ()
+        {
+            return await _dbSet
+                .Include( d => d.Donor )
+                .ThenInclude( u => u.BloodTest ) // Include the donor's BloodTest record
+                .Include( d => d.BloodUnit )
+                .OrderByDescending( d => d.DonationDate )
+                .ToListAsync();
+        }
+
         public async Task<IEnumerable<Donation>> GetDonationsByDonorIdAsync ( string donorId )
         {
             return await _dbSet

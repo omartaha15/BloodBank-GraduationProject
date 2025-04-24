@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BloodBank.Infrastructure.Migrations
 {
     [DbContext(typeof(BloodBankDbContext))]
-    [Migration("20250309011134_Intial")]
-    partial class Intial
+    [Migration("20250423223014_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -102,10 +102,8 @@ namespace BloodBank.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("HospitalId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("HospitalId1")
+                    b.Property<string>("HospitalId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsDeleted")
@@ -121,6 +119,9 @@ namespace BloodBank.Infrastructure.Migrations
                     b.Property<double>("QuantityRequired")
                         .HasColumnType("float");
 
+                    b.Property<DateTime>("RequestDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("RequiredDate")
                         .HasColumnType("datetime2");
 
@@ -132,7 +133,7 @@ namespace BloodBank.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HospitalId1");
+                    b.HasIndex("HospitalId");
 
                     b.ToTable("BloodRequests");
                 });
@@ -491,7 +492,9 @@ namespace BloodBank.Infrastructure.Migrations
                 {
                     b.HasOne("BloodBank.Core.Entities.User", "Hospital")
                         .WithMany("BloodRequests")
-                        .HasForeignKey("HospitalId1");
+                        .HasForeignKey("HospitalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Hospital");
                 });

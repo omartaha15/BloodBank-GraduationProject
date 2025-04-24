@@ -10,6 +10,7 @@ namespace BloodBank.Core.Interfaces
 {
     public interface IDonationRepository : IGenericRepository<Donation>
     {
+        Task<IEnumerable<Donation>> GetAllDonationsAsync ();
         Task<IEnumerable<Donation>> GetDonationsByDonorIdAsync ( string donorId );
         Task<IEnumerable<Donation>> GetDonationsByBloodTypeAsync ( BloodType bloodType );
         Task<IEnumerable<Donation>> GetRecentDonationsAsync ( int count );

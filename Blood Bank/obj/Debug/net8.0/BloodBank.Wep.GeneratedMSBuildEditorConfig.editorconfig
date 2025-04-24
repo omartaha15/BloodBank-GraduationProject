@@ -56,12 +56,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RSZXF1ZXN0XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/Manage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RSZXF1ZXN0XE1hbmFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/MyRequests.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RSZXF1ZXN0XE15UmVxdWVzdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/PendingRequests.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RSZXF1ZXN0XFBlbmRpbmdSZXF1ZXN0cy5jc2h0bWw=
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/ReviewRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RSZXF1ZXN0XFJldmlld1JlcXVlc3RzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/Urgent.cshtml]
@@ -78,6 +82,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Dashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Donation/AllDonations.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9uYXRpb25cQWxsRG9uYXRpb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Donation/AllHospitalDonations.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9uYXRpb25cQWxsSG9zcGl0YWxEb25hdGlvbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/Donation/Create.cshtml]

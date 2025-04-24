@@ -1,53 +1,51 @@
 ﻿@model IEnumerable<BloodBank.Core.Entities.BloodRequest>
+@using BloodBank.Core.Enums
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<BloodBank.Core.Entities.User> UserManager
 
-<section class="container mx-auto px-6 py-12">
-    <h1 class="text-4xl font-bold text-gray-900 mb-8 flex items-center">
-        <i class="fas fa-list text-blood-red mr-3"></i> Your Blood Requests
-    </h1>
+@{
+    ViewData [ "Title" ] = "Blood Requests";
+}
 
-    <div class="bg-white rounded-xl shadow-lg overflow-hidden">
-        <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-blood-light">
-                <tr>
-                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 uppercase">Blood Type</th>
-                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 uppercase">Quantity</th>
-                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 uppercase">Priority</th>
-                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 uppercase">Status</th>
-                    <th class="px-6 py-4 text-left text-sm font-semibold text-gray-900 uppercase">Required Date</th>
-                </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200">
-                @if ( Model.Any() )
-                {
-                    @foreach ( var request in Model )
+<h1 class="text-2xl font-bold mb-4">Blood Requests</h1>
+
+<table class="min-w-full bg-white shadow rounded-lg overflow-hidden">
+    <thead class="bg-gray-100">
+        <tr>
+            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">ID</th>
+            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Hospital</th>
+            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Type</th>
+            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Quantity</th>
+            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Priority</th>
+            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Status</th>
+            <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Requested</th>
+            <th class="px-6 py-3 text-center text-sm font-medium text-gray-700">Actions</th>
+        </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+        @foreach ( var req in Model )
+        {
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap">@req.Id</td>
+                <td class="px-6 py-4 whitespace-nowrap">@req.Hospital.UserName</td>
+                <td class="px-6 py-4 whitespace-nowrap">@req.BloodType</td>
+                <td class="px-6 py-4 whitespace-nowrap">@req.QuantityRequired ml</td>
+                <td class="px-6 py-4 whitespace-nowrap">@req.Priority</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full @(req.Status == RequestStatus.Approved ? "bg-green-100 text-green-800" : req.Status == RequestStatus.Rejected ? "bg-red-100 text-red-800" : "bg-yellow-100 text-yellow-800")">
+                        @req.Status
+                    </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">@req.RequestDate.ToString( "yyyy-MM-dd" )</td>
+                <td class="px-6 py-4 whitespace-nowrap text-center">
+                    <a asp-action="Details" asp-route-id="@req.Id" class="text-indigo-600 hover:text-indigo-900 mr-2">Details</a>
+                    @if ( User.IsInRole( "Admin" ) && req.Status == RequestStatus.Pending )
                     {
-                        <tr class="hover:bg-gray-50 transition-colors duration-150">
-                            <td class="px-6 py-4 text-base text-gray-800">@request.BloodType</td>
-                            <td class="px-6 py-4 text-base text-gray-800">@request.QuantityRequired mL</td>
-                            <td class="px-6 py-4 text-base text-gray-800">@request.Priority</td>
-                            <td class="px-6 py-4 text-base text-gray-800">
-                                <span class="px-3 py-1 rounded-full text-sm font-semibold
-                                    @(request.Status == RequestStatus.Approved ? "bg-green-100 text-green-800" :
-                                      request.Status == RequestStatus.Rejected ? "bg-red-100 text-red-800" :
-                                      request.Status == RequestStatus.Completed ? "bg-blue-100 text-blue-800" :
-                                      request.Status == RequestStatus.InProcess ? "bg-yellow-100 text-yellow-800" :
-                                      "bg-gray-100 text-gray-800")">
-                                    @request.Status
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 text-base text-gray-800">@request.RequiredDate.ToShortDateString()</td>
-                        </tr>
+                        <a asp-action="Approve" asp-route-id="@req.Id" class="text-green-600 hover:text-green-900 mr-2">Approve</a>
+                        <a asp-action="Reject" asp-route-id="@req.Id" class="text-red-600 hover:text-red-900">Reject</a>
                     }
-                }
-                else
-                {
-                    <tr>
-                        <td colspan="5" class="px-6 py-4 text-center text-gray-500">
-                            <i class="fas fa-info-circle mr-2"></i> No requests found.
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</section>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

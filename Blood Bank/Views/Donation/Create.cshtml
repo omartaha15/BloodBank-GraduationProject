@@ -19,10 +19,7 @@
 
         <!-- Quantity (Read-only, always 450 ml) -->
         <div>
-            <label asp-for="Quantity" class="block text-sm font-medium text-gray-700">Quantity (ml)</label>
-            <input asp-for="Quantity" type="number" value="450" readonly
-                   class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-gray-100 text-gray-700 rounded-md shadow-sm focus:outline-none" />
-            <span asp-validation-for="Quantity" class="text-red-500 text-sm"></span>
+            <input asp-for="Quantity" type="number" value="450" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-gray-100 text-gray-700 rounded-md shadow-sm focus:outline-none" type="hidden" />
         </div>
 
         <!-- Appointment Date -->

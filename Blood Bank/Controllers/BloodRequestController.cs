@@ -1,167 +1,168 @@
-﻿using BloodBank.Core.Constants;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using BloodBank.Core.Entities;
 using BloodBank.Core.Enums;
-using BloodBank.Core.Interfaces;
+using BloodBank.Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace BloodBank.Web.Controllers
 {
-    [Authorize]
     public class BloodRequestController : Controller
     {
-        private readonly IBloodRequestRepository _bloodRequestRepository;
-        private readonly IBloodUnitRepository _bloodUnitRepository;
+        private readonly BloodBankDbContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public BloodRequestController (
-            IBloodRequestRepository bloodRequestRepository,
-            IBloodUnitRepository bloodUnitRepository )
+        public BloodRequestController ( BloodBankDbContext context, UserManager<User> userManager )
         {
-            _bloodRequestRepository = bloodRequestRepository;
-            _bloodUnitRepository = bloodUnitRepository;
+            _context = context;
+            _userManager = userManager;
         }
 
-        [Authorize( Roles = Roles.Hospital )]
+        // GET: BloodRequests/Create
+        [Authorize( Roles = "Hospital" )]
         public IActionResult Create ()
         {
-            return View( new BloodRequest() );
+            return View();
         }
 
+        // POST: BloodRequests/Create
         [HttpPost]
-        [Authorize( Roles = Roles.Hospital )]
+        [ValidateAntiForgeryToken]
+        [Authorize( Roles = "Hospital" )]
         public async Task<IActionResult> Create ( BloodRequest model )
         {
-            // Remove validation for properties not in the form
-            ModelState.Remove( "Hospital" );
-            ModelState.Remove( "AssignedUnits" );
-            ModelState.Remove( "HospitalId" ); // Not needed in form; set programmatically
-
-            if ( !ModelState.IsValid )
+            ModelState.Remove( nameof( model.Hospital ) );
+            if ( ModelState.IsValid )
             {
-                // Log invalid fields for debugging
-                foreach ( var error in ModelState )
-                {
-                    if ( error.Value.Errors.Any() )
-                    {
-                        Console.WriteLine( $"{error.Key}: {string.Join( ", ", error.Value.Errors.Select( e => e.ErrorMessage ) )}" );
-                    }
-                }
-                return View( model );
+                var user = await _userManager.GetUserAsync( User );
+                model.HospitalId = user.Id;
+                model.Status = RequestStatus.Pending;
+                model.RequestDate = DateTime.Now;
+                _context.Add( model );
+                await _context.SaveChangesAsync();
+                return RedirectToAction( nameof( MyRequests ) );
+            }
+            return View( model );
+        }
+
+        // GET: BloodRequests/MyRequests
+        [Authorize( Roles = "Hospital" )]
+        public async Task<IActionResult> MyRequests ()
+        {
+            var user = await _userManager.GetUserAsync( User );
+            var requests = await _context.BloodRequests
+                .Where( r => r.HospitalId == user.Id )
+                .ToListAsync();
+            return View( requests );
+        }
+
+        // GET: BloodRequests/Manage
+        [Authorize( Roles = "Admin" )]
+        public async Task<IActionResult> Manage ()
+        {
+            var requests = await _context.BloodRequests
+                .Where( r => r.Status == RequestStatus.Pending )
+                .Include( r => r.Hospital )
+                .ToListAsync();
+            return View( requests );
+        }
+
+        // GET: BloodRequests/Details/5
+        [Authorize( Roles = "Admin,Hospital" )]
+        public async Task<IActionResult> Details ( int id )
+        {
+            var request = await _context.BloodRequests
+                .Include( r => r.Hospital )
+                .Include( r => r.AssignedUnits )
+                .FirstOrDefaultAsync( r => r.Id == id );
+            if ( request == null )
+            {
+                return NotFound();
             }
 
-            model.HospitalId = User.Identity.Name;
-            model.RequestDate = DateTime.UtcNow;
-            model.CreatedAt = DateTime.UtcNow;
-            model.Status = RequestStatus.Pending;
-            model.IsDeleted = false;
-            model.AssignedUnits = new List<BloodUnit>();
+            if ( User.IsInRole( "Hospital" ) )
+            {
+                var user = await _userManager.GetUserAsync( User );
+                if ( request.HospitalId != user.Id )
+                {
+                    return Forbid();
+                }
+            }
 
-            await _bloodRequestRepository.AddAsync( model );
-            TempData [ "Success" ] = "Blood request created successfully.";
-            return RedirectToAction( "Index" );
+            var availableUnits = await _context.BloodUnits
+                .Where( u => u.BloodType == request.BloodType && u.Status == BloodUnitStatus.Available )
+                .ToListAsync();
+            var availableQuantity = availableUnits.Sum( u => u.Quantity );
+            ViewBag.AvailableQuantity = availableQuantity;
+
+            return View( request );
         }
 
-        [Authorize( Roles = Roles.Hospital )]
-        public async Task<IActionResult> Index ()
-        {
-            var requests = await _bloodRequestRepository.GetAllByHospitalIdAsync( User.Identity.Name );
-            return View( requests );
-        }
-
-        [Authorize( Roles = Roles.Staff + "," + Roles.Admin )]
-        public async Task<IActionResult> PendingRequests ()
-        {
-            var requests = await _bloodRequestRepository.GetPendingRequestsAsync();
-            return View( requests );
-        }
-
+        // POST: BloodRequests/Approve/5
         [HttpPost]
-        [Authorize( Roles = Roles.Staff + "," + Roles.Admin )]
+        [ValidateAntiForgeryToken]
+        [Authorize( Roles = "Admin" )]
         public async Task<IActionResult> Approve ( int id )
         {
-            var request = await _bloodRequestRepository.GetByIdAsync( id );
-            if ( request == null || request.Status != RequestStatus.Pending )
+            var request = await _context.BloodRequests
+                .Include( r => r.AssignedUnits )
+                .FirstOrDefaultAsync( r => r.Id == id );
+            if ( request == null )
             {
-                TempData [ "Error" ] = "Request not found or not in Pending status.";
-                return RedirectToAction( "PendingRequests" );
+                return NotFound();
             }
 
-            request.Status = RequestStatus.Approved;
-            request.UpdatedAt = DateTime.UtcNow;
-            await _bloodRequestRepository.UpdateAsync( request );
-            TempData [ "Success" ] = "Request approved successfully.";
-            return RedirectToAction( "PendingRequests" );
-        }
+            var availableUnits = await _context.BloodUnits
+                .Where( u => u.BloodType == request.BloodType && u.Status == BloodUnitStatus.Available )
+                .OrderBy( u => u.ExpiryDate )
+                .ToListAsync();
+            var availableQuantity = availableUnits.Sum( u => u.Quantity );
 
-        [HttpPost]
-        [Authorize( Roles = Roles.Staff + "," + Roles.Admin )]
-        public async Task<IActionResult> Process ( int id )
-        {
-            var request = await _bloodRequestRepository.GetByIdAsync( id );
-            if ( request == null || request.Status != RequestStatus.Approved )
+            if ( availableQuantity < request.QuantityRequired )
             {
-                TempData [ "Error" ] = "Request not found or not approved for processing.";
-                return RedirectToAction( "PendingRequests" );
+                TempData [ "Error" ] = "Not enough blood units available to fulfill the request.";
+                return RedirectToAction( nameof( Details ), new { id = id } );
             }
 
-            request.Status = RequestStatus.InProcess;
-            var availableUnits = await _bloodUnitRepository.GetAvailableUnitsByBloodTypeAsync( request.BloodType );
-            var requiredQuantity = request.QuantityRequired;
-            var reservedUnits = new List<BloodUnit>();
-
+            double required = request.QuantityRequired;
+            double assigned = 0;
+            var toAssign = new List<BloodUnit>();
             foreach ( var unit in availableUnits )
             {
-                if ( requiredQuantity <= 0 ) break;
+                if ( assigned >= required ) break;
+                toAssign.Add( unit );
+                assigned += unit.Quantity;
+            }
 
-                reservedUnits.Add( unit );
+            foreach ( var unit in toAssign )
+            {
                 unit.Status = BloodUnitStatus.Reserved;
-                requiredQuantity -= unit.Quantity;
-                await _bloodUnitRepository.UpdateAsync( unit );
+                request.AssignedUnits.Add( unit );
             }
-
-            request.AssignedUnits = reservedUnits;
-
-            if ( requiredQuantity > 0 )
-            {
-                request.Status = RequestStatus.InProcess;
-                TempData [ "Warning" ] = "Request partially fulfilled; awaiting more units.";
-            }
-            else
-            {
-                request.Status = RequestStatus.Completed;
-                foreach ( var unit in reservedUnits )
-                {
-                    unit.Status = BloodUnitStatus.Dispatched;
-                    await _bloodUnitRepository.UpdateAsync( unit );
-                }
-                TempData [ "Success" ] = "Request fully processed and dispatched.";
-            }
-
-            request.UpdatedAt = DateTime.UtcNow;
-            await _bloodRequestRepository.UpdateAsync( request );
-            return RedirectToAction( "PendingRequests" );
+            request.Status = RequestStatus.Approved;
+            await _context.SaveChangesAsync();
+            return RedirectToAction( nameof( Manage ) );
         }
 
+        // POST: BloodRequests/Reject/5
         [HttpPost]
-        [Authorize( Roles = Roles.Staff + "," + Roles.Admin )]
-        public async Task<IActionResult> Reject ( int id, string rejectionReason )
+        [ValidateAntiForgeryToken]
+        [Authorize( Roles = "Admin" )]
+        public async Task<IActionResult> Reject ( int id )
         {
-            var request = await _bloodRequestRepository.GetByIdAsync( id );
-            if ( request == null || ( request.Status != RequestStatus.Pending && request.Status != RequestStatus.Approved ) )
+            var request = await _context.BloodRequests.FindAsync( id );
+            if ( request == null )
             {
-                TempData [ "Error" ] = "Request not found or cannot be rejected.";
-                return RedirectToAction( "PendingRequests" );
+                return NotFound();
             }
-
             request.Status = RequestStatus.Rejected;
-            request.Notes = $"{request.Notes}\nRejection Reason: {rejectionReason ?? "No reason provided."}".Trim();
-            request.UpdatedAt = DateTime.UtcNow;
-            await _bloodRequestRepository.UpdateAsync( request );
-            TempData [ "Success" ] = "Request rejected successfully.";
-            return RedirectToAction( "PendingRequests" );
+            await _context.SaveChangesAsync();
+            return RedirectToAction( nameof( Manage ) );
         }
     }
 }

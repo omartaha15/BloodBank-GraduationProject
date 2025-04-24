@@ -7,7 +7,12 @@ namespace BloodBank.Business.DTOs
     {
         public int Id { get; set; }
         public string DonorId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        // computed on the fly:
         public string DonorName { get; set; }
+
         public DateTime DonationDate { get; set; }
         public BloodType BloodType { get; set; }
         public double Quantity { get; set; }

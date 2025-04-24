@@ -1,132 +1,220 @@
-﻿    <!-- Blood Donation Information Section -->
-<div class="mb-6">
-    <button class="w-full bg-red-500 text-white font-semibold py-3 px-4 rounded-lg flex justify-between items-center" onclick="toggleSection('donationInfo')">
-        <span>About Blood Donation</span>
-        <span id="donationInfoArrow">▼</span>
-    </button>
-    <div id="donationInfo" class="bg-white p-6 rounded-lg shadow-lg mt-2">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">What is Blood Donation?</h2>
-        <p class="text-gray-600 mb-4">
-            Blood donation is a voluntary act where a person gives blood to be used for transfusions or medical treatments. It saves millions of lives each year, supporting patients with trauma, surgeries, cancer, and chronic illnesses.
-        </p>
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Eligibility</h3>
-        <ul class="list-disc list-inside text-gray-600 mb-4">
-            <li>Age: 17–65 (or as per local regulations).</li>
-            <li>Weight: At least 50 kg (110 lbs).</li>
-            <li>Health: Generally healthy, no recent infections or major surgeries.</li>
-            <li>Interval: At least 3 months since last donation.</li>
-        </ul>
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Process</h3>
-        <p class="text-gray-600 mb-4">
-            1. <strong>Registration</strong>: Provide ID and medical history.<br>
-            2. <strong>Screening</strong>: Health check and blood test.<br>
-            3. <strong>Donation</strong>: Takes 10–15 minutes, collecting ~450 mL.<br>
-            4. <strong>Rest</strong>: Refreshments and recovery time.
-        </p>
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Benefits</h3>
-        <p class="text-gray-600">
-            - Saves lives and supports community health.<br>
-            - Free health screening for donors.<br>
-            - Encourages a sense of purpose and altruism.
-        </p>
+﻿@model Dictionary<BloodBank.Core.Enums.BloodType, int>
+
+<!-- Emergency Alert Banner -->
+@{
+    var urgentTypes = Model?.Where( s => s.Value < 5 ).Select( s => s.Key ).ToList() ?? new List<BloodBank.Core.Enums.BloodType>();
+}
+@if ( urgentTypes.Any() )
+{
+    <div class="bg-gradient-to-r from-red-600 to-red-800 text-white py-2 shadow-inner animate-fade-in">
+        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-exclamation-triangle animate-pulse text-xl"></i>
+                <span class="text-sm font-semibold">Urgent Need:</span>
+                @foreach ( var bloodType in urgentTypes )
+                {
+                    <span class="inline-flex items-center px-2 py-1 mx-1 rounded-full bg-red-100 text-red-800 text-xs">
+                        <i class="fas fa-tint mr-1"></i>@bloodType
+                    </span>
+                }
+            </div>
+            <a href="@Url.Action("Create", "Donation")" class="bg-white text-red-700 px-3 py-1 rounded-lg text-sm font-medium hover:bg-gray-100">
+                <i class="fas fa-heart-pulse mr-1"></i> Donate Now
+            </a>
+        </div>
     </div>
-</div>
+}
+
+<!-- Overview Section -->
+<section class="py-12 bg-red-50 animate-fade-in">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+        <h1 class="text-4xl font-extrabold text-red-700 mb-4">Your Guide to Safe Blood Donation</h1>
+        <p class="text-gray-700">Learn the essentials of donating blood in Egypt—from eligibility and procedure to blood type compatibility and benefits.</p>
+    </div>
+</section>
+
+<!-- How to Donate Section -->
+<section class="py-16 bg-white animate-fade-in">
+    <div class="max-w-5xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-gray-900 border-b-2 border-red-200 inline-block mb-8">How to Donate Blood</h2>
+        <div class="space-y-6">
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-2">1. Registration & Eligibility</h3>
+                <p class="text-gray-700 mb-4">Register online or onsite with valid ID. You must be 17–65 years old, weigh at least 50 kg, and have at least 90 days since last donation. Disclose any recent travel or health conditions.</p>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-2">2. Pre-Donation Health Check</h3>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li>Blood pressure & pulse assessment</li>
+                    <li>Temperature screening</li>
+                    <li>Hemoglobin level test</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-2">3. Donation Procedure</h3>
+                <p class="text-gray-700">A sterile needle collects ~450 mL of blood in 10–15 minutes. You’ll relax in a comfortable chair with expert staff monitoring you throughout.</p>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-2">4. Post-Donation Care</h3>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li>Rest 15 minutes and enjoy refreshments</li>
+                    <li>Hydrate well for the next 48 hours</li>
+                    <li>Avoid heavy lifting or strenuous exercise for 24 hours</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-2">5. Testing & Results</h3>
+                <p class="text-gray-700">All donations are tested for blood type and infectious diseases. Expect your blood type results and any health notifications within 7 days.</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- Blood Types Section -->
-<div class="mb-6">
-    <button class="w-full bg-red-500 text-white font-semibold py-3 px-4 rounded-lg flex justify-between items-center" onclick="toggleSection('bloodTypes')">
-        <span>Blood Types</span>
-        <span id="bloodTypesArrow">▼</span>
-    </button>
-    <div id="bloodTypes" class="bg-white p-6 rounded-lg shadow-lg mt-2">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Understanding Blood Types</h2>
-        <p class="text-gray-600 mb-4">
-            Blood types are determined by antigens on red blood cells. The ABO system (A, B, AB, O) and Rh factor (+, -) create eight main types.
-        </p>
-        <table class="w-full text-left border-collapse mb-4">
-            <thead>
-                <tr class="bg-gray-200">
-                    <th class="p-2 border">Blood Type</th>
-                    <th class="p-2 border">Can Donate To</th>
-                    <th class="p-2 border">Can Receive From</th>
-                    <th class="p-2 border">Prevalence</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td class="p-2 border">A+</td><td class="p-2 border">A+, AB+</td><td class="p-2 border">A+, A-, O+, O-</td><td class="p-2 border">~34%</td></tr>
-                <tr><td class="p-2 border">A-</td><td class="p-2 border">A+, A-, AB+, AB-</td><td class="p-2 border">A-, O-</td><td class="p-2 border">~6%</td></tr>
-                <tr><td class="p-2 border">B+</td><td class="p-2 border">B+, AB+</td><td class="p-2 border">B+, B-, O+, O-</td><td class="p-2 border">~9%</td></tr>
-                <tr><td class="p-2 border">B-</td><td class="p-2 border">B+, B-, AB+, AB-</td><td class="p-2 border">B-, O-</td><td class="p-2 border">~2%</td></tr>
-                <tr><td class="p-2 border">AB+</td><td class="p-2 border">AB+</td><td class="p-2 border">All types</td><td class="p-2 border">~4%</td></tr>
-                <tr><td class="p-2 border">AB-</td><td class="p-2 border">AB+, AB-</td><td class="p-2 border">AB-, A-, B-, O-</td><td class="p-2 border">~1%</td></tr>
-                <tr><td class="p-2 border">O+</td><td class="p-2 border">O+, A+, B+, AB+</td><td class="p-2 border">O+, O-</td><td class="p-2 border">~39%</td></tr>
-                <tr><td class="p-2 border">O-</td><td class="p-2 border">All types</td><td class="p-2 border">O-</td><td class="p-2 border">~6%</td></tr>
-            </tbody>
-        </table>
-        <p class="text-gray-600">
-            <strong>O-</strong> is the universal donor (can donate to all types), and <strong>AB+</strong> is the universal recipient (can receive from all types).
-        </p>
+<section class="py-16 bg-red-50 animate-fade-in">
+    <div class="max-w-5xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-gray-900 border-b-2 border-red-300 inline-block mb-8">Blood Types & Compatibility</h2>
+        <p class="text-gray-700 mb-6">The ABO and Rh systems determine who can donate to whom. Here’s a quick reference:</p>
+        <div class="overflow-x-auto">
+            <table class="min-w-full text-left text-gray-700 border-collapse shadow-lg">
+                <thead class="bg-white border-b">
+                    <tr>
+                        <th class="p-4">Type</th>
+                        <th class="p-4">Donate To</th>
+                        <th class="p-4">Receive From</th>
+                        <th class="p-4">Prevalence in Egypt</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white">
+                    <tr class="border-b">
+                        <td class="p-4">O-</td>
+                        <td class="p-4">All Types</td>
+                        <td class="p-4">O-</td>
+                        <td class="p-4">~6%</td>
+                    </tr>
+                    <tr class="bg-gray-50 border-b">
+                        <td class="p-4">O+</td>
+                        <td class="p-4">O+, A+, B+, AB+</td>
+                        <td class="p-4">O+, O-</td>
+                        <td class="p-4">~36%</td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="p-4">A-</td>
+                        <td class="p-4">A+, A-, AB+, AB-</td>
+                        <td class="p-4">A-, O-</td>
+                        <td class="p-4">~7%</td>
+                    </tr>
+                    <tr class="bg-gray-50 border-b">
+                        <td class="p-4">A+</td>
+                        <td class="p-4">A+, AB+</td>
+                        <td class="p-4">A+, A-, O+, O-</td>
+                        <td class="p-4">~27%</td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="p-4">B-</td>
+                        <td class="p-4">B+, B-, AB+, AB-</td>
+                        <td class="p-4">B-, O-</td>
+                        <td class="p-4">~2%</td>
+                    </tr>
+                    <tr class="bg-gray-50 border-b">
+                        <td class="p-4">B+</td>
+                        <td class="p-4">B+, AB+</td>
+                        <td class="p-4">B+, B-, O+, O-</td>
+                        <td class="p-4">~17%</td>
+                    </tr>
+                    <tr class="border-b">
+                        <td class="p-4">AB-</td>
+                        <td class="p-4">AB+, AB-</td>
+                        <td class="p-4">AB-, A-, B-, O-</td>
+                        <td class="p-4">&lt;1%</td>
+                    </tr>
+                    <tr class="bg-gray-50">
+                        <td class="p-4">AB+</td>
+                        <td class="p-4">AB+</td>
+                        <td class="p-4">All Types</td>
+                        <td class="p-4">~2%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-6 text-gray-700 space-y-2">
+            <p><span class="font-semibold">Universal Donor:</span> O-</p>
+            <p><span class="font-semibold">Universal Recipient:</span> AB+</p>
+        </div>
     </div>
-</div>
+</section>
 
-<!-- Instructions Section -->
-<div class="mb-6">
-    <button class="w-full bg-red-500 text-white font-semibold py-3 px-4 rounded-lg flex justify-between items-center" onclick="toggleSection('instructions')">
-        <span>Donation Instructions</span>
-        <span id="instructionsArrow">▼</span>
-    </button>
-    <div id="instructions" class="bg-white p-6 rounded-lg shadow-lg mt-2">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Guidelines for Donors</h2>
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">Before Donation</h3>
-        <ul class="list-disc list-inside text-gray-600 mb-4">
-            <li>Eat a healthy meal 2–3 hours prior (avoid fatty foods).</li>
-            <li>Stay hydrated—drink plenty of water.</li>
-            <li>Get a good night’s sleep.</li>
-            <li>Avoid alcohol for 24 hours.</li>
-            <li>Bring a valid ID and know your medical history.</li>
-        </ul>
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">During Donation</h3>
-        <ul class="list-disc list-inside text-gray-600 mb-4">
-            <li>Inform staff of any discomfort or concerns.</li>
-            <li>Relax and follow the phlebotomist’s instructions.</li>
-            <li>The process takes about 10–15 minutes.</li>
-        </ul>
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">After Donation</h3>
-        <ul class="list-disc list-inside text-gray-600 mb-4">
-            <li>Rest for 10–15 minutes and have refreshments.</li>
-            <li>Avoid heavy lifting or strenuous exercise for 24 hours.</li>
-            <li>Drink extra fluids for the next 48 hours.</li>
-            <li>If you feel dizzy or unwell, contact the blood bank immediately.</li>
-        </ul>
-        <h3 class="text-xl font-semibold text-gray-800 mb-2">For Hospital Staff</h3>
-        <p class="text-gray-600">
-            - Verify donor eligibility and blood test results before collection.<br>
-            - Ensure proper storage at 2–6°C for whole blood.<br>
-            - Follow ISBT 128 standards for labeling blood units.<br>
-            - Update donation status promptly in the system.
-        </p>
+<!-- Benefits Section -->
+<section class="py-16 bg-white animate-fade-in">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Why Your Donation Matters</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="flex items-start">
+                <i class="fas fa-heartbeat text-red-600 text-3xl mr-4"></i>
+                <p class="text-gray-700">Each donation can save up to three lives, supporting surgeries, trauma care, and chronic illness treatments.</p>
+            </div>
+            <div class="flex items-start">
+                <i class="fas fa-stethoscope text-red-600 text-3xl mr-4"></i>
+                <p class="text-gray-700">Donors receive a free mini-health checkup, helping you stay informed about your own wellness.</p>
+            </div>
+            <div class="flex items-start">
+                <i class="fas fa-users text-red-600 text-3xl mr-4"></i>
+                <p class="text-gray-700">Join a community of caring individuals nationwide, fostering solidarity and civic responsibility.</p>
+            </div>
+            <div class="flex items-start">
+                <i class="fas fa-hand-holding-heart text-red-600 text-3xl mr-4"></i>
+                <p class="text-gray-700">Enhance your emotional well-being by contributing to a critical public health effort.</p>
+            </div>
+        </div>
     </div>
-</div>
-</div>
+</section>
 
-<script>
-    function toggleSection(sectionId) {
-        const section = document.getElementById(sectionId);
-        const arrow = document.getElementById(sectionId + 'Arrow');
-        if (section.style.display === 'none') {
-            section.style.display = 'block';
-            arrow.textContent = '▼';
-        } else {
-            section.style.display = 'none';
-            arrow.textContent = '▶';
+<!-- FAQ Section -->
+<section class="py-16 bg-red-50 animate-fade-in">
+    <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-gray-900 border-b-2 border-red-200 inline-block mb-8">Frequently Asked Questions</h2>
+        <div class="space-y-6">
+            <div>
+                <h3 class="text-xl font-semibold text-gray-800">Can I donate if I'm on medication?</h3>
+                <p class="text-gray-700">It depends on the medication; please disclose all medications during screening for personalized guidance.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-gray-800">How often can I donate?</h3>
+                <p class="text-gray-700">Whole blood donors may give every 90 days; platelet donors have shorter intervals. Confirm with staff.</p>
+            </div>
+            <div>
+                <h3 class="text-xl font-semibold text-gray-800">Is donating blood safe?</h3>
+                <p class="text-gray-700">Absolutely. All equipment is sterile and single-use, and medical staff ensure your safety throughout the process.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer CTA -->
+<section class="bg-red-600 text-white py-10 animate-fade-in">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+        <h2 class="text-2xl font-bold mb-4">Ready to Save Lives?</h2>
+        <p class="mb-6">Join our network of donors and make an impact today.</p>
+        @if ( User.Identity.IsAuthenticated )
+        {
+            @if ( User.IsInRole( "Admin" ) )
+            {
+                <a href="@Url.Action("Dashboard", "Home")" class="bg-white text-red-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-chart-bar mr-2"></i> Dashboard
+                </a>
+            }
+            else if ( User.IsInRole( "Donor" ) )
+            {
+                <a href="@Url.Action("Index", "Donation")" class="bg-white text-red-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">
+                    <i class="fas fa-hand-holding-droplet mr-2"></i> Donate Now
+                </a>
+            }
         }
-    }
-
-    // Initialize sections as collapsed
-    document.getElementById('donationInfo').style.display = 'block';
-    document.getElementById('bloodTypes').style.display = 'none';
-    document.getElementById('instructions').style.display = 'none';
-    document.getElementById('donationInfoArrow').textContent = '▼';
-    document.getElementById('bloodTypesArrow').textContent = '▶';
-    document.getElementById('instructionsArrow').textContent = '▶';
-</script>
+        else
+        {
+            <a href="@Url.Action("Register", "Account")" class="bg-white text-red-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">
+                <i class="fas fa-user-plus mr-2"></i> Register
+            </a>
+        }
+    </div>
+</section>

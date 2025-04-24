@@ -1,51 +1,39 @@
 ﻿@model BloodBank.Core.Entities.BloodRequest
 
-<section class="container mx-auto px-6 py-12 max-w-2xl">
-    <h2 class="text-3xl font-bold text-gray-800 mb-8 flex items-center">
-        <i class="fas fa-tint text-blood-red mr-2"></i> Create Blood Request
-    </h2>
-
-    <form asp-action="Create" method="post" class="space-y-6">
-        <div>
-            <label class="block text-base font-medium text-gray-700">Blood Type</label>
-            <select asp-for="BloodType" class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-base focus:ring-blood-red focus:border-blood-red">
+<div class="container mx-auto px-4 py-8">
+    <h2 class="text-2xl font-bold mb-4">Create Blood Request</h2>
+    <form asp-action="Create" class="space-y-4">
+        <input asp-for="HospitalId" hidden value="@User.Identity.Name"/>
+        <div class="form-group">
+            <label asp-for="BloodType" class="block text-sm font-medium text-gray-700">Blood Type</label>
+            <select asp-for="BloodType" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 @foreach ( var type in Enum.GetValues( typeof( BloodBank.Core.Enums.BloodType ) ) )
                 {
                     <option value="@type">@type</option>
                 }
             </select>
         </div>
-
-        <div>
-            <label class="block text-base font-medium text-gray-700">Quantity Required (mL)</label>
-            <input asp-for="QuantityRequired" type="number" step="1" class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-base focus:ring-blood-red focus:border-blood-red" />
+        <div class="form-group">
+            <label asp-for="QuantityRequired" class="block text-sm font-medium text-gray-700">Quantity Required (ml)</label>
+            <input asp-for="QuantityRequired" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
         </div>
-
-        <div>
-            <label class="block text-base font-medium text-gray-700">Priority</label>
-            <select asp-for="Priority" class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-base focus:ring-blood-red focus:border-blood-red">
+        <div class="form-group">
+            <label asp-for="Priority" class="block text-sm font-medium text-gray-700">Priority</label>
+            <select asp-for="Priority" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 @foreach ( var priority in Enum.GetValues( typeof( BloodBank.Core.Enums.RequestPriority ) ) )
                 {
                     <option value="@priority">@priority</option>
                 }
             </select>
         </div>
-
-        <div>
-            <label class="block text-base font-medium text-gray-700">Required Date</label>
-            <input asp-for="RequiredDate" type="date" class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-base focus:ring-blood-red focus:border-blood-red" />
+        <div class="form-group">
+            <label asp-for="RequiredDate" class="block text-sm font-medium text-gray-700">Required Date</label>
+            <input asp-for="RequiredDate" type="date" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
         </div>
-
-        <div>
-            <label class="block text-base font-medium text-gray-700">Notes</label>
-            <textarea asp-for="Notes" class="mt-1 block w-full border border-gray-300 rounded-md p-3 text-base focus:ring-blood-red focus:border-blood-red" rows="4"></textarea>
+        <div class="form-group">
+            <label asp-for="Notes" class="block text-sm font-medium text-gray-700">Notes</label>
+            <textarea asp-for="Notes" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
         </div>
-
-        <div>
-            <button type="submit" class="w-full bg-blood-red text-white font-semibold py-3 px-6 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-blood-red focus:ring-offset-2 transition duration-200">
-                Submit Request
-            </button>
-        </div>
+        <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Submit Request</button>
     </form>
-</section>
-
+</div>

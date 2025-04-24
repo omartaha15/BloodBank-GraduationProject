@@ -99,10 +99,8 @@ namespace BloodBank.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("HospitalId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("HospitalId1")
+                    b.Property<string>("HospitalId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsDeleted")
@@ -132,7 +130,7 @@ namespace BloodBank.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HospitalId1");
+                    b.HasIndex("HospitalId");
 
                     b.ToTable("BloodRequests");
                 });
@@ -491,7 +489,9 @@ namespace BloodBank.Infrastructure.Migrations
                 {
                     b.HasOne("BloodBank.Core.Entities.User", "Hospital")
                         .WithMany("BloodRequests")
-                        .HasForeignKey("HospitalId1");
+                        .HasForeignKey("HospitalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Hospital");
                 });

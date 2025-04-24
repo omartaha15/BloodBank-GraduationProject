@@ -113,14 +113,21 @@
                 @if ( User.IsInRole( Roles.Hospital ) == false)
                 {
                     <a href="@Url.Action("BloodPanel", "Home")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Info" ? "text-blood-red" : "")">
-                        <i class="fas fa-info-circle nav-icon mr-2"></i> Blood Info Panel
+                        <i class="fas fa-info-circle nav-icon mr-2"></i> How to Donate
                     </a>
                 }
-                <a href="@Url.Action("Index", "Donation")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Donation" ? "text-blood-red" : "")">
-                    <i class="fas fa-hand-holding-heart nav-icon mr-2"></i> Donations
-                </a>
+                @if ( User.IsInRole( Roles.Donor ))
+                {
+                    <a href="@Url.Action("Index", "Donation")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Donation" ? "text-blood-red" : "")">
+                        <i class="fas fa-hand-holding-heart nav-icon mr-2"></i> Donations
+                    </a>
+                }
+
                 @if (User.IsInRole(Roles.Hospital))
                 {
+                    <a href="@Url.Action("AllHospitalDonations", "Donation")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Donation" ? "text-blood-red" : "")">
+                        <i class="fas fa-hand-holding-heart nav-icon mr-2"></i> Donations
+                    </a>
                     <a href="@Url.Action("PendingDonations", "Hospital")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Pending Donations" ? "text-blood-red" : "")">
                         <i class="fas fa-clipboard-check nav-icon mr-2"></i> Pending Donations
                     </a>
@@ -167,52 +174,51 @@
             </div>
             <!-- User Menu -->
             <div class="flex items-center space-x-4">
-                @if (User.Identity.IsAuthenticated)
+                @if ( User.Identity.IsAuthenticated )
                 {
-                    <div class="relative group">
-                        <button class="flex items-center space-x-2 text-gray-700 hover:text-blood-red">
-                            <span class="w-9 h-9 rounded-full bg-blood-red text-white flex items-center justify-center text-lg font-semibold">
-                                @User.Identity.Name.Substring(0, 1).ToUpper()
+                    <div class="flex items-center space-x-3">
+                        <!-- User Initial -->
+                        <span class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center text-xl font-bold">
+                            @User.Identity.Name.Substring( 0, 1 ).ToUpper()
+                        </span>
+                        <!-- Name & Role -->
+                        <div class="flex flex-col leading-tight">
+                            <span class="text-gray-800 font-semibold">@User.Identity.Name</span>
+                            <span class="inline-block text-xs uppercase bg-gray-200 text-gray-800 px-2 py-0.5 rounded-full">
+                                @{
+                                    var role = User.IsInRole( "Admin" )
+                                    ? "System Maintainer"
+                                    : User.IsInRole( "Donor" )
+                                    ? "Donor"
+                                    : "Blood Provider";
+                                }
+                                @role
                             </span>
-                            <span class="hidden sm:inline text-sm font-medium">@User.Identity.Name</span>
-                            <i class="fas fa-caret-down text-blood-red"></i>
-                        </button>
-                        <div class="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-2xl hidden group-hover:block border border-gray-100">
-                            <div class="px-4 py-3 flex items-center border-b border-gray-100">
-                                <i class="fas fa-user-circle text-blood-red mr-2"></i>
-                                <span class="text-sm text-gray-700">@User.Identity.Name</span>
-                            </div>
-                            <a href="@Url.Action("Profile", "Account")" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blood-light hover:text-blood-red">
-                                <i class="fas fa-user-edit mr-2"></i> Profile
-                            </a>
-                            @if (User.IsInRole(Roles.Donor))
-                            {
-                                <a href="@Url.Action("MyDonations", "Donation")" class="flex items-center px-4 py-3 text-gray-700 hover:bg-blood-light hover:text-blood-red">
-                                    <i class="fas fa-history mr-2"></i> My Donations
-                                </a>
-                            }
-                            <form asp-controller="Account" asp-action="Logout" method="post">
-                                <button type="submit" class="flex items-center w-full px-4 py-3 text-red-600 hover:bg-red-50">
-                                    <i class="fas fa-sign-out-alt mr-2"></i> Logout
-                                </button>
-                            </form>
                         </div>
+                        <!-- Logout Button -->
+                        <form asp-controller="Account" asp-action="Logout" method="post" class="ml-4">
+                            <button type="submit" class="flex items-center text-gray-700 hover:text-red-600">
+                                <i class="fas fa-sign-out-alt mr-1"></i> Logout
+                            </button>
+                        </form>
                     </div>
                 }
                 else
                 {
-                    <a href="@Url.Action("Login", "Account")" class="flex items-center text-gray-700 hover:text-blood-red">
+                    <a href="@Url.Action("Login","Account")" class="text-gray-700 hover:text-red-600 font-medium">
                         <i class="fas fa-sign-in-alt mr-1"></i> Login
                     </a>
-                    <a href="@Url.Action("Register", "Account")" class="btn-modern text-white px-4 py-2 rounded-lg flex items-center">
-                        <i class="fas fa-user-plus mr-2"></i> Register
+                    <a href="@Url.Action("Register","Account")" class="bg-red-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-700">
+                        <i class="fas fa-user-plus mr-1"></i> Register
                     </a>
                 }
+
                 <!-- Mobile Menu Toggle -->
-                <button class="md:hidden text-gray-700 hover:text-blood-red" id="mobile-menu-toggle">
+                <button class="md:hidden text-gray-700 hover:text-red-600" id="mobile-menu-toggle">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
+
         </nav>
         <!-- Mobile Menu -->
         <div class="md:hidden hidden bg-white shadow-lg" id="mobile-menu">
@@ -220,6 +226,7 @@
                 <a href="@Url.Action("Index", "Home")" class="flex items-center text-gray-700 hover:text-blood-red">
                     <i class="fas fa-home mr-2"></i> Home
                 </a>
+
                 <a href="@Url.Action("Index", "Donation")" class="flex items-center text-gray-700 hover:text-blood-red">
                     <i class="fas fa-hand-holding-heart mr-2"></i> Donations
                 </a>
@@ -245,6 +252,12 @@
                     </a>
                     <a href="@Url.Action("Index", "Inventory")" class="flex items-center hover:text-blood-light">
                         <i class="fas fa-warehouse nav-icon mr-2"></i> Inventory
+                    </a>
+                    <a href="@Url.Action("Manage", "BloodRequest")" class="flex items-center hover:text-blood-light">
+                        <i class="fas fa-warehouse nav-icon mr-2"></i> Blood Requests
+                    </a>
+                    <a href="@Url.Action("AllDonations", "Donation")" class="flex items-center hover:text-blood-light">
+                        <i class="fas fa-warehouse nav-icon mr-2"></i> All Dontations
                     </a>
                 </div>
             </div>
@@ -309,6 +322,7 @@
             });
         });
     </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

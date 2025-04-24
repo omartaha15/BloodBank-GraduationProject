@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BloodBank.Core.Entities.BloodRequest>
+@{
+    ViewData [ "Title" ] = "Review Blood Requests";
+}
+
+<div class="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-md rounded-xl">
+    <h2 class="text-2xl font-bold mb-6 text-blue-600">Pending Blood Requests</h2>
+
+    @if ( !Model.Any() )
+    {
+        <p class="text-gray-500">No pending blood requests found.</p>
+    }
+    else
+    {
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-100">
+                    <tr>
+                        <th class="px-4 py-2 text-left font-medium text-gray-700">Hospital</th>
+                        <th class="px-4 py-2 text-left font-medium text-gray-700">Blood Type</th>
+                        <th class="px-4 py-2 text-left font-medium text-gray-700">Quantity</th>
+                        <th class="px-4 py-2 text-left font-medium text-gray-700">Priority</th>
+                        <th class="px-4 py-2 text-left font-medium text-gray-700">Required</th>
+                        <th class="px-4 py-2 text-left font-medium text-gray-700">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    @foreach ( var request in Model )
+                    {
+                        <tr>
+                            <td class="px-4 py-2">@request.Hospital?.UserName</td>
+                            <td class="px-4 py-2">@request.BloodType</td>
+                            <td class="px-4 py-2">@request.QuantityRequired ml</td>
+                            <td class="px-4 py-2">@request.Priority</td>
+                            <td class="px-4 py-2">@request.RequiredDate.ToShortDateString()</td>
+                            <td class="px-4 py-2 space-x-2">
+                                <form asp-action="Approve" method="post" class="inline">
+                                    <input type="hidden" name="id" value="@request.Id" />
+                                    <button class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700" onclick="return confirm('Approve this request?');">
+                                        Approve
+                                    </button>
+                                </form>
+                                <form asp-action="Reject" method="post" class="inline">
+                                    <input type="hidden" name="id" value="@request.Id" />
+                                    <button class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700" onclick="return confirm('Reject this request?');">
+                                        Reject
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

@@ -52,6 +52,21 @@ namespace Blood_Bank.Controllers
         }
 
 
+        public async Task<IActionResult> AllDonations ()
+        {
+            
+            var donations = await _donationService.GetAllDonationsAsync();
+            return View( donations );
+        }
+
+
+        public async Task<IActionResult> AllHospitalDonations ()
+        {
+
+            var donations = await _donationService.GetDonationsByHospitalAsync(User.Identity.Name);
+            return View( donations );
+        }
+
 
         public async Task<IActionResult> Details (int id)
         {
@@ -91,6 +106,8 @@ namespace Blood_Bank.Controllers
             var createDto = new CreateDonationDto
             {
                 DonorId = donorId,
+                FirstName = User.FindFirst( ClaimTypes.GivenName )?.Value,
+
                 AppointmentDate = DateTime.Today.AddDays( 1 ),
                 AppointmentTime = new TimeSpan( 9, 0, 0 ),
                 AppointmentNotes = string.Empty

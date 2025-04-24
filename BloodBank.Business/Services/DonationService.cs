@@ -41,7 +41,7 @@ namespace BloodBank.Business.Services
 
         public async Task<IEnumerable<DonationDto>> GetAllDonationsAsync ()
         {
-            var donations = await _donationRepository.GetAllAsync();
+            var donations = await _donationRepository.GetAllDonationsAsync();
             return _mapper.Map<IEnumerable<DonationDto>>( donations );
         }
 
@@ -132,7 +132,7 @@ namespace BloodBank.Business.Services
         public async Task<IEnumerable<DonationDto>> GetDonationsByHospitalAsync ( string hospitalId )
         {
             // Retrieve all donations; optionally, you may want to query the repository directly.
-            var allDonations = await _donationRepository.GetAllAsync();
+            var allDonations = await _donationRepository.GetAllDonationsAsync();
 
             // Filter donations where the HospitalId matches.
             var hospitalDonations = allDonations.Where( d => d.HospitalId == hospitalId );

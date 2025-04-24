@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace BloodBank.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Intial : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -168,13 +168,13 @@ namespace BloodBank.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    HospitalId = table.Column<int>(type: "int", nullable: false),
-                    HospitalId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    HospitalId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     BloodType = table.Column<int>(type: "int", nullable: false),
                     QuantityRequired = table.Column<double>(type: "float", nullable: false),
                     Priority = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     RequiredDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RequestDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -184,10 +184,11 @@ namespace BloodBank.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_BloodRequests", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BloodRequests_AspNetUsers_HospitalId1",
-                        column: x => x.HospitalId1,
+                        name: "FK_BloodRequests_AspNetUsers_HospitalId",
+                        column: x => x.HospitalId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -339,9 +340,9 @@ namespace BloodBank.Infrastructure.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BloodRequests_HospitalId1",
+                name: "IX_BloodRequests_HospitalId",
                 table: "BloodRequests",
-                column: "HospitalId1");
+                column: "HospitalId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BloodTests_DonorId",
