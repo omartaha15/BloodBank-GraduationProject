@@ -1,0 +1,498 @@
+﻿@model Blood_Bank.ViewModels.ReportViewModel
+
+@{
+    ViewData [ "Title" ] = "Detailed Blood Bank Report";
+
+    // --- In-View Blood Shortage Calculation ---
+    const int shortageThreshold = 15;
+
+    var bloodTypeQuantities = Model.BloodUnits
+        .GroupBy( bu => bu.BloodType )
+        .Select( group => new
+        {
+            BloodType = group.Key,
+            TotalQuantity = group.Sum( bu => bu.Quantity )
+        } )
+        .ToDictionary( x => x.BloodType, x => x.TotalQuantity );
+
+    var bloodTypeShortages = new List<string>();
+    var allBloodTypes = Enum.GetValues( typeof( BloodBank.Core.Enums.BloodType ) );
+
+    foreach ( var bloodType in allBloodTypes )
+    {
+        var bt = ( BloodBank.Core.Enums.BloodType ) bloodType;
+        var val = Model.BloodUnits.Count( x => x.BloodType == bt );
+
+        if ( val == 0 )
+        {
+            bloodTypeShortages.Add( $"{bt} (No Donations)" );
+        }
+        else if ( val < shortageThreshold )
+        {
+            bloodTypeShortages.Add( $"{bt} (Donations in this period : {val})" );
+        }
+    }
+}
+
+<style>
+    /* CSS for Print */
+    @@media print {
+        /* Hide everything by default */
+        body * {
+            visibility: hidden;
+            height: 0; /* Collapse space */
+            overflow: hidden; /* Prevent content from spilling */
+        }
+        /* Make only the report content visible */
+        #report-content, #report-content * {
+            visibility: visible;
+            height: auto;
+            overflow: visible;
+        }
+        /* Adjustments for the report content */
+        #report-content {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            margin: 0;
+            padding: 20px; /* Add some padding for print */
+            box-sizing: border-box; /* Include padding in width */
+            color: #000; /* Ensure text is black for print */
+            background-color: #fff; /* Ensure background is white for print */
+        }
+            /* General table styling for print */
+            #report-content table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 1em;
+            }
+
+            #report-content th, #report-content td {
+                border: 1px solid #ddd; /* Lighter border for print */
+                padding: 8px;
+                text-align: left;
+            }
+
+            #report-content th {
+                background-color: #f5f5f5; /* Lighter header background */
+            }
+            /* Ensure links don't show underlines/colors if not desired in print */
+            #report-content a {
+                text-decoration: none;
+                color: inherit;
+            }
+        /* Hide elements that shouldn't be printed, even if they are inside report-content later */
+        .no-print, .print-button {
+            display: none !important;
+        }
+        /* Ensure chart renders correctly (sometimes canvas doesn't print well directly) */
+        #bloodTypeChart {
+            /* You might need to convert the canvas to an image for best results,
+                   but this CSS helps it to display if possible. */
+            max-width: 100%;
+            height: auto;
+            display: block; /* Ensure it's a block element */
+            margin: auto; /* Center the chart */
+        }
+        /* Add page breaks for better readability if sections are long */
+        h2 {
+            page-break-before: always;
+        }
+
+            h2:first-of-type {
+                page-break-before: auto; /* Don't break before the first h2 */
+            }
+
+        .bg-white.shadow-md.rounded-lg.p-6.mb-6 { /* Card containers */
+            page-break-inside: avoid;
+        }
+
+        .grid { /* To prevent grids from breaking awkwardly */
+            display: block !important;
+        }
+
+            .grid > div {
+                display: block !important;
+                width: 100% !important; /* Make grid items full width on print */
+                margin-bottom: 10px; /* Add some spacing */
+            }
+    }
+</style>
+
+<div class="no-print">
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Detailed Blood Bank Report</h1>
+
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+        <h2 class="text-xl font-semibold mb-4 text-gray-700">Filter Report</h2>
+        <form asp-action="Index" method="get" class="flex flex-wrap items-end -mx-2">
+            <div class="px-2 mb-4 md:mb-0">
+                <label for="Period" class="block text-sm font-medium text-gray-700 mb-1">Period:</label>
+                <select name="Period" id="Period" class="form-select block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" onchange="toggleCustomDates()">
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                    <option value="quarter">Quarterly</option>
+                    <option value="yearly">Yearly</option>
+                    <option value="custom">Custom</option>
+                </select>
+            </div>
+            <div class="px-2 mb-4 md:mb-0" id="customDateFromGroup" style="display: @(Model.Period == "custom" ? "block" : "none");">
+                <label for="CustomFrom" class="block text-sm font-medium text-gray-700 mb-1">From:</label>
+                <input type="date" name="CustomFrom" id="CustomFrom" class="form-input block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="@Model.From.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="px-2 mb-4 md:mb-0" id="customDateToGroup" style="display: @(Model.Period == "custom" ? "block" : "none");">
+                <label for="CustomTo" class="block text-sm font-medium text-gray-700 mb-1">To:</label>
+                <input type="date" name="CustomTo" id="CustomTo" class="form-input block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="@Model.To.AddDays(-1).ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="px-2 mb-4 md:mb-0">
+                <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Generate Report
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="flex justify-end mb-6">
+        <button onclick="window.print()" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 print-button">
+            <svg class="-ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5 4v3H1V4a2 2 0 012-2h14a2 2 0 012 2v3h-4V4a2 2 0 00-2-2H7a2 2 0 00-2 2zm0 6h10v5a2 2 0 01-2 2H7a2 2 0 01-2-2v-5zm3 0h4v2H8v-2z" clip-rule="evenodd" />
+            </svg>
+            Print Report
+        </button>
+    </div>
+
+    <hr />
+    <hr />
+</div>
+
+<div id="report-content">
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">Detailed Blood Bank Report</h1>
+    <p class="text-gray-600 mb-4">Report Period: @Model.From.ToShortDateString() - @Model.To.ToShortDateString()</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 mb-6">
+        <div class="bg-blue-500 text-white shadow-md rounded-lg p-4">
+            <div class="text-sm font-medium mb-1">Total Donations</div>
+            <div class="text-2xl font-bold">@Model.TotalDonations</div>
+        </div>
+        <div class="bg-indigo-500 text-white shadow-md rounded-lg p-4">
+            <div class="text-sm font-medium mb-1">Total Blood Units</div>
+            <div class="text-2xl font-bold">@Model.TotalBloodUnits</div>
+        </div>
+        <div class="bg-green-500 text-white shadow-md rounded-lg p-4">
+            <div class="text-sm font-medium mb-1">Tests Passed</div>
+            <div class="text-2xl font-bold">@Model.TotalPassedTests</div>
+        </div>
+        <div class="bg-red-500 text-white shadow-md rounded-lg p-4">
+            <div class="text-sm font-medium mb-1">Tests Failed</div>
+            <div class="text-2xl font-bold">@Model.TotalFailedTests</div>
+        </div>
+        <div class="bg-yellow-500 text-white shadow-md rounded-lg p-4">
+            <div class="text-sm font-medium mb-1">Total Requests</div>
+            <div class="text-2xl font-bold">@Model.TotalRequests</div>
+        </div>
+        <div class="bg-gray-600 text-white shadow-md rounded-lg p-4">
+            <div class="text-sm font-medium mb-1">Fulfilled Requests</div>
+            <div class="text-2xl font-bold">@Model.FulfilledRequests</div>
+        </div>
+    </div>
+
+    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Blood Type Distribution (Donations)</h2>
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6 flex justify-center items-center">
+        <div style="max-width: 600px; max-height: 600px;">
+            <canvas id="bloodTypeChart"></canvas>
+        </div>
+    </div>
+
+    <hr />
+
+    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Blood Type Shortages</h2>
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+        <h3 class="text-lg font-medium mb-4 text-gray-700">Current Blood Type Shortages (Threshold: @shortageThreshold units)</h3>
+        @if ( bloodTypeShortages.Any() )
+        {
+            <ul class="list-disc list-inside text-red-700 space-y-2">
+                @foreach ( var shortage in bloodTypeShortages )
+                {
+                    <li class="font-semibold text-lg">@shortage</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p class="text-green-600 font-medium">No blood type shortages reported at this time.</p>
+        }
+    </div>
+
+    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Donations</h2>
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-6">
+        <h3 class="text-lg font-medium p-6 pb-4 text-gray-700 border-b border-gray-200">Donations (@Model.From.ToShortDateString() - @Model.To.ToShortDateString())</h3>
+        @if ( Model.Donations.Any() )
+        {
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Donor</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Donation Date</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Blood Type</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Quantity (ml)</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Hospital</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Appointment Date</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Appointment Time</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @foreach ( var donation in Model.Donations )
+                        {
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@donation.Id</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@donation.Donor.FirstName @donation.Donor.LastName</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@donation.DonationDate.ToShortDateString()</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@donation.BloodType</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@donation.Quantity</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm @(donation.Status == BloodBank.Core.Enums.DonationStatus.Approved ? "text-green-600" : "text-yellow-600")">@donation.Status</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@donation.Hospital?.FirstName @donation.Hospital?.LastName</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@donation.AppointmentDate.ToShortDateString()</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@donation.AppointmentTime.ToString( @"hh\:mm" )</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p class="text-gray-600 p-6">No donations found for this period.</p>
+        }
+    </div>
+
+    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Blood Requests</h2>
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-6">
+        <h3 class="text-lg font-medium p-6 pb-4 text-gray-700 border-b border-gray-200">Blood Requests (@Model.From.ToShortDateString() - @Model.To.ToShortDateString())</h3>
+        @if ( Model.BloodRequests.Any() )
+        {
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Hospital</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Blood Type</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Quantity Required</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Priority</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Request Date</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Required Date</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Notes</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Assigned Units</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @foreach ( var request in Model.BloodRequests )
+                        {
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@request.Id</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@request.Hospital.FirstName @request.Hospital.LastName</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@request.BloodType</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@request.QuantityRequired</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm @(request.Priority == BloodBank.Core.Enums.RequestPriority.Emergency ? "text-red-600 font-semibold" : "text-yellow-600")">@request.Priority</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm @(request.Status == BloodBank.Core.Enums.RequestStatus.Completed ? "text-green-600" : "text-gray-700")">@request.Status</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@request.RequestDate.ToShortDateString()</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@request.RequiredDate.ToShortDateString()</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@request.Notes</td>
+                                <td class="px-6 py-4 text-sm text-gray-900">
+                                    @if ( request.AssignedUnits != null && request.AssignedUnits.Any() )
+                                    {
+                                        <ul class="list-disc list-inside text-sm">
+                                            @foreach ( var unit in request.AssignedUnits )
+                                            {
+                                                <li>@unit.UnitNumber</li>
+                                            }
+                                        </ul>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-gray-500">No units assigned</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p class="text-gray-600 p-6">No blood requests found for this period.</p>
+        }
+    </div>
+
+    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Blood Tests</h2>
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-6">
+        <h3 class="text-lg font-medium p-6 pb-4 text-gray-700 border-b border-gray-200">Blood Tests (@Model.From.ToShortDateString() - @Model.To.ToShortDateString())</h3>
+        @if ( Model.BloodTests.Any() )
+        {
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Donor</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Test Date</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">HIV</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Hepatitis B</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Hepatitis C</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Syphilis</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Malaria</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Other Notes</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Test Passed</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Hospital</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Hospital Approval</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @foreach ( var test in Model.BloodTests )
+                        {
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@test.Id</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@test.Donor.FirstName @test.Donor.LastName</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@test.TestDate.ToShortDateString()</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm @(test.HivTest ? "text-red-600" : "text-green-600")">@(test.HivTest ? "Yes" : "No")</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm @(test.HepatitisB ? "text-red-600" : "text-green-600")">@(test.HepatitisB ? "Yes" : "No")</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm @(test.HepatitisC ? "text-red-600" : "text-green-600")">@(test.HepatitisC ? "Yes" : "No")</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm @(test.Syphilis ? "text-red-600" : "text-green-600")">@(test.Syphilis ? "Yes" : "No")</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm @(test.Malaria ? "text-red-600" : "text-green-600")">@(test.Malaria ? "Yes" : "No")</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@test.OtherTestNotes</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm @(test.IsTestPassed ? "text-green-600 font-semibold" : "text-red-600 font-semibold")">@(test.IsTestPassed ? "Yes" : "No")</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@test.Hospital?.FirstName @test.Hospital?.LastName</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@test.HospitalApprovalStatus</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p class="text-gray-600 p-6">No blood tests found for this period.</p>
+        }
+    </div>
+
+    <h2 class="text-2xl font-semibold mb-4 text-gray-800">Blood Units</h2>
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden mb-6">
+        <h3 class="text-lg font-medium p-6 pb-4 text-gray-700 border-b border-gray-200">Blood Units (@Model.From.ToShortDateString() - @Model.To.ToShortDateString())</h3>
+        @if ( Model.BloodUnits.Any() )
+        {
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Unit Number</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Donation ID</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Blood Type</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Quantity</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Collection Date</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Expiry Date</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Storage Location</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @foreach ( var unit in Model.BloodUnits )
+                        {
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@unit.Id</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@unit.UnitNumber</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@unit.DonationId</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@unit.BloodType</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@unit.Quantity</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@unit.CollectionDate.ToShortDateString()</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm @(unit.ExpiryDate < DateTime.Now.AddDays(30) ? "text-red-600 font-medium" : "text-gray-900")">@unit.ExpiryDate.ToShortDateString()</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm @(unit.Status == BloodBank.Core.Enums.BloodUnitStatus.Available ? "text-green-600" : unit.Status == BloodBank.Core.Enums.BloodUnitStatus.Dispatched ? "text-blue-600" : "text-gray-700")">@unit.Status</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">@unit.StorageLocation</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p class="text-gray-600 p-6">No blood units found for this period.</p>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Toggle Custom Dates function
+        function toggleCustomDates() {
+            var period = document.getElementById('Period').value;
+            var customFromGroup = document.getElementById('customDateFromGroup');
+            var customToGroup = document.getElementById('customDateToGroup');
+
+            if (period === 'custom') {
+                customFromGroup.style.display = 'block';
+                customToGroup.style.display = 'block';
+            } else {
+                customFromGroup.style.display = 'none';
+                customToGroup.style.display = 'none';
+            }
+        }
+        document.addEventListener('DOMContentLoaded', toggleCustomDates); // Call on page load
+
+        // Chart.js initialization
+        var bloodTypeLabels = @Html.Raw( Model.BloodTypeLabels );
+        var bloodTypeCounts = @Html.Raw( Model.BloodTypeCounts );
+
+        var ctx = document.getElementById('bloodTypeChart').getContext('2d');
+        var bloodTypeChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: bloodTypeLabels,
+                datasets: [{
+                    data: bloodTypeCounts,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',  // A+
+                        'rgba(54, 162, 235, 0.7)', // B+
+                        'rgba(255, 206, 86, 0.7)', // AB+
+                        'rgba(75, 192, 192, 0.7)', // O+
+                        'rgba(153, 102, 255, 0.7)',// A-
+                        'rgba(255, 159, 64, 0.7)', // B-
+                        'rgba(199, 199, 199, 0.7)',// AB-
+                        'rgba(83, 102, 255, 0.7)'  // O-
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(199, 199, 199, 1)',
+                        'rgba(83, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Blood Type Distribution from Donations'
+                    }
+                }
+            }
+        });
+    </script>
+}

@@ -1,6 +1,5 @@
 ﻿using System;
 using BloodBank.Core.Entities;
-using BloodBank.Core.Entities.BloodBank.Core.Entities;
 using BloodBank.Core.Enums; // Ensure this is added to get HospitalApprovalStatus
 
 namespace BloodBank.Business.DTOs

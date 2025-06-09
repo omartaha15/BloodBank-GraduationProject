@@ -1,4 +1,5 @@
 ﻿using BloodBank.Core.Enums;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System;
 
 namespace BloodBank.Business.DTOs
@@ -7,7 +8,10 @@ namespace BloodBank.Business.DTOs
     {
         public string DonorId { get; set; }
         public BloodType BloodType { get; set; }
+        [ValidateNever]
         public string FirstName { get; set; }
+        [ValidateNever]
+
         public string LastName { get; set; }
 
         // computed on the fly:

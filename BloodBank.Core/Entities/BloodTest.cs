@@ -2,8 +2,7 @@
 
 namespace BloodBank.Core.Entities
 {
-    namespace BloodBank.Core.Entities
-    {
+    
         public class BloodTest : BaseEntity
         {
             public string DonorId { get; set; }
@@ -26,8 +25,5 @@ namespace BloodBank.Core.Entities
             public HospitalApprovalStatus HospitalApprovalStatus { get; set; }
         }
 
-        
-    }
-
-
+       
 }

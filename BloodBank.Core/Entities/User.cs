@@ -1,5 +1,4 @@
-﻿using BloodBank.Core.Entities.BloodBank.Core.Entities;
-using BloodBank.Core.Enums;
+﻿using BloodBank.Core.Enums;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,4 @@
 ﻿using BloodBank.Core.Entities;
-using BloodBank.Core.Entities.BloodBank.Core.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

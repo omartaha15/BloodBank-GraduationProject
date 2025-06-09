@@ -1,5 +1,4 @@
-﻿using BloodBank.Core.Entities.BloodBank.Core.Entities;
-using BloodBank.Core.Enums;
+﻿using BloodBank.Core.Enums;
 
 namespace BloodBank.Business.DTOs
 {

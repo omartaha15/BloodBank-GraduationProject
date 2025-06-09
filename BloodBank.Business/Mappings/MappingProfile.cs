@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using BloodBank.Business.DTOs;
 using BloodBank.Core.Entities;
-using BloodBank.Core.Entities.BloodBank.Core.Entities;
 using BloodBank.Core.Enums;
 
 namespace BloodBank.Business.Mappings

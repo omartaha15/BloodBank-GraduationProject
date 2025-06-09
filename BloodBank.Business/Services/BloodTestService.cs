@@ -2,7 +2,6 @@
 using BloodBank.Business.DTOs;
 using BloodBank.Business.Interfaces;
 using BloodBank.Core.Entities;
-using BloodBank.Core.Entities.BloodBank.Core.Entities;
 using BloodBank.Core.Enums;
 using BloodBank.Core.Interfaces;
 using OpenQA.Selenium;

@@ -1,7 +1,6 @@
 ﻿using BloodBank.Business.DTOs;
 using BloodBank.Business.Interfaces;
 using BloodBank.Core.Entities;
-using BloodBank.Core.Entities.BloodBank.Core.Entities;
 using BloodBank.Core.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -122,6 +121,7 @@ namespace Blood_Bank.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create ( CreateDonationDto donationDto )
         {
+            
             if ( !ModelState.IsValid )
             {
                 var hospitals = await _userManager.GetUsersInRoleAsync( "Hospital" );

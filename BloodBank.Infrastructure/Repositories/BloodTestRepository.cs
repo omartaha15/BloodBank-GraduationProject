@@ -1,5 +1,4 @@
 ﻿using BloodBank.Core.Entities;
-using BloodBank.Core.Entities.BloodBank.Core.Entities;
 using BloodBank.Core.Interfaces;
 using BloodBank.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;

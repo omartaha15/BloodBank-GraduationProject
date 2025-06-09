@@ -6,6 +6,7 @@
         Approved,
         InProcess,
         Completed,
-        Rejected
+        Rejected,
+        Fulfilled
     }
 }
