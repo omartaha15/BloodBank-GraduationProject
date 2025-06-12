@@ -110,18 +110,25 @@
                 <a href="@Url.Action("Index", "Home")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "text-blood-red" : "")">
                     <i class="fas fa-home nav-icon mr-2"></i> Home
                 </a>
+
+                @if ( User.IsInRole( Roles.Donor ) )
+                {
+                    <a href="@Url.Action( "Index", "Donation" )" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values [ "Controller" ]?.ToString() == "Donation" ? "text-blood-red" : "")">
+                        <i class="fas fa-hand-holding-heart nav-icon mr-2"></i> Donations History
+                    </a>
+
+                     <a href="@Url.Action( "RewardingStatus", "BloodRequest" )" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values [ "Controller" ]?.ToString() == "Donation" ? "text-blood-red" : "")">
+                        <i class="fas fa-hand-holding-heart nav-icon mr-2"></i> Rewarding 
+                    </a>
+
+                }
                 @if ( User.IsInRole( Roles.Hospital ) == false)
                 {
                     <a href="@Url.Action("BloodPanel", "Home")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Info" ? "text-blood-red" : "")">
                         <i class="fas fa-info-circle nav-icon mr-2"></i> How to Donate
                     </a>
                 }
-                @if ( User.IsInRole( Roles.Donor ))
-                {
-                    <a href="@Url.Action("Index", "Donation")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Donation" ? "text-blood-red" : "")">
-                        <i class="fas fa-hand-holding-heart nav-icon mr-2"></i> Donations History
-                    </a>
-                }
+                
 
                 @if (User.IsInRole(Roles.Hospital))
                 {
@@ -140,7 +147,7 @@
 
 
                 }
-                @if ( User.IsInRole( Roles.Hospital ) == false)
+                @if ( User.IsInRole( Roles.Hospital ) == false && User.IsInRole( Roles.Donor ) == false)
                 {
                     <a href="@Url.Action("About", "Home")" class="nav-link flex items-center text-gray-700 hover:text-blood-red font-medium @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Info" ? "text-blood-red" : "")">
                         <i class="fas fa-info nav-icon mr-2"></i> About
