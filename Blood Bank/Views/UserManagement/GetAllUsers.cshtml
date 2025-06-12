@@ -1,0 +1,132 @@
+﻿@using Blood_Bank.Controllers
+@model IEnumerable<UserWithRoleViewModel>
+
+<!--Table Of Admin-->
+<div class="p-6 max-w-7xl mx-auto">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
+        <h1 class="text-2xl font-bold text-gray-800 mb-2 sm:mb-0">System Maintainers List</h1>
+        <input id="searchInput" type="text" placeholder="Search by name or email..."
+               class="border border-gray-300 rounded-lg px-4 py-2 w-full sm:w-72 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div class="overflow-auto rounded-lg shadow ring-1 ring-black ring-opacity-5">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Name</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Email</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">DOB</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Gender</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Blood Type</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody" class="bg-white divide-y divide-gray-200">
+                @foreach ( var user in Model )
+                {
+                    if ( user.Roles.Contains( "Admin" ) )
+                    {
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap">@user.User.FirstName @user.User.LastName</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@user.User.Email</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@user.User.DateOfBirth.ToShortDateString()</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@user.User.Gender</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@user.User.BloodType</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--Table Of Hospitals-->
+<div class="p-6 max-w-7xl mx-auto">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
+        <h1 class="text-2xl font-bold text-gray-800 mb-2 sm:mb-0">Hospitals List</h1>
+        <input id="searchInput" type="text" placeholder="Search by name or email..."
+               class="border border-gray-300 rounded-lg px-4 py-2 w-full sm:w-72 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div class="overflow-auto rounded-lg shadow ring-1 ring-black ring-opacity-5">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Name</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Email</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">DOB</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Gender</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Blood Type</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody" class="bg-white divide-y divide-gray-200">
+                @foreach ( var user in Model )
+                {
+                    if ( user.Roles.Contains( "Hospital" ) )
+                    {
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap">@user.User.FirstName @user.User.LastName</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@user.User.Email</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@user.User.DateOfBirth.ToShortDateString()</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@user.User.Gender</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@user.User.BloodType</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--Table Of Donors-->
+<div class="p-6 max-w-7xl mx-auto">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4">
+        <h1 class="text-2xl font-bold text-gray-800 mb-2 sm:mb-0">Users List</h1>
+        <input id="searchInput" type="text" placeholder="Search by name or email..."
+               class="border border-gray-300 rounded-lg px-4 py-2 w-full sm:w-72 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div class="overflow-auto rounded-lg shadow ring-1 ring-black ring-opacity-5">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Name</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Email</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">DOB</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Gender</th>
+                    <th class="px-6 py-3 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Blood Type</th>
+                </tr>
+            </thead>
+            <tbody id="userTableBody" class="bg-white divide-y divide-gray-200">
+                @foreach ( var user in Model )
+                {
+                    if(user.Roles.Contains("Donor"))
+                    {
+                        <tr class="hover:bg-gray-50">
+                            <td class="px-6 py-4 whitespace-nowrap">@user.User.FirstName @user.User.LastName</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@user.User.Email</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@user.User.DateOfBirth.ToShortDateString()</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@user.User.Gender</td>
+                            <td class="px-6 py-4 whitespace-nowrap">@user.User.BloodType</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function () {
+            const filter = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#userTableBody tr');
+
+            rows.forEach(row => {
+                const name = row.cells[0].textContent.toLowerCase();
+                const email = row.cells[1].textContent.toLowerCase();
+                row.style.display = name.includes(filter) || email.includes(filter) ? '' : 'none';
+            });
+        });
+    </script>
+}

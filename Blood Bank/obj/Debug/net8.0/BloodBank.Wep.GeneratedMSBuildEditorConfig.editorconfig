@@ -64,8 +64,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RSZXF1ZXN0XE15UmVxdWVzdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/RequestReward.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RSZXF1ZXN0XFJlcXVlc3RSZXdhcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/ReviewRequests.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RSZXF1ZXN0XFJldmlld1JlcXVlc3RzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/RewardingStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmxvb2RSZXF1ZXN0XFJld2FyZGluZ1N0YXR1cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/BloodRequest/Urgent.cshtml]
@@ -158,6 +166,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/UserManagement/ChangeRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmFnZW1lbnRcQ2hhbmdlUm9sZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/UserManagement/GetAllUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmFnZW1lbnRcR2V0QWxsVXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/C\#/ggggggg/ggggggg/BloodBank-GraduationProject/Blood Bank/Views/UserManagement/Index.cshtml]

@@ -2,6 +2,7 @@
 using BloodBank.Business.DTOs;
 using BloodBank.Core.Constants;
 using BloodBank.Core.Entities;
+using BloodBank.Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -17,19 +18,22 @@ namespace Blood_Bank.Controllers
         private readonly SignInManager<User> _signInManager;
         private readonly IMapper _mapper;
         private readonly ILogger<UserManagementController> _logger;
+        private readonly BloodBankDbContext _context;
 
         public UserManagementController (
             UserManager<User> userManager,
             RoleManager<IdentityRole> roleManager,
             SignInManager<User> signInManager,
             IMapper mapper,
-            ILogger<UserManagementController> logger )
+            ILogger<UserManagementController> logger,
+            BloodBankDbContext bloodBankDbContext)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
             _mapper = mapper;
             _logger = logger;
+            _context = bloodBankDbContext;
         }
 
         public async Task<IActionResult> Index ()
@@ -55,6 +59,24 @@ namespace Blood_Bank.Controllers
                 TempData [ "ErrorMessage" ] = "Error loading users.";
                 return View( new List<UserManagementDto>() );
             }
+        }
+
+        public async Task<IActionResult> GetAllUsers ()
+        {
+            var users = _userManager.Users.ToList();
+            var userWithRoles = new List<UserWithRoleViewModel>();
+
+            foreach ( var user in users )
+            {
+                var roles = await _userManager.GetRolesAsync( user );
+                userWithRoles.Add( new UserWithRoleViewModel
+                {
+                    User = user,
+                    Roles = roles.ToList()
+                } );
+            }
+
+            return View( userWithRoles );
         }
 
         public async Task<IActionResult> ChangeRole ( string userId )
@@ -181,4 +203,11 @@ namespace Blood_Bank.Controllers
 
 
     }
+
+    public class UserWithRoleViewModel
+    {
+        public User User { get; set; }
+        public List<string> Roles { get; set; }
+    }
+
 }

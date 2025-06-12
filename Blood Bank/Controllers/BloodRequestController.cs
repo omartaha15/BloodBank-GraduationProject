@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BloodBank.Core.Entities;
+﻿using BloodBank.Core.Entities;
 using BloodBank.Core.Enums;
 using BloodBank.Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace BloodBank.Web.Controllers
 {
@@ -33,7 +34,7 @@ namespace BloodBank.Web.Controllers
         // POST: BloodRequests/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize( Roles = "Hospital" )]
+        [Authorize( Roles = "Hospital,Donor" )]
         public async Task<IActionResult> Create ( BloodRequest model )
         {
             ModelState.Remove( nameof( model.Hospital ) );
@@ -149,6 +150,53 @@ namespace BloodBank.Web.Controllers
             return RedirectToAction( nameof( Manage ) );
         }
 
+
+        [Authorize( Roles = "Donor" )]
+        public async Task<IActionResult> RewardingStatus ()
+        {
+            var user = await _userManager.GetUserAsync( User );
+
+            int donationCount = await _context.Donations
+                .CountAsync( d => d.DonorId == user.Id && d.Status == DonationStatus.Approved );
+
+            int rewardRequestsMade = await _context.BloodRequests
+                .Where( r => r.HospitalId == user.Id )
+                .CountAsync();
+
+            var viewModel = new RewardStatusViewModel
+            {
+                DonationCount = donationCount,
+                RewardRequestsMade = rewardRequestsMade
+            };
+
+            return View( viewModel );
+        }
+
+
+        [Authorize( Roles = "Donor" )]
+        public async Task<IActionResult> RequestReward ()
+        {
+            var user = await _userManager.GetUserAsync( User );
+
+            // Check donor's eligible donation count
+            int donationCount = await _context.Donations
+                .CountAsync( d => d.DonorId == user.Id && d.Status == DonationStatus.Approved );
+
+            int rewardRequestsMade = await _context.BloodRequests
+                    .Where( r => r.HospitalId == user.Id )
+                    .CountAsync();
+
+            int allowedRequests = donationCount / 5;
+
+            if ( allowedRequests < rewardRequestsMade )
+            {
+                TempData [ "Error" ] = "You need at least 5 completed donations to request a blood reward.";
+                return RedirectToAction( "Index", "Home" );
+            }
+
+            return View();
+        }
+
         // POST: BloodRequests/Reject/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -165,4 +213,13 @@ namespace BloodBank.Web.Controllers
             return RedirectToAction( nameof( Manage ) );
         }
     }
+    public class RewardStatusViewModel
+    {
+        public int DonationCount { get; set; }
+        public int RewardRequestsMade { get; set; }
+        public int AllowedRequests => DonationCount / 5;
+        public int RemainingRequests => AllowedRequests - RewardRequestsMade;
+        public bool CanRequest => RewardRequestsMade < AllowedRequests;
+    }
+
 }

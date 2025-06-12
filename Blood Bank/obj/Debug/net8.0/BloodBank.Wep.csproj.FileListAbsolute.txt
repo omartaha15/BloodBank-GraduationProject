@@ -1147,12 +1147,6 @@ D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\sc
 D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\staticwebassets.build.json
 D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\staticwebassets.development.json
 D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\staticwebassets\msbuild.BloodBank.Wep.Microsoft.AspNetCore.StaticWebAssets.props
-D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\staticwebassets\msbuild.BloodBank.Wep.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\staticwebassets\msbuild.build.BloodBank.Wep.props
-D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.BloodBank.Wep.props
-D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.BloodBank.Wep.props
-D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\staticwebassets.pack.json
 D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\BloodBan.9FD609DA.Up2Date
 D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\BloodBank.Wep.dll
@@ -1160,3 +1154,8 @@ D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\re
 D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\BloodBank.Wep.pdb
 D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\BloodBank.Wep.genruntimeconfig.cache
 D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\ref\BloodBank.Wep.dll
+D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\rpswa.dswa.cache.json
+D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\rjimswa.dswa.cache.json
+D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+D:\C#\ggggggg\ggggggg\BloodBank-GraduationProject\Blood Bank\obj\Debug\net8.0\staticwebassets.build.json.cache

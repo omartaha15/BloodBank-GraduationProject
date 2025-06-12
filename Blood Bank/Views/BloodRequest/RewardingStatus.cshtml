@@ -1,0 +1,57 @@
+﻿@using BloodBank.Web.Controllers
+@model RewardStatusViewModel
+
+@{
+    ViewData [ "Title" ] = "Donation Reward Status";
+    var nextMilestone = ( ( Model.AllowedRequests + 1 ) * 5 );
+    var donationsToNextReward = nextMilestone - Model.DonationCount;
+}
+
+<div class="max-w-xl mx-auto bg-white p-6 rounded-2xl shadow-md border border-red-100">
+    <h2 class="text-2xl font-bold text-red-700 mb-6 text-center">🎁 Donation Reward Status</h2>
+
+    <div class="space-y-4 text-gray-800 text-sm">
+        <p>
+            <strong>✅ Total Approved Donations:</strong> <span class="text-green-600">@Model.DonationCount</span>
+        </p>
+        <p>
+            <strong>🎯 Reward Requests Made:</strong> @Model.RewardRequestsMade
+        </p>
+        <p>
+            <strong>🏆 Allowed Reward Requests:</strong> @Model.RemainingRequests
+        </p>
+    </div>
+
+    <div class="mt-6">
+        <div class="w-full bg-gray-200 rounded-full h-4">
+            <div class="bg-red-500 h-4 rounded-full" style="width: @(Math.Min( Model.DonationCount % 5 * 20, 100 ))%"></div>
+        </div>
+        <p class="text-xs mt-1 text-center text-gray-600">
+            @if ( Model.CanRequest )
+            {
+                <span class="text-green-700">🎉 You are eligible for a reward request!</span>
+            }
+            else
+            {
+                <span>💉 Donate <strong>@donationsToNextReward</strong> more time(s) to unlock your next reward.</span>
+            }
+        </p>
+    </div>
+
+    @if ( Model.CanRequest )
+    {
+        <div class="mt-6 text-center">
+            <a class="inline-block bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2 rounded shadow transition duration-300"
+               href="@Url.Action( "RequestReward", "BloodRequest" )">
+                Request Blood Reward
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="mt-6 text-center text-sm text-gray-700">
+            <p>Every 5 donations, you earn the right to request a unit of blood in return.</p>
+            <p class="mt-2">Your contribution saves lives — keep going! ❤️</p>
+        </div>
+    }
+</div>
