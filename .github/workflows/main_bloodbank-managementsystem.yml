@@ -6,38 +6,37 @@ on:
   workflow_dispatch:
 
 env:
-  PUBLISH_DIR: ./publish        # folder we’ll create
+  PUBLISH_DIR: ./publish
 
 jobs:
   build:
     runs-on: windows-latest
-    permissions: { contents: read }
+    permissions:
+      contents: read
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up .NET 8
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '8.x'
+      - name: Set up .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
 
-    # 👉 build the *solution* (fixes “MSB1003”)
-    - name: Build
-      run: dotnet build "Blood Bank/BloodBank.sln" -c Release
+      - name: Build
+        run: dotnet build "Blood Bank/BloodBank.Wep.csproj" -c Release
 
-    # 👉 publish **only the web project** (replace path if different)
-    - name: Publish
-      run: |
-        dotnet publish "Blood Bank/BloodBank.Wep.csproj" `
-                       -c Release -o ${{ env.PUBLISH_DIR }}
-        Compress-Archive -Path ${{ env.PUBLISH_DIR }}\* `
-                         -DestinationPath ${{ env.PUBLISH_DIR }}.zip
+      - name: Publish
+        run: |
+          dotnet publish "Blood Bank/BloodBank.Wep.csproj" `
+                         -c Release -o ${{ env.PUBLISH_DIR }}
+          Compress-Archive -Path ${{ env.PUBLISH_DIR }}\* `
+                           -DestinationPath ${{ env.PUBLISH_DIR }}.zip
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: publish-zip
-        path: ${{ env.PUBLISH_DIR }}.zip
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: publish-zip
+          path: ${{ env.PUBLISH_DIR }}.zip
 
   deploy:
     runs-on: windows-latest
@@ -48,20 +47,20 @@ jobs:
       contents: read
 
     steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: publish-zip
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: publish-zip
 
-    - name: Azure login
-      uses: azure/login@v2
-      with:
-        client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_8FA40C2648B445E897AA589D188DDC8D }}
-        tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_63E1DCD73E824DCE993C6BE07C1AB82F }}
-        subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_EB29D94C3AFA44018C8F59811ECD1A22 }}
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_8FA40C2648B445E897AA589D188DDC8D }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_63E1DCD73E824DCE993C6BE07C1AB82F }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_EB29D94C3AFA44018C8F59811ECD1A22 }}
 
-    - name: Deploy to Web App
-      uses: azure/webapps-deploy@v3
-      with:
-        app-name: bloodbank-managementsystem
-        package: publish.zip           # ← exact file we built
+      - name: Deploy to Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: bloodbank-managementsystem
+          package: publish.zip
