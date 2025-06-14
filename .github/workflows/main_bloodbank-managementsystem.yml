@@ -28,7 +28,7 @@ jobs:
     # 👉 publish **only the web project** (replace path if different)
     - name: Publish
       run: |
-        dotnet publish "Blood Bank/BloodBank.Web/BloodBank.Web.csproj" `
+        dotnet publish "Blood Bank/BloodBank.Web/BloodBank.Wep.csproj" `
                        -c Release -o ${{ env.PUBLISH_DIR }}
         Compress-Archive -Path ${{ env.PUBLISH_DIR }}\* `
                          -DestinationPath ${{ env.PUBLISH_DIR }}.zip
