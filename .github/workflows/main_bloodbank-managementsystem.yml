@@ -1,4 +1,4 @@
-name: Build & Deploy – bloodbank-managementsystem
+name: Build & Deploy – bloodbank-managementsysteo
 
 on:
   push:
